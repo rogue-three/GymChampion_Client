@@ -3,7 +3,7 @@ import React, { Component } from "react";
 class LogValidation extends Component {
 
     stylesLabel = {
-        color:"green",
+        color:"DarkTurquoise",
         fontSize:20
     };
 
@@ -27,6 +27,7 @@ class LogValidation extends Component {
                 <a className="waves-effect waves-light btn">Log in</a> 
                 <br/>
                 <a href="/sign_in">If You haven't got account sign in !</a>
+                <br/>
             </form>  
 
                      

@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 
 import LogValidation from "./LogValidation";
+import Footer from "./Footer";
 
-import gym1 from "../img/gym1.jpg";
+import gym1 from "../../img/gym1.jpg";
 
 class Login extends Component {
 
@@ -20,10 +21,14 @@ class Login extends Component {
 
     render() {
        return (
-       <div style={this.loginStyles}>
-            <img src={gym1} alt="logo" height="212" width="347"></img>
-            <LogValidation />         
-        </div>);
+        <span>
+            <div style={this.loginStyles}>
+                <img src={gym1} alt="logo" height="212" width="347"></img>
+                <LogValidation />        
+            </div>
+            <Footer/>
+        </span> 
+        );
     }
 } 
 export default Login;
