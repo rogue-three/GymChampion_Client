@@ -13,7 +13,6 @@ class LogValidation extends Component {
         justifyContent: 'center',
         flexDirection: 'column',
         width: '20%',
-        marginLeft: '35%'
     };
 
     render() {
