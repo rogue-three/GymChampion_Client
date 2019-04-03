@@ -4,7 +4,8 @@ import avatar from "./../img/avatar.svg";
 class Profile extends Component {
   state = {
     genders: [],
-    user: { gender: {} }
+    user: { gender: {} },
+    login: "Mihu"
   };
 
   componentDidMount() {
@@ -24,7 +25,7 @@ class Profile extends Component {
           });
         }
       );
-    fetch("http://localhost:8080/v1/users/Zosia")
+    fetch("http://localhost:8080/v1/users/" + this.state.login)
       .then(res => res.json())
       .then(
         result => {
@@ -47,13 +48,14 @@ class Profile extends Component {
   }
 
   render() {
-    const { genders, user } = this.state;
+    const { genders, user, login } = this.state;
     const date = new Date(user.birthDate);
     const birthDate = this.getBirthDate(date);
 
     return (
       <div>
         <img src={avatar} width="10%" color="white" alt="avatar" />
+        <h4 className="white-text">{login}</h4>
         <form>
           <label>
             <span className="white-text">BODY WEIGHT</span>
