@@ -9,7 +9,7 @@ class Login extends Component {
 
    state = {    
        logIn:true,
-       signIn:null
+       signIn:false
    };
 
     loginStyles = {
@@ -22,24 +22,30 @@ class Login extends Component {
   
     };
 
-    renderLogInOrSignIn = () => {
+    renderLogInOrSignIn() {
         if (this.state.logIn) return (<LogValidation/>);
         else if (this.state.signIn) return (<SigIn/>);
     };
 
-    renderLoginOrSignInLink = () => {
-        if (this.state.logIn) {return (<a  onClick={()=>{this.setSignInOnTrue()}}>If You haven't got account sign in !</a>);} 
-        else if (this.state.signIn) {return (<a href="" onClick={()=>{this.setLoginOnTrue()}}>Back to login !</a>);}
+    renderLoginOrSignInLink()  {
+        if (this.state.logIn)
+         {return (<a className="waves-effect waves-light btn"
+         onClick={this.setSignInOnTrue}>Create account</a>)
+         ;} 
+        else if (this.state.signIn) {
+            return (<a className="waves-effect waves-light btn"
+            onClick={this.setLoginOnTrue}>Back to login</a>)
+            ;}
     };
 
     setLoginOnTrue = () => {
-        this.setState({login: true});
+        this.setState({logIn: true});
         this.setState({signIn: false});
         console.log(this.state.logIn + " " + this.state.signIn);
     };
 
     setSignInOnTrue = () => {
-        this.setState({login: false});
+        this.setState({logIn: false});
         this.setState({signIn: true});
         console.log(this.state.logIn + " " + this.state.signIn);
     };
@@ -50,7 +56,8 @@ class Login extends Component {
         <span>
             <div style={this.loginStyles}>
                 <img src={gym1} alt="logo" height="212" width="347"></img>
-                    {this.renderLogInOrSignIn()}  
+                    {this.renderLogInOrSignIn()} 
+                    <p>OR</p> 
                     {this.renderLoginOrSignInLink()}      
             </div>
                 <br/>
