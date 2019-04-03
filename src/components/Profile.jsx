@@ -2,11 +2,15 @@ import React, { Component } from "react";
 import avatar from "./../img/avatar.svg";
 
 class Profile extends Component {
-  state = {
-    genders: [],
-    user: { gender: {} },
-    login: "Mihu"
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      genders: [],
+      user: { gender: {} },
+      login: "Mihu"
+    };
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
   componentDidMount() {
     fetch("http://localhost:8080/v1/users/gender")
@@ -47,6 +51,11 @@ class Profile extends Component {
     return date.getDate() + "-" + date.getMonth() + "-" + date.getFullYear();
   }
 
+  handleSubmit(event) {
+    console.log("blablabla");
+    event.preventDefault();
+  }
+
   render() {
     const { genders, user, login } = this.state;
     const date = new Date(user.birthDate);
@@ -56,7 +65,7 @@ class Profile extends Component {
       <div>
         <img src={avatar} width="10%" color="white" alt="avatar" />
         <h4 className="white-text">{login}</h4>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <label>
             <span className="white-text">BODY WEIGHT</span>
             <input
