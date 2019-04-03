@@ -4,7 +4,7 @@ import avatar from "./../img/avatar.svg";
 class Profile extends Component {
   state = {
     genders: [],
-    user: null
+    user: { gender: {} }
   };
 
   componentDidMount() {
@@ -24,7 +24,7 @@ class Profile extends Component {
           });
         }
       );
-    fetch("http://localhost:8080/v1/users/Mihu")
+    fetch("http://localhost:8080/v1/users/Zosia")
       .then(res => res.json())
       .then(
         result => {
@@ -41,8 +41,16 @@ class Profile extends Component {
         }
       );
   }
+
+  getBirthDate(date) {
+    return date.getDate() + "-" + date.getMonth() + "-" + date.getFullYear();
+  }
+
   render() {
     const { genders, user } = this.state;
+    const date = new Date(user.birthDate);
+    const birthDate = this.getBirthDate(date);
+
     return (
       <div>
         <img src={avatar} width="10%" color="white" alt="avatar" />
@@ -50,30 +58,32 @@ class Profile extends Component {
           <label>
             <span className="white-text">BODY WEIGHT</span>
             <input
-              className="input-field white"
+              className="input-field white center-align"
               type="text"
               name="name"
-              placeholder={user}
+              placeholder={user.weight}
             />
           </label>
           <label>
-            <span className="white-text">AGE</span>
+            <span className="white-text">BIRTH DATE</span>
             <input
-              className="input-field white"
+              className="input-field white center-align"
               type="text"
               name="name"
-              placeholder={user}
+              placeholder={birthDate}
             />
           </label>
           <label>
             <span className="white-text">GENDER</span>
             <br />
-            <br />
             {genders.map(gender => (
-              // <li key={gender.sex}>{gender.sex}</li>
               <label key={gender.sex}>
-                <input name="gender" type="radio" checked />
-                <span className="white-text">{gender.sex}</span>
+                <input
+                  name="gender"
+                  type="radio"
+                  checked={user.gender.sex === gender.sex ? true : false}
+                />
+                <span className="white-text">{gender.sex}&emsp;</span>
               </label>
             ))}
             <br />
@@ -89,7 +99,7 @@ class Profile extends Component {
         </form>
         <br />
         <button
-          className="btn waves-effect waves-light black"
+          className="btn waves-effect waves-light grey"
           type="submit"
           name="action"
         >
