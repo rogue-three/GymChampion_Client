@@ -3,7 +3,8 @@ import avatar from "./../img/avatar.svg";
 
 class Profile extends Component {
   state = {
-    genders: []
+    genders: [],
+    user: null
   };
 
   componentDidMount() {
@@ -23,25 +24,52 @@ class Profile extends Component {
           });
         }
       );
+    fetch("http://localhost:8080/v1/users/Mihu")
+      .then(res => res.json())
+      .then(
+        result => {
+          this.setState({
+            isLoaded: true,
+            user: result
+          });
+        },
+        error => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      );
   }
   render() {
+    const { genders, user } = this.state;
     return (
       <div>
         <img src={avatar} width="10%" color="white" alt="avatar" />
         <form>
           <label>
             <span className="white-text">BODY WEIGHT</span>
-            <input className="input-field white" type="text" name="name" />
+            <input
+              className="input-field white"
+              type="text"
+              name="name"
+              placeholder={user}
+            />
           </label>
           <label>
             <span className="white-text">AGE</span>
-            <input className="input-field white" type="text" name="name" />
+            <input
+              className="input-field white"
+              type="text"
+              name="name"
+              placeholder={user}
+            />
           </label>
           <label>
             <span className="white-text">GENDER</span>
             <br />
             <br />
-            {this.state.genders.map(gender => (
+            {genders.map(gender => (
               // <li key={gender.sex}>{gender.sex}</li>
               <label key={gender.sex}>
                 <input name="gender" type="radio" checked />
@@ -59,6 +87,14 @@ class Profile extends Component {
             SAVE
           </button>
         </form>
+        <br />
+        <button
+          className="btn waves-effect waves-light black"
+          type="submit"
+          name="action"
+        >
+          LOGOUT
+        </button>
       </div>
     );
   }
