@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ExerciseScheme from "./ExerciseScheme";
 
 class Start extends Component {
 
@@ -25,15 +26,17 @@ styleTrackWorkout = {
         <div>
             <div style={this.styleTrackWorkout} >
                 <h1>TRACK WORKOUT  </h1>
-                <a class="waves-effect waves-light btn-large">Edit</a>
+                <a className="waves-effect waves-light btn-large">Edit</a>
             </div>
             
             <a style={this.styleButtonTrain} className="btn-floating btn-large pulse">
             Just start training now!</a>
 
             <div>
-                <a style={this.styleButtonTrain} class="waves-effect waves-light btn-large">Custom training plans</a>
+                <a style={this.styleButtonTrain} className="waves-effect waves-light btn-large">Custom training plans</a>
             </div>
+
+            <ExerciseScheme/>
         </div>
         );
     }
