@@ -51,8 +51,6 @@ class LogValidation extends Component {
                 <a className="waves-effect waves-light btn"
                  onClick={this.getLoginAndPassword}>Log in</a> 
                 <br/>
-                <a>If You haven't got account sign in !</a>
-                <br/>
             </form>            
         );
     }

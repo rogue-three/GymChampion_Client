@@ -15,7 +15,7 @@ class SignIn extends Component {
             <br/>
             <a className="waves-effect waves-light btn">Sign in</a> 
             <br/>
-        </div>
-        );
+        </div>);
     }
 }
+export default SignIn;
