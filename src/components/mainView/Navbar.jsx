@@ -95,7 +95,7 @@ class Navbar extends Component {
     navbarStyle = {
         width:"100%",
         backgroundColor:"DarkTurquoise",
-        height:150,
+        height:100,
         margin:"0%"
     }
 
