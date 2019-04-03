@@ -7,7 +7,8 @@ class Profile extends Component {
     this.state = {
       genders: [],
       user: { gender: {} },
-      login: "Mihu"
+      login: "Mihu",
+      submitDisabled: true
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -52,9 +53,22 @@ class Profile extends Component {
   }
 
   handleSubmit(event) {
-    console.log("blablabla");
+    if (isNaN(event.target.weight.value)) {
+      console.log("nie wysle!");
+    }
     event.preventDefault();
   }
+
+  checkForm() {
+    return this.state.submitDisabled;
+  }
+
+  checkWeight = event => {
+    !isNaN(event.target.value) && event.target.value.length > 0
+      ? this.setState({ submitDisabled: false })
+      : this.setState({ submitDisabled: true });
+    event.preventDefault();
+  };
 
   render() {
     const { genders, user, login } = this.state;
@@ -71,8 +85,9 @@ class Profile extends Component {
             <input
               className="input-field white center-align"
               type="text"
-              name="name"
+              name="weight"
               placeholder={user.weight}
+              onKeyUp={this.checkWeight}
             />
           </label>
           <label>
@@ -80,7 +95,7 @@ class Profile extends Component {
             <input
               className="input-field white center-align"
               type="text"
-              name="name"
+              name="date"
               placeholder={birthDate}
             />
           </label>
@@ -103,7 +118,8 @@ class Profile extends Component {
           <button
             className="btn waves-effect waves-light"
             type="submit"
-            name="action"
+            name="submit"
+            disabled={this.checkForm()}
           >
             SAVE
           </button>
@@ -112,7 +128,7 @@ class Profile extends Component {
         <button
           className="btn waves-effect waves-light grey"
           type="submit"
-          name="action"
+          name="logout"
         >
           LOGOUT
         </button>
