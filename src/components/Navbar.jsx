@@ -1,20 +1,36 @@
 import React, { Component } from "react";
 
+import Start from "./Start";
+
 class Navbar extends Component {
 
     state = {
-       actualLabel:2
+       actualLabel:3
     }
 
-    setActiveBar = (active) => {
-        this.setState({activeBar: active});
+    setActualLabel = (active) => {
+        this.setState({actualLabel: active});
     }
 
     runProfile = () => {
-        this.setActiveBar(1);
-
+        this.setActualLabel(1);
     }
 
+    runCalendar = () => {
+        this.setActualLabel(2);
+    }
+
+    runTrain = () => {
+        this.setActualLabel(3);
+    }
+
+    runStats = () => {
+        this.setActualLabel(4);
+    }
+
+    runDiagnostic = () => {
+        this.setActualLabel(5);
+    }
 
     labelStyleActual = {
         color:"black",
@@ -53,9 +69,17 @@ class Navbar extends Component {
                     return <label style={this.labelStyleActual}>Diagnostic</label>
                 } else return <label style={this.labelStyle}>Diagnostic</label>
              }
-
-
          }
+    }
+
+    renderActiveScreen = () => {
+        switch(this.state.actualLabel) {
+            case(1): return <h1>Profile</h1>;
+            case(2): return <h1>Calendar</h1>;
+            case(3): return <Start/>
+            case(4): return <h1>Stats</h1>;
+            case(5): return <h1>Diagnostic</h1>;
+        }
     }
 
     styleList = {
@@ -85,22 +109,23 @@ class Navbar extends Component {
     render() {
         return (
             <span>
+            {this.renderActiveScreen()}
             <div style={this.navbarStyle}>
                 <ul style={this.styleList}>
                     <li style={this.styleListItems}>
-                        <button style={this.navbarStyle}>{this.renderBarByActive(1)}</button>
+                        <button onClick={this.runProfile} style={this.navbarStyle}>{this.renderBarByActive(1)}</button>
                     </li>
                     <li style={this.styleListItems}>
-                        <button style={this.navbarStyle}>{this.renderBarByActive(2)}</button>
+                        <button onClick={this.runCalendar} style={this.navbarStyle}>{this.renderBarByActive(2)}</button>
                     </li>
                     <li style={this.styleListItems}>
-                        <button style={this.navbarStyle}>{this.renderBarByActive(3)}</button>
+                        <button onClick={this.runTrain} style={this.navbarStyle}>{this.renderBarByActive(3)}</button>
                     </li>
                     <li style={this.styleListItems}>
-                        <button style={this.navbarStyle}>{this.renderBarByActive(4)}</button>
+                        <button onClick={this.runStats} style={this.navbarStyle}>{this.renderBarByActive(4)}</button>
                     </li>
                     <li style={this.styleListItems}>
-                        <button style={this.navbarStyle}>{this.renderBarByActive(5)}</button>
+                        <button onClick={this.runDiagnostic} style={this.navbarStyle}>{this.renderBarByActive(5)}</button>
                     </li>
                 </ul>
             </div>
