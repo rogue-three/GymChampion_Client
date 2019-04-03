@@ -73,34 +73,57 @@ class Profile extends Component {
   render() {
     const { genders, user, login } = this.state;
     const date = new Date(user.birthDate);
-    const birthDate = this.getBirthDate(date);
+    // const birthDate = this.getBirthDate(date);
 
     return (
       <div>
         <img src={avatar} width="10%" color="white" alt="avatar" />
         <h4 className="white-text">{login}</h4>
         <form onSubmit={this.handleSubmit}>
-          <label>
-            <span className="white-text">BODY WEIGHT</span>
+          <label className="row">
+            <span className="col s2" />
+            <span className="col s8 white-text teal lighten-1">
+              BODY WEIGHT
+            </span>
+            <br />
+            <span className="col s5" />
             <input
-              className="input-field white center-align"
+              className="col s2 input-field white center-align"
               type="text"
               name="weight"
               placeholder={user.weight}
               onKeyUp={this.checkWeight}
             />
           </label>
-          <label>
-            <span className="white-text">BIRTH DATE</span>
+          <label className="row">
+            <span className="col s2" />
+            <span className="col s8 white-text teal lighten-1">BIRTH DATE</span>
+            <br />
+            <span className="col s2" />
             <input
-              className="input-field white center-align"
+              className="col s2 input-field white center-align"
               type="text"
-              name="date"
-              placeholder={birthDate}
+              name="day"
+              placeholder={date.getDate()}
+            />
+            <span className="col s1" />
+            <input
+              className="col s2 input-field white center-align"
+              type="text"
+              name="month"
+              placeholder={date.getMonth()}
+            />
+            <span className="col s1" />
+            <input
+              className="col s2 input-field white center-align"
+              type="text"
+              name="year"
+              placeholder={date.getFullYear()}
             />
           </label>
-          <label>
-            <span className="white-text">GENDER</span>
+          <label className="row">
+            <span className="col s2" />
+            <span className="col s8 white-text teal lighten-1">GENDER</span>
             <br />
             {genders.map(gender => (
               <label key={gender.sex}>
@@ -113,8 +136,13 @@ class Profile extends Component {
               </label>
             ))}
             <br />
-            <br />
           </label>
+          <label className="row">
+            <span className="col s2" />
+            <span className="col s8 white-text teal lighten-1">&emsp;</span>
+          </label>
+
+          <br />
           <button
             className="btn waves-effect waves-light"
             type="submit"
