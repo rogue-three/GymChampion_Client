@@ -22,20 +22,20 @@ class Login extends Component {
   
     };
 
-    renderLogInOrSignIn() {
+    renderLogInOrSignIn =() =>  {
         if (this.state.logIn) return (<LogValidation/>);
         else if (this.state.signIn) return (<SigIn/>);
     };
 
-    renderLoginOrSignInLink()  {
+    renderLoginOrSignInButton = ()=>  {
         if (this.state.logIn)
          {return (<a className="waves-effect waves-light btn"
          onClick={this.setSignInOnTrue}>Create account</a>)
-         ;} 
+         } 
         else if (this.state.signIn) {
             return (<a className="waves-effect waves-light btn"
             onClick={this.setLoginOnTrue}>Back to login</a>)
-            ;}
+            }
     };
 
     setLoginOnTrue = () => {
@@ -57,8 +57,7 @@ class Login extends Component {
             <div style={this.loginStyles}>
                 <img src={gym1} alt="logo" height="212" width="347"></img>
                     {this.renderLogInOrSignIn()} 
-                    <p>OR</p> 
-                    {this.renderLoginOrSignInLink()}      
+                    {this.renderLoginOrSignInButton()}      
             </div>
                 <br/>
             <Footer/>
