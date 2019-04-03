@@ -4,6 +4,7 @@ class Start extends Component {
 
 styleButtonTrain = {
     width:"100%",
+    marginTop:"1%"
 }
 
 styleTrackWorkout = {
@@ -14,7 +15,8 @@ styleTrackWorkout = {
     justifyContent: 'space-around',
     backgroundColor:"DarkTurquoise",
     color:"white",
-    fontStyle:"italic"
+    fontStyle:"italic",
+    height:100
 }
 
 
@@ -24,11 +26,14 @@ styleTrackWorkout = {
             <div style={this.styleTrackWorkout} >
                 <h1>TRACK WORKOUT  </h1>
                 <a class="waves-effect waves-light btn-large">Edit</a>
-
             </div>
             
             <a style={this.styleButtonTrain} className="btn-floating btn-large pulse">
             Just start training now!</a>
+
+            <div>
+                <a style={this.styleButtonTrain} class="waves-effect waves-light btn-large">Custom training plans</a>
+            </div>
         </div>
         );
     }
