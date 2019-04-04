@@ -24,7 +24,7 @@ class SignIn extends Component {
 
     }
 
-    getLoginPasswordAndEmail = () => {
+    getLoginPasswordAndEmailAndSigInNewUser = () => {
         console.log("login:" + this.state.loginFromClient);
         console.log("password:" + this.state.passwordFromClient);
         console.log("email:" + this.state.emailFromClient);
@@ -34,9 +34,15 @@ class SignIn extends Component {
         console.log(userToSend);
         const urlToSend = this.state.urlToSendLoginData;
 
-      
-        
-        
+          fetch(urlToSend, {
+            method: 'POST', 
+            body: JSON.stringify(userToSend), 
+            headers:{
+              'Content-Type': 'application/json'
+            }
+          }).then(res => res.json())
+          .then(response => console.log('Success:', JSON.stringify(response)))
+          .catch(error => console.error('Error:', error));  
     }
 
     getJSONtoSendInBodyWithDataFromUser = () => {
@@ -98,7 +104,7 @@ class SignIn extends Component {
             value={this.state.passwordFromClient} onChange={this.passwordChange}></input>
             <br/>
             <a  className="waves-effect waves-light btn" 
-            onClick={this.getLoginPasswordAndEmail}>Sign in</a> 
+            onClick={this.getLoginPasswordAndEmailAndSigInNewUser}>Sign in</a> 
             <br/>
         </form>);
     }
