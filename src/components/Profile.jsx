@@ -8,7 +8,8 @@ class Profile extends Component {
       genders: [],
       user: { gender: {} },
       login: "Mihu",
-      submitDisabled: true
+      submitDisabled: true,
+      warning: ""
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -36,7 +37,7 @@ class Profile extends Component {
         result => {
           this.setState({
             isLoaded: true,
-            user: result
+            user: result,
           });
         },
         error => {
@@ -47,25 +48,91 @@ class Profile extends Component {
         }
       );
   }
-  handleSubmit(event) {
+  handleSubmit = event => {
     const userWeight = event.target.weight.value;
     const userBirthDateDay = event.target.day.value;
-    const userBirthDateMonth = event.target.month.value;
-    const userBirthDateYear= event.target.year.value;
-    if (userWeight.length !== 0 && userWeight < 30 || userWeight > 200) {
-      console.log("wrong user weight!");
+    const userBirthDateMonth = event.target.month.value - 1;
+    const userBirthDateYear = event.target.year.value;
+    let isWeightProper;
+    let isBirthDayDayProper;
+    let isBirthDayMonthProper;
+    let isBirthDayYearProper;
+
+    isWeightProper = this.checkParam(userWeight, 30, 200, "Wrong user weight!");
+    isBirthDayDayProper = this.checkParam(userBirthDateDay, 1, 31, "Wrong user birthday day!");
+    isBirthDayMonthProper = this.checkParam(userBirthDateMonth, 0, 11, "Wrong user birth day month!");
+    isBirthDayYearProper = this.checkParam(userBirthDateYear, 1900, new Date().getFullYear(), "Wrong user birth day year!");
+
+    if (!(isWeightProper && isBirthDayDayProper && isBirthDayMonthProper && isBirthDayYearProper)) {
+      event.preventDefault();
+      return;
     }
-    if (userBirthDateDay.length !== 0 && userBirthDateDay < 1 || userBirthDateDay > 31) {
-      console.log("wrong user birthday day!");
+    const userGender = event.target.gender;
+    const userUpdatedParams = {userWeight, userBirthDateDay, userBirthDateMonth, userBirthDateYear, userGender};
+    this.submitNewData(userUpdatedParams);
+  };
+
+  checkParam = (param, min, max, errorMessage) => {
+    //param = parseInt(param, 10);
+    if (param > 0 && (param < min || param > max)) {
+      this.setState({ warning: errorMessage });
+      return false;
     }
-    if (userBirthDateMonth.length !== 0 && userBirthDateMonth < 1 || userBirthDateMonth > 12) {
-      console.log("wrong user birthday month!");
+    return true;
+  };
+
+  submitNewData = userUpdatedParams => {
+    const {userWeight, userBirthDateDay, userBirthDateMonth, userBirthDateYear, userGender} = userUpdatedParams;
+    const user = this.state.user;
+    const userBirthDate = new Date(user.birthDate);
+    const updatedBirthDate = this.updateBirthDate(userBirthDate, userBirthDateYear, userBirthDateMonth, userBirthDateDay);
+
+    // console.log(parseFloat(userWeight) + updatedBirthDate + userGender);
+    if (user.weight !== parseFloat(userWeight)) {
+      console.log(userWeight);
+      // casting!
+      // submitData(userWeight, "link");
     }
-    if (userBirthDateYear.length !== 0 && userBirthDateYear < 1900 || userBirthDateYear > new Date().getFullYear()) {
-      console.log("wrong user birthday year!");
+    if (userBirthDate !== updatedBirthDate) {
+      console.log(userBirthDate.getFullYear(), userBirthDate.getMonth(), userBirthDate.getDate());
+      console.log(updatedBirthDate.getFullYear(), updatedBirthDate.getMonth(), updatedBirthDate.getDate());
+      // submitData(updatedBirthDate, "link");
     }
-    event.preventDefault();
-  }
+    if (userGender !== undefined && user.gender !== userGender) {
+      console.log(userGender);
+      // casting?
+      // submitData(userGender, "link");
+    }
+  };
+
+  updateBirthDate = (userBirthDate, updatedBirthDateYear, updatedBirthDateMonth, updatedBirthDateDay) => {
+    let userBirthDateDay;
+    let userBirthDateMonth;
+    let userBirthDateYear;
+
+    if (updatedBirthDateDay > 0) {
+      console.log("day");
+      userBirthDateDay = updatedBirthDateDay;
+    } else {
+      userBirthDateDay = userBirthDate.getDate();
+    }
+
+    if (updatedBirthDateMonth > 0) {
+      console.log("month");
+      userBirthDateMonth = updatedBirthDateMonth;
+    } else {
+      userBirthDateMonth = userBirthDate.getMonth();
+    }
+
+    if (updatedBirthDateYear > 0) {
+      console.log("year");
+      userBirthDateYear = updatedBirthDateYear;
+    } else {
+      userBirthDateYear = userBirthDate.getFullYear();
+    }
+
+    return new Date(userBirthDateYear, userBirthDateMonth, userBirthDateDay);
+  };
 
   checkNumber = event => {
     !isNaN(event.target.value) && event.target.value.length > 0
@@ -76,15 +143,16 @@ class Profile extends Component {
 
   checkGenderChange = event => {
     // event.target.checked=true;
-    this.state.user.gender.sex !== event.target.name
+    this.state.user.gender.sex !== event.target.gender
       ? this.setState({ submitDisabled: false })
       : this.setState({ submitDisabled: true });
     // event.preventDefault();
   };
 
   render() {
-    const { genders, user, login, submitDisabled } = this.state;
+    const { genders, user, login, submitDisabled, warning } = this.state;
     const date = new Date(user.birthDate);
+    const dateCopy = new Date(date.getTime());
 
     return (
       <div>
@@ -115,7 +183,7 @@ class Profile extends Component {
               className="col s2 input-field white center-align"
               type="text"
               name="day"
-              placeholder={date.getDate().toString()}
+              placeholder={dateCopy.getDate().toString()}
               onKeyUp={this.checkNumber}
             />
             <span className="col s1" />
@@ -123,7 +191,7 @@ class Profile extends Component {
               className="col s2 input-field white center-align"
               type="text"
               name="month"
-              placeholder={date.getMonth().toString()}
+              placeholder={(dateCopy.getMonth() +1).toString()}
               onKeyUp={this.checkNumber}
             />
             <span className="col s1" />
@@ -131,7 +199,7 @@ class Profile extends Component {
               className="col s2 input-field white center-align"
               type="text"
               name="year"
-              placeholder={date.getFullYear().toString()}
+              placeholder={dateCopy.getFullYear().toString()}
               onKeyUp={this.checkNumber}
             />
           </label>
@@ -156,7 +224,8 @@ class Profile extends Component {
             <span className="col s2" />
             <span className="col s8 white-text teal lighten-1">&emsp;</span>
           </label>
-
+          <span className="red-text">{ warning }</span>
+          <br />
           <br />
           <button
             className="btn waves-effect waves-light"
