@@ -59,7 +59,7 @@ class SignIn extends Component {
             <input type="text" name="password" placeholder="password..." 
             value={this.state.password} onChange={this.passwordChange}></input>
             <br/>
-            <a  className="white-text teal lighten-1" 
+            <a  className="waves-effect waves-light btn" 
             onClick={this.getLoginPasswordAndEmail}>Sign in</a> 
             <br/>
         </form>);
