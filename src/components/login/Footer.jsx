@@ -4,7 +4,7 @@ class Footer extends Component {
 
 footerStyles = {
     width:"100%",
-    backgroundColor:"DarkTurquoise ",
+    backgroundColor:"#009688",
     color: "white"
  
 }
