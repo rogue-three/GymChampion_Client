@@ -87,13 +87,12 @@ class Profile extends Component {
     const userBirthDate = new Date(user.birthDate);
     const updatedBirthDate = this.updateBirthDate(userBirthDate, userBirthDateYear, userBirthDateMonth, userBirthDateDay);
 
-    // console.log(parseFloat(userWeight) + updatedBirthDate + userGender);
-    if (user.weight !== parseFloat(userWeight)) {
+    if (user.weight !== userWeight) {
       console.log(userWeight);
       // casting!
       // submitData(userWeight, "link");
     }
-    if (this.compareBirthDates(userBirthDate, updatedBirthDate)) {
+    if (!this.compareBirthDates(userBirthDate, updatedBirthDate)) {
       console.log("update birth date");
       // submitData(updatedBirthDate, "link");
     }
@@ -110,21 +109,18 @@ class Profile extends Component {
     let userBirthDateYear;
 
     if (updatedBirthDateDay > 0) {
-      console.log("day");
       userBirthDateDay = updatedBirthDateDay;
     } else {
       userBirthDateDay = userBirthDate.getDate();
     }
 
     if (updatedBirthDateMonth > 0) {
-      console.log("month");
       userBirthDateMonth = updatedBirthDateMonth;
     } else {
       userBirthDateMonth = userBirthDate.getMonth();
     }
 
     if (updatedBirthDateYear > 0) {
-      console.log("year");
       userBirthDateYear = updatedBirthDateYear;
     } else {
       userBirthDateYear = userBirthDate.getFullYear();
@@ -133,8 +129,10 @@ class Profile extends Component {
   };
 
   compareBirthDates = (userBirthDate, updatedBirthDate) => {
-    const previousBirthDate = userBirthDate.getFullYear() + userBirthDate.getMonth() + userBirthDate.getDate();
-    const currentBirthDate = updatedBirthDate.getFullYear() + updatedBirthDate.getMonth() + updatedBirthDate.getDate();
+    const previousBirthDate = userBirthDate.getFullYear().toString() +
+        userBirthDate.getMonth().toString() + userBirthDate.getDate().toString();
+    const currentBirthDate = updatedBirthDate.getFullYear().toString() +
+        updatedBirthDate.getMonth().toString() + updatedBirthDate.getDate().toString();
     return previousBirthDate === currentBirthDate;
   };
 
