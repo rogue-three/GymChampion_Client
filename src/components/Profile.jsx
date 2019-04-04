@@ -164,16 +164,31 @@ class Profile extends Component {
           <label className="row">
             <span className="col s2" />
             <span className="col s8 white-text teal lighten-1">
+              NICKNAME
+            </span>
+            <br />
+            <span className="col s3" />
+            <input
+              className="col s6 input-field white center-align"
+              type="text"
+              name="weight"
+              placeholder={user.nickname}
+              // onKeyUp={this.checkNumber}
+            />
+          </label>
+          <label className="row">
+            <span className="col s2" />
+            <span className="col s8 white-text teal lighten-1">
               BODY WEIGHT
             </span>
             <br />
             <span className="col s5" />
             <input
-              className="col s2 input-field white center-align"
-              type="text"
-              name="weight"
-              placeholder={user.weight}
-              onKeyUp={this.checkNumber}
+                className="col s2 input-field white center-align"
+                type="text"
+                name="weight"
+                placeholder={user.weight}
+                onKeyUp={this.checkNumber}
             />
           </label>
           <label className="row">
