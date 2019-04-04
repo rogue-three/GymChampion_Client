@@ -2,8 +2,24 @@ import React, { Component } from "react";
 
 class LogValidation extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state =  {
+            login:"",
+            password:"",
+            passwordFromDB:"",
+            loginDataFromDb:{
+                        "user": {"gender":{},"userRole":{}}
+                    }
+
+        }
+        this.getLoginAndPassword = this.getLoginAndPassword.bind(this);
+        this.validatePassword = this.validatePassword.bind(this);
+    }
+
+
     stylesLabel = {
-        color:"DarkTurquoise",
+        color:"white",
         fontSize:20
     };
 
@@ -12,18 +28,38 @@ class LogValidation extends Component {
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'column',
-        width: '20%',
+        width: '60%',
     };
 
-    state = {
-        login:"",
-        password:""
+   
+
+    getLoginAndPassword = (event) => {
+    
+        let apiUrl = 'http://localhost:8080/v1/login_data/login/' + this.state.login;
+      
+         fetch(apiUrl)
+        .then(response => response.json())
+        .then(result => {
+            this.setState({passwordFromDB: result.password})
+            this.setState({loginDataFromDb: result});
+        });
     }
 
-    getLoginAndPassword = () => {
-        console.log("login:" + this.state.login);
-        console.log("password:" + this.state.password);
-    }
+
+    frozen = (ms) => {
+        return new Promise(r => setTimeout(r, ms));
+      }
+      
+
+    async validatePassword() {
+        await this.getLoginAndPassword();
+        await this.frozen(1000);
+        if(this.state.password === this.state.passwordFromDB) {
+            alert("Log succes!");
+        }else {
+            alert("Bad password!");
+        }
+    } 
 
     loginChange = (event) => {
         this.setState({login: event.target.value})
@@ -35,11 +71,9 @@ class LogValidation extends Component {
         
       }
 
-    
-
     render() {
        return (
-            <form style={this.stylesForm}>
+            <div style={this.stylesForm}>
                 <label style={this.stylesLabel}>Login:</label>
                 <input type="text" name="login" placeholder="Enter Your Login..." 
                 value={this.state.login} onChange={this.loginChange}></input>
@@ -49,10 +83,11 @@ class LogValidation extends Component {
                 value={this.state.password} onChange={this.passwordChange}></input>
                 <br/>
                 <a className="waves-effect waves-light btn"
-                 onClick={this.getLoginAndPassword}>Log in</a> 
+                 onClick={this.validatePassword}>Log in</a> 
+              
                 <br/>
                 <label style={this.stylesLabel}>OR</label>
-            </form>            
+            </div>            
         );
     }
 } 
