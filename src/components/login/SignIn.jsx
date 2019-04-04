@@ -19,7 +19,8 @@ class SignIn extends Component {
     state = {
         loginFromClient:"",
         passwordFromClient:"",
-        emailFromClient: ""
+        emailFromClient: "",
+        urlToSendLoginData: "http://localhost:8080//v1/login_data"
 
     }
 
@@ -28,15 +29,18 @@ class SignIn extends Component {
         console.log("password:" + this.state.passwordFromClient);
         console.log("email:" + this.state.emailFromClient);
 
-        let userToString = this.getJSONtoSendInBodyWithDataFromUser();
+        let userToSend = this.getJSONtoSendInBodyWithDataFromUser();
          
-        console.log(userToString);
+        console.log(userToSend);
+        const urlToSend = this.state.urlToSendLoginData;
+
+      
         
         
     }
 
     getJSONtoSendInBodyWithDataFromUser = () => {
-        let userToString =   {
+        let userObj =   {
             "loginId": 1,
             "password": null,
             "email": "null",
@@ -53,11 +57,11 @@ class SignIn extends Component {
             },
             "archivized": false
         };
-        userToString.email = this.state.emailFromClient;
-        userToString.password = this.state.passwordFromClient;
-        userToString.user.login = this.state.loginFromClient;
+        userObj.email = this.state.emailFromClient;
+        userObj.password = this.state.passwordFromClient;
+        userObj.user.login = this.state.loginFromClient;
 
-        return userToString;
+        return userObj;
 
     }
 
