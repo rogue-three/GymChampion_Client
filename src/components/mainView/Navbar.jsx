@@ -5,7 +5,7 @@ import Start from "./Start";
 class Navbar extends Component {
 
     state = {
-       actualLabel:3
+       actualLabel:1
     }
 
     setActualLabel = (active) => {
@@ -34,12 +34,12 @@ class Navbar extends Component {
 
     labelStyleActual = {
         color:"black",
-        fontSize:40
+        fontSize:20
     }
 
     labelStyle = {
         color: "white",
-        fontSize:20
+        fontSize:15
     }
 
     renderBarByActive = (numberOfLabel) => {
@@ -94,12 +94,16 @@ class Navbar extends Component {
 
     navbarStyle = {
         width:"100%",
-        backgroundColor:"DarkTurquoise",
+        backgroundColor:"#009688",
         height:100,
-        margin:"0%"
+        margin:"0%",
+        border:"ridge",
+        borderColor:"#80cbc4"
+        
     }
 
     styleListItems = {
+        
         width:"20%",
         color:"green",
         height:"100%",
