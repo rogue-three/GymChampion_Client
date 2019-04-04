@@ -4,8 +4,8 @@ class SignIn extends Component {
 
 
     stylesLabel = {
-        color:"DarkTurquoise",
-        fontSize:20
+        color:"white",
+        fontSize:15
     };
 
     stylesForm = {
@@ -13,7 +13,7 @@ class SignIn extends Component {
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'column',
-        width: '20%',
+        width: '60%',
     };
 
     state = {
@@ -50,16 +50,16 @@ class SignIn extends Component {
         <form style={this.stylesForm}>
             <label style={this.stylesLabel}>Create a new account:</label>
             <br/>
-            <input type="text" name="login" placeholder="Enter Your login..." 
+            <input type="text" name="login" placeholder="Login..." 
             value={this.state.login} onChange={this.loginChange}></input>
             <br/>
-            <input type="text" name="email" placeholder="Enter Your email..."
+            <input type="text" name="email" placeholder="@email..."
             value={this.state.email} onChange={this.emailChange}></input>
             <br/>
-            <input type="text" name="password" placeholder="Enter Your password..." 
+            <input type="text" name="password" placeholder="password..." 
             value={this.state.password} onChange={this.passwordChange}></input>
             <br/>
-            <a  className="waves-effect waves-light btn" 
+            <a  className="white-text teal lighten-1" 
             onClick={this.getLoginPasswordAndEmail}>Sign in</a> 
             <br/>
         </form>);
