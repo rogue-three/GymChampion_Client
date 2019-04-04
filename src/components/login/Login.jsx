@@ -3,13 +3,15 @@ import React, { Component } from "react";
 import LogValidation from "./LogValidation";
 import Footer from "./Footer";
 import SigIn from "./SignIn";
-import gym1 from "../../img/gym1.jpg";
+import gym1 from "../../img/gym1.png";
+import Navbar from "../mainView/Navbar";
 
 class Login extends Component {
 
    state = {    
        logIn:true,
-       signIn:false
+       signIn:false,
+       isLogged:false
    };
 
     loginStyles = {
@@ -23,7 +25,7 @@ class Login extends Component {
     };
 
     renderLogInOrSignIn =() =>  {
-        if (this.state.logIn) return (<LogValidation/>);
+        if (this.state.logIn) return (<LogValidation callbackFromParent={this.setIsLogged}/>);
         else if (this.state.signIn) return (<SigIn/>);
     };
 
@@ -41,27 +43,37 @@ class Login extends Component {
     setLoginOnTrue = () => {
         this.setState({logIn: true});
         this.setState({signIn: false});
-        console.log(this.state.logIn + " " + this.state.signIn);
     };
 
     setSignInOnTrue = () => {
         this.setState({logIn: false});
         this.setState({signIn: true});
-        console.log(this.state.logIn + " " + this.state.signIn);
     };
+
+
+    setIsLogged = (logInfoFromValidator) => {
+        this.setState({isLogged: logInfoFromValidator});
+    }
 
 
     render() {
-       return (
-        <span>
-            <div style={this.loginStyles}>
-                <img src={gym1} alt="logo" height="212" width="347"></img>
-                    {this.renderLogInOrSignIn()} 
-                    {this.renderLoginOrSignInButton()}      
-            </div>
-                <br/>
-            <Footer/>
-        </span>);
-    };
+       
+
+        if (this.state.isLogged) {
+            return <Navbar/>;
+        }
+        else {
+            return (
+            <span>
+                <div style={this.loginStyles}>
+                    <img src={gym1} alt="logo" height="212" width="347"></img>
+                        {this.renderLogInOrSignIn()} 
+                        {this.renderLoginOrSignInButton()}      
+                </div>
+                    <br/>
+                <Footer/>
+            </span>);
+            };
+        }
 } 
 export default Login;
