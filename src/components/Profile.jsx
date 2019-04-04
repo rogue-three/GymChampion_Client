@@ -49,6 +49,7 @@ class Profile extends Component {
       );
   }
   handleSubmit = event => {
+    const userNickname = event.target.nickname.value;
     const userWeight = event.target.weight.value;
     const userBirthDateDay = event.target.day.value;
     const userBirthDateMonth = event.target.month.value - 1;
@@ -68,12 +69,11 @@ class Profile extends Component {
       return;
     }
     const userGender = event.target.gender.value;
-    const userUpdatedParams = {userWeight, userBirthDateDay, userBirthDateMonth, userBirthDateYear, userGender};
+    const userUpdatedParams = {userNickname, userWeight, userBirthDateDay, userBirthDateMonth, userBirthDateYear, userGender};
     this.submitNewData(userUpdatedParams);
   };
 
   checkParam = (param, min, max, errorMessage) => {
-    //param = parseInt(param, 10);
     if (param > 0 && (param < min || param > max)) {
       this.setState({ warning: errorMessage });
       return false;
@@ -82,10 +82,16 @@ class Profile extends Component {
   };
 
   submitNewData = userUpdatedParams => {
-    const {userWeight, userBirthDateDay, userBirthDateMonth, userBirthDateYear, userGender} = userUpdatedParams;
+    const {userNickname, userWeight, userBirthDateDay, userBirthDateMonth, userBirthDateYear, userGender} = userUpdatedParams;
     const user = this.state.user;
     const userBirthDate = new Date(user.birthDate);
     const updatedBirthDate = this.updateBirthDate(userBirthDate, userBirthDateYear, userBirthDateMonth, userBirthDateDay);
+
+    if (user.nickname !== userNickname) {
+      console.log(userNickname);
+      // casting!
+      // submitData(userWeight, "link");
+    }
 
     if (user.weight !== userWeight) {
       console.log(userWeight);
@@ -143,6 +149,13 @@ class Profile extends Component {
     event.preventDefault();
   };
 
+  checkIfEmpty = event => {
+    event.target.value.length > 0
+      ? this.setState({ submitDisabled: false })
+      : this.setState({ submitDisabled: true });
+    event.preventDefault();
+  };
+
   checkGenderChange = event => {
     // event.target.checked=true;
     this.state.user.gender.sex !== event.target.gender
@@ -171,9 +184,9 @@ class Profile extends Component {
             <input
               className="col s6 input-field white center-align"
               type="text"
-              name="weight"
+              name="nickname"
               placeholder={user.nickname}
-              // onKeyUp={this.checkNumber}
+              onKeyUp={this.checkIfEmpty}
             />
           </label>
           <label className="row">
