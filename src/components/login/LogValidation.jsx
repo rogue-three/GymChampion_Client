@@ -10,7 +10,8 @@ class LogValidation extends Component {
             passwordFromDB:"",
             loginDataFromDb:{
                         "user": {"gender":{},"userRole":{}}
-                    }
+                    },
+            logSucces: false
 
         }
         this.getLoginAndPassword = this.getLoginAndPassword.bind(this);
@@ -55,7 +56,7 @@ class LogValidation extends Component {
         await this.getLoginAndPassword();
         await this.frozen(1000);
         if(this.state.password === this.state.passwordFromDB) {
-            alert("Log succes!");
+            this.setState({logSucces: true});
         }else {
             alert("Bad password!");
         }
@@ -72,23 +73,28 @@ class LogValidation extends Component {
       }
 
     render() {
-       return (
-            <div style={this.stylesForm}>
-                <label style={this.stylesLabel}>Login:</label>
-                <input type="text" name="login" placeholder="Enter Your Login..." 
-                value={this.state.login} onChange={this.loginChange}></input>
-                <br/>
-                <label style={this.stylesLabel}>Password:</label>
-                <input type="text" name="password" placeholder="Enter Your Password..." 
-                value={this.state.password} onChange={this.passwordChange}></input>
-                <br/>
-                <a className="waves-effect waves-light btn"
-                 onClick={this.validatePassword}>Log in</a> 
-              
-                <br/>
-                <label style={this.stylesLabel}>OR</label>
-            </div>            
-        );
+        if (this.state.logSucces === true) {
+            return <h1>LOGGED</h1>
+        } else {
+        return (
+                <div style={this.stylesForm}>
+                    <label style={this.stylesLabel}>Login:</label>
+                    <input type="text" name="login" placeholder="Enter Your Login..." 
+                    value={this.state.login} onChange={this.loginChange}></input>
+                    <br/>
+                    <label style={this.stylesLabel}>Password:</label>
+                    <input type="text" name="password" placeholder="Enter Your Password..." 
+                    value={this.state.password} onChange={this.passwordChange}></input>
+                    <br/>
+                    <a className="waves-effect waves-light btn"
+                    onClick={this.validatePassword}>Log in</a> 
+                
+                    <br/>
+                    <label style={this.stylesLabel}>OR</label>
+                </div>            
+            );
+        }
     }
 } 
+
 export default LogValidation;
