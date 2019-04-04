@@ -36,7 +36,7 @@ class LogValidation extends Component {
 
    
 
-    getLoginAndPassword = (event) => {
+    getLoginAndPassword = () => {
     
         let apiUrl = 'http://localhost:8080/v1/login_data/login/' + this.state.login;
       
