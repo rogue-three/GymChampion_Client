@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import Start from "./Start";
+import MainView from "./MainView";
 
 class Navbar extends Component {
 
@@ -76,7 +76,7 @@ class Navbar extends Component {
         switch(this.state.actualLabel) {
             case(1): return <h1>Profile</h1>;
             case(2): return <h1>Calendar</h1>;
-            case(3): return <Start/>
+            case(3): return <MainView/>
             case(4): return <h1>Stats</h1>;
             case(5): return <h1>Diagnostic</h1>;
         }

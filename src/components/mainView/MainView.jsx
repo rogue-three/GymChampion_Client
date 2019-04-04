@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ExerciseScheme from "./ExerciseScheme";
 
-class Start extends Component {
+class MainView extends Component {
 
 styleButtonTrain = {
     width:"100%",
@@ -42,4 +42,4 @@ styleTrackWorkout = {
         );
     }
 }
-export default Start;
+export default MainView;

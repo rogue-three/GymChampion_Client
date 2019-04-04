@@ -8,13 +8,18 @@ import Navbar from "./components/mainView/Navbar";
 
 class App extends Component {
 
+  renderLoginOrAppActiveUser() {
+    // todo : logic to verify user token
+    return <Login/>
+  }
+
   
 
   render() {
     return (
       <div>
-     {/* <Login /> */}
-     <Navbar/>
+     {this.renderLoginOrAppActiveUser()}
+    
      
      </div>
     );
