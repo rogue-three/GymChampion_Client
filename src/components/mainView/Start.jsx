@@ -5,7 +5,8 @@ class Start extends Component {
 
 styleButtonTrain = {
     width:"100%",
-    marginTop:"1%"
+    marginTop:"1%",
+    borderRadius: 80
 }
 
 styleTrackWorkout = {
@@ -17,7 +18,7 @@ styleTrackWorkout = {
     backgroundColor:"DarkTurquoise",
     color:"white",
     fontStyle:"italic",
-    height:100
+    height:80
 }
 
 
@@ -25,11 +26,11 @@ styleTrackWorkout = {
         return (
         <div>
             <div style={this.styleTrackWorkout} >
-                <h1>TRACK WORKOUT  </h1>
-                <a className="waves-effect waves-light btn-large">Edit</a>
+                <p>TRACK WORKOUT  </p>
+                <a className="waves-effect waves-light btn-small">Edit</a>
             </div>
             
-            <a style={this.styleButtonTrain} className="btn-floating btn-large pulse">
+            <a style={this.styleButtonTrain} className="waves-effect waves-light btn-large">
             Just start training now!</a>
 
             <div>
