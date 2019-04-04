@@ -67,7 +67,7 @@ class Profile extends Component {
       event.preventDefault();
       return;
     }
-    const userGender = event.target.gender;
+    const userGender = event.target.gender.value;
     const userUpdatedParams = {userWeight, userBirthDateDay, userBirthDateMonth, userBirthDateYear, userGender};
     this.submitNewData(userUpdatedParams);
   };
@@ -93,12 +93,11 @@ class Profile extends Component {
       // casting!
       // submitData(userWeight, "link");
     }
-    if (userBirthDate !== updatedBirthDate) {
-      console.log(userBirthDate.getFullYear(), userBirthDate.getMonth(), userBirthDate.getDate());
-      console.log(updatedBirthDate.getFullYear(), updatedBirthDate.getMonth(), updatedBirthDate.getDate());
+    if (this.compareBirthDates(userBirthDate, updatedBirthDate)) {
+      console.log("update birth date");
       // submitData(updatedBirthDate, "link");
     }
-    if (userGender !== undefined && user.gender !== userGender) {
+    if (!(user.gender.sex === userGender)) {
       console.log(userGender);
       // casting?
       // submitData(userGender, "link");
@@ -130,8 +129,13 @@ class Profile extends Component {
     } else {
       userBirthDateYear = userBirthDate.getFullYear();
     }
-
     return new Date(userBirthDateYear, userBirthDateMonth, userBirthDateDay);
+  };
+
+  compareBirthDates = (userBirthDate, updatedBirthDate) => {
+    const previousBirthDate = userBirthDate.getFullYear() + userBirthDate.getMonth() + userBirthDate.getDate();
+    const currentBirthDate = updatedBirthDate.getFullYear() + updatedBirthDate.getMonth() + updatedBirthDate.getDate();
+    return previousBirthDate === currentBirthDate;
   };
 
   checkNumber = event => {
@@ -210,9 +214,11 @@ class Profile extends Component {
             {genders.map(gender => (
               <label key={gender.sex}>
                 <input
-                  name={gender.sex}
+                  value={gender.sex}
+                  name="gender"
                   type="radio"
                   defaultChecked={user.gender === gender}
+                  // checked={user.gender === gender}
                   onClick={this.checkGenderChange}
                 />
                 <span className="white-text">{gender.sex}&emsp;</span>
