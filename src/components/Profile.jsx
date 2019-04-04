@@ -47,33 +47,44 @@ class Profile extends Component {
         }
       );
   }
-
-  getBirthDate(date) {
-    return date.getDate() + "-" + date.getMonth() + "-" + date.getFullYear();
-  }
-
   handleSubmit(event) {
-    if (isNaN(event.target.weight.value)) {
-      console.log("nie wysle!");
+    const userWeight = event.target.weight.value;
+    const userBirthDateDay = event.target.day.value;
+    const userBirthDateMonth = event.target.month.value;
+    const userBirthDateYear= event.target.year.value;
+    if (userWeight.length !== 0 && userWeight < 30 || userWeight > 200) {
+      console.log("wrong user weight!");
+    }
+    if (userBirthDateDay.length !== 0 && userBirthDateDay < 1 || userBirthDateDay > 31) {
+      console.log("wrong user birthday day!");
+    }
+    if (userBirthDateMonth.length !== 0 && userBirthDateMonth < 1 || userBirthDateMonth > 12) {
+      console.log("wrong user birthday month!");
+    }
+    if (userBirthDateYear.length !== 0 && userBirthDateYear < 1900 || userBirthDateYear > new Date().getFullYear()) {
+      console.log("wrong user birthday year!");
     }
     event.preventDefault();
   }
 
-  checkForm() {
-    return this.state.submitDisabled;
-  }
-
-  checkWeight = event => {
+  checkNumber = event => {
     !isNaN(event.target.value) && event.target.value.length > 0
       ? this.setState({ submitDisabled: false })
       : this.setState({ submitDisabled: true });
     event.preventDefault();
   };
 
+  checkGenderChange = event => {
+    // event.target.checked=true;
+    this.state.user.gender.sex !== event.target.name
+      ? this.setState({ submitDisabled: false })
+      : this.setState({ submitDisabled: true });
+    // event.preventDefault();
+  };
+
   render() {
-    const { genders, user, login } = this.state;
+    const { genders, user, login, submitDisabled } = this.state;
     const date = new Date(user.birthDate);
-    // const birthDate = this.getBirthDate(date);
 
     return (
       <div>
@@ -92,7 +103,7 @@ class Profile extends Component {
               type="text"
               name="weight"
               placeholder={user.weight}
-              onKeyUp={this.checkWeight}
+              onKeyUp={this.checkNumber}
             />
           </label>
           <label className="row">
@@ -104,21 +115,24 @@ class Profile extends Component {
               className="col s2 input-field white center-align"
               type="text"
               name="day"
-              placeholder={date.getDate()}
+              placeholder={date.getDate().toString()}
+              onKeyUp={this.checkNumber}
             />
             <span className="col s1" />
             <input
               className="col s2 input-field white center-align"
               type="text"
               name="month"
-              placeholder={date.getMonth()}
+              placeholder={date.getMonth().toString()}
+              onKeyUp={this.checkNumber}
             />
             <span className="col s1" />
             <input
               className="col s2 input-field white center-align"
               type="text"
               name="year"
-              placeholder={date.getFullYear()}
+              placeholder={date.getFullYear().toString()}
+              onKeyUp={this.checkNumber}
             />
           </label>
           <label className="row">
@@ -128,9 +142,10 @@ class Profile extends Component {
             {genders.map(gender => (
               <label key={gender.sex}>
                 <input
-                  name="gender"
+                  name={gender.sex}
                   type="radio"
-                  checked={user.gender.sex === gender.sex ? true : false}
+                  defaultChecked={user.gender === gender}
+                  onClick={this.checkGenderChange}
                 />
                 <span className="white-text">{gender.sex}&emsp;</span>
               </label>
@@ -147,7 +162,7 @@ class Profile extends Component {
             className="btn waves-effect waves-light"
             type="submit"
             name="submit"
-            disabled={this.checkForm()}
+            disabled={submitDisabled}
           >
             SAVE
           </button>
