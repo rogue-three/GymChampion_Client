@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import MainView from "./MainView";
+import Profile from "../Profile";
 
 class Navbar extends Component {
 
@@ -74,7 +75,7 @@ class Navbar extends Component {
 
     renderActiveScreen = () => {
         switch(this.state.actualLabel) {
-            case(1): return <h1>Profile</h1>;
+            case(1): return <Profile/>
             case(2): return <h1>Calendar</h1>;
             case(3): return <MainView/>
             case(4): return <h1>Stats</h1>;
