@@ -88,15 +88,14 @@ class Profile extends Component {
     const updatedBirthDate = this.updateBirthDate(userBirthDate, userBirthDateYear, userBirthDateMonth, userBirthDateDay);
 
     if (user.nickname !== userNickname) {
-      console.log(userNickname);
-      // casting!
-      // submitData(userWeight, "link");
+      const data = JSON.parse(JSON.stringify(user));
+      data.nickname = userNickname;
+      this.makeUpdate(data).then(data => console.log(data))
+          .catch(error => console.error(error));
     }
 
     if (user.weight !== userWeight) {
-      console.log(userWeight);
-      // casting!
-      // submitData(userWeight, "link");
+
     }
     if (!this.compareBirthDates(userBirthDate, updatedBirthDate)) {
       console.log("update birth date");
@@ -107,6 +106,20 @@ class Profile extends Component {
       // casting?
       // submitData(userGender, "link");
     }
+  };
+
+  makeUpdate = (data) => {
+    return fetch('http://localhost:8080/v1/users/' + this.state.login, {
+      method: 'PATCH',
+      // mode: 'CORS',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+        // 'Access-Control-Allow-Origin:': '*',
+      }
+    }).then(res => {
+      return res;
+    }).catch(err => err);
   };
 
   updateBirthDate = (userBirthDate, updatedBirthDateYear, updatedBirthDateMonth, updatedBirthDateDay) => {
