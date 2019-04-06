@@ -8,7 +8,7 @@ import Navbar from "../mainView/Navbar";
 
 class Login extends Component {
 
-   state = {    
+    state = {
        logIn:true,
        signIn:false,
        isLogged:false
@@ -53,11 +53,9 @@ class Login extends Component {
 
     setIsLogged = (logInfoFromValidator) => {
         this.setState({isLogged: logInfoFromValidator});
-    }
-
+    };
 
     render() {
-       
 
         if (this.state.isLogged) {
             return <Navbar/>;
@@ -73,7 +71,7 @@ class Login extends Component {
                     <br/>
                 <Footer/>
             </span>);
-            };
+            }
         }
 } 
 export default Login;
