@@ -1,20 +1,24 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
 
+// import Profile from "./components/profile/Profile";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { MuiThemeProvider } from "@material-ui/core/styles";
+import theme from "./themes/MuiComponentTheme";
 import Login from "./components/login/Login";
 
 class App extends Component {
-
   renderLoginOrAppActiveUser() {
     // todo : logic to verify user token
-    return <Login/>
+    return <Login />;
   }
 
   render() {
     return (
-      <div>
-     {this.renderLoginOrAppActiveUser()}
-     </div>
+      <MuiThemeProvider theme={theme}>
+        <CssBaseline />
+        {this.renderLoginOrAppActiveUser()}
+      </MuiThemeProvider>
     );
   }
 }
