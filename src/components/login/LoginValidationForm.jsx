@@ -33,46 +33,49 @@ class LoginValidationForm extends Component {
     render() {
 
         return (
-            <div>
             <Grid container spacing={8} alignItems="center" justify="center" direction="column">
-            <Grid container alignItems="center" justify="center">
-              <Grid item>
-                <TextField id="input-with-icon-grid" label="Login" />
+                <Grid container alignItems="center" justify="center">
+                    <Grid item>
+                        <TextField id="input-with-icon-grid" label="Login" />
+                    </Grid>
+                    <Grid item>
+                        <AccountCircle />
+                    </Grid>
               </Grid>
-              <Grid item>
-                <AccountCircle />
-              </Grid>
-              </Grid>
-            <FormControl>
-          <InputLabel htmlFor="adornment-password">Password</InputLabel>
-          <Input
-            id="adornment-password"
-            type={this.state.showPassword ? 'text' : 'password'}
-            value={this.state.password}
-            onChange={this.handleChange('password')}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="Toggle password visibility"
-                  onClick={this.handleClickShowPassword}
-                >
-                  {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </InputAdornment>
-            }
-          />
-        </FormControl>
-       <br></br>
-        <Button variant="contained" color="primary">
-        Log in
-      </Button>
-      <br></br>
-        <Typography variant="button" color="primary" gutterBottom>OR</Typography>
-        <Button variant="contained" color="primary">
-        Sign In
-      </Button>
+                <FormControl>
+                    <InputLabel htmlFor="adornment-password">Password</InputLabel>
+                    <Input
+                        id="adornment-password"
+                        type={this.state.showPassword ? 'text' : 'password'}
+                        value={this.state.password}
+                        onChange={this.handleChange('password')}
+                        endAdornment={
+                        <InputAdornment position="end">
+                            <IconButton
+                            aria-label="Toggle password visibility"
+                            onClick={this.handleClickShowPassword}
+                            >
+                            {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
+                            </IconButton>
+                        </InputAdornment>
+                        }
+                    />
+                </FormControl>
+                <br></br>
+
+                <Button variant="contained" color="primary">
+                        Log in
+                </Button>
+                 <br></br>
+
+                <Typography variant="button" color="primary" gutterBottom>
+                    OR
+                </Typography>
+                <Button variant="contained" color="primary">
+                    Sign Up
+                </Button>
         </Grid>
-          </div>
+        
         );
     }
 }
