@@ -21,13 +21,24 @@ class LoginValidationForm extends Component {
         showPassword: false,
       };
 
-      handleChange = prop => event => {
-        this.setState({ [prop]: event.target.value });
-      };
-    
       handleClickShowPassword = () => {
         this.setState(state => ({ showPassword: !state.showPassword }));
       };
+
+      loginChange = (event) => {
+        this.setState({login: event.target.value})
+        
+      };
+
+    passwordChange = (event) => {
+        this.setState({password: event.target.value})
+      };
+
+      getLoginAndPassword = () => {
+     
+        console.log("passwprd " + this.state.password);
+        console.log("login " + this.state.login);
+    }
     
 
     render() {
@@ -36,7 +47,8 @@ class LoginValidationForm extends Component {
             <Grid container spacing={8} alignItems="center" justify="center" direction="column">
                 <Grid container alignItems="center" justify="center">
                     <Grid item>
-                        <TextField id="input-with-icon-grid" label="Login" />
+                        <TextField id="input-with-icon-grid" label="Login" 
+                        value={this.state.login} onChange={this.loginChange}/>
                     </Grid>
                     <Grid item>
                         <AccountCircle />
@@ -48,7 +60,7 @@ class LoginValidationForm extends Component {
                         id="adornment-password"
                         type={this.state.showPassword ? 'text' : 'password'}
                         value={this.state.password}
-                        onChange={this.handleChange('password')}
+                        onChange={this.passwordChange}
                         endAdornment={
                         <InputAdornment position="end">
                             <IconButton
@@ -63,7 +75,7 @@ class LoginValidationForm extends Component {
                 </FormControl>
                 <br></br>
 
-                <Button variant="contained" color="primary">
+                <Button variant="contained" color="primary" onClick={this.getLoginAndPassword}>
                         Log in
                 </Button>
                  <br></br>
