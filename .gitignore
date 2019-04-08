@@ -18,3 +18,7 @@ yarn-error.log*
 
 # webstorm
 .idea/
+
+#packages
+package.json
+package-lock.json

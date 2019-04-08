@@ -1,13 +1,20 @@
-import React, { Component } from "react";
-import "./App.css";
-import Profile from "./components/Profile";
+import React, { Component } from 'react';
+import './App.css';
+
+import Login from "./components/login/Login";
 
 class App extends Component {
+
+  renderLoginOrAppActiveUser() {
+    // todo : logic to verify user token
+    return <Login/>
+  }
+
   render() {
     return (
-      <div className="App">
-        <Profile />
-      </div>
+      <div>
+     {this.renderLoginOrAppActiveUser()}
+     </div>
     );
   }
 }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import avatar from "./../img/avatar.svg";
+import avatar from "./../../img/avatar.svg";
 
 class Profile extends Component {
   constructor(props) {
@@ -37,7 +37,7 @@ class Profile extends Component {
         result => {
           this.setState({
             isLoaded: true,
-            user: result,
+            user: result
           });
         },
         error => {
@@ -60,16 +60,45 @@ class Profile extends Component {
     let isBirthDayYearProper;
 
     isWeightProper = this.checkParam(userWeight, 30, 200, "Wrong user weight!");
-    isBirthDayDayProper = this.checkParam(userBirthDateDay, 1, 31, "Wrong user birthday day!");
-    isBirthDayMonthProper = this.checkParam(userBirthDateMonth, 0, 11, "Wrong user birth day month!");
-    isBirthDayYearProper = this.checkParam(userBirthDateYear, 1900, new Date().getFullYear(), "Wrong user birth day year!");
+    isBirthDayDayProper = this.checkParam(
+      userBirthDateDay,
+      1,
+      31,
+      "Wrong user birthday day!"
+    );
+    isBirthDayMonthProper = this.checkParam(
+      userBirthDateMonth,
+      0,
+      11,
+      "Wrong user birth day month!"
+    );
+    isBirthDayYearProper = this.checkParam(
+      userBirthDateYear,
+      1900,
+      new Date().getFullYear(),
+      "Wrong user birth day year!"
+    );
 
-    if (!(isWeightProper && isBirthDayDayProper && isBirthDayMonthProper && isBirthDayYearProper)) {
+    if (
+      !(
+        isWeightProper &&
+        isBirthDayDayProper &&
+        isBirthDayMonthProper &&
+        isBirthDayYearProper
+      )
+    ) {
       event.preventDefault();
       return;
     }
     const userGender = event.target.gender.value;
-    const userUpdatedParams = {userNickname, userWeight, userBirthDateDay, userBirthDateMonth, userBirthDateYear, userGender};
+    const userUpdatedParams = {
+      userNickname,
+      userWeight,
+      userBirthDateDay,
+      userBirthDateMonth,
+      userBirthDateYear,
+      userGender
+    };
     this.submitNewData(userUpdatedParams);
   };
 
@@ -82,13 +111,28 @@ class Profile extends Component {
   };
 
   submitNewData = userUpdatedParams => {
-    const {userNickname, userWeight, userBirthDateDay, userBirthDateMonth, userBirthDateYear, userGender} = userUpdatedParams;
+    const {
+      userNickname,
+      userWeight,
+      userBirthDateDay,
+      userBirthDateMonth,
+      userBirthDateYear,
+      userGender
+    } = userUpdatedParams;
     const user = this.state.user;
     const userBirthDate = new Date(user.birthDate);
-    const updatedBirthDate = this.updateBirthDate(userBirthDate, userBirthDateYear, userBirthDateMonth, userBirthDateDay);
+    const updatedBirthDate = this.updateBirthDate(
+      userBirthDate,
+      userBirthDateYear,
+      userBirthDateMonth,
+      userBirthDateDay
+    );
     const data = JSON.parse(JSON.stringify(user));
 
-    if (userNickname.length > 0 && user.nickname.localeCompare(userNickname) !== 0) {
+    if (
+      userNickname.length > 0 &&
+      user.nickname.localeCompare(userNickname) !== 0
+    ) {
       data.nickname = userNickname;
     }
     if (user.weight !== userWeight && userWeight > 0) {
@@ -108,23 +152,31 @@ class Profile extends Component {
         data.gender = currentGender;
       }
     }
-    this.makeUpdate(data).then(response => console.log(response))
-        .catch(error => console.error(error));
+    this.makeUpdate(data)
+      .then(response => console.log(response))
+      .catch(error => console.error(error));
   };
 
-  makeUpdate = (data) => {
-    return fetch('http://localhost:8080/v1/users/' + this.state.login, {
-      method: 'PATCH',
+  makeUpdate = data => {
+    return fetch("http://localhost:8080/v1/users/" + this.state.login, {
+      method: "PATCH",
       body: JSON.stringify(data),
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json"
       }
-    }).then(res => {
-      return res;
-    }).catch(err => err);
+    })
+      .then(res => {
+        return res;
+      })
+      .catch(err => err);
   };
 
-  updateBirthDate = (userBirthDate, updatedBirthDateYear, updatedBirthDateMonth, updatedBirthDateDay) => {
+  updateBirthDate = (
+    userBirthDate,
+    updatedBirthDateYear,
+    updatedBirthDateMonth,
+    updatedBirthDateDay
+  ) => {
     let userBirthDateDay;
     let userBirthDateMonth;
     let userBirthDateYear;
@@ -150,11 +202,17 @@ class Profile extends Component {
   };
 
   compareBirthDates = (userBirthDate, updatedBirthDate) => {
-    if (updatedBirthDate === null) { return }
-    const previousBirthDate = userBirthDate.getFullYear().toString() +
-        userBirthDate.getMonth().toString() + userBirthDate.getDate().toString();
-    const currentBirthDate = updatedBirthDate.getFullYear().toString() +
-        updatedBirthDate.getMonth().toString() + updatedBirthDate.getDate().toString();
+    if (updatedBirthDate === null) {
+      return;
+    }
+    const previousBirthDate =
+      userBirthDate.getFullYear().toString() +
+      userBirthDate.getMonth().toString() +
+      userBirthDate.getDate().toString();
+    const currentBirthDate =
+      updatedBirthDate.getFullYear().toString() +
+      updatedBirthDate.getMonth().toString() +
+      updatedBirthDate.getDate().toString();
     return previousBirthDate.localeCompare(currentBirthDate) !== 0;
   };
 
@@ -190,9 +248,7 @@ class Profile extends Component {
         <form onSubmit={this.handleSubmit}>
           <label className="row">
             <span className="col s2" />
-            <span className="col s8 white-text teal lighten-1">
-              NICKNAME
-            </span>
+            <span className="col s8 white-text teal lighten-1">NICKNAME</span>
             <br />
             <span className="col s3" />
             <input
@@ -211,11 +267,11 @@ class Profile extends Component {
             <br />
             <span className="col s5" />
             <input
-                className="col s2 input-field white center-align"
-                type="text"
-                name="weight"
-                placeholder={user.weight}
-                onKeyUp={this.checkNumber}
+              className="col s2 input-field white center-align"
+              type="text"
+              name="weight"
+              placeholder={user.weight}
+              onKeyUp={this.checkNumber}
             />
           </label>
           <label className="row">
@@ -235,7 +291,7 @@ class Profile extends Component {
               className="col s2 input-field white center-align"
               type="text"
               name="month"
-              placeholder={(dateCopy.getMonth() +1).toString()}
+              placeholder={(dateCopy.getMonth() + 1).toString()}
               onKeyUp={this.checkNumber}
             />
             <span className="col s1" />
@@ -269,7 +325,7 @@ class Profile extends Component {
             <span className="col s2" />
             <span className="col s8 white-text teal lighten-1">&emsp;</span>
           </label>
-          <span className="red-text">{ warning }</span>
+          <span className="red-text">{warning}</span>
           <br />
           <br />
           <button
