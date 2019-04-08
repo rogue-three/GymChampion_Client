@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 
-import Login from "./Login";
-
 class LogValidation extends Component {
 
     constructor(props) {
@@ -13,13 +11,12 @@ class LogValidation extends Component {
             loginDataFromDb:{
                         "user": {"gender":{},"userRole":{}}
                     },
-            logSucces: false
+            logSuccess: false
 
         }
         this.getLoginAndPassword = this.getLoginAndPassword.bind(this);
         this.validatePassword = this.validatePassword.bind(this);
     }
-
 
     stylesLabel = {
         color:"white",
@@ -33,8 +30,6 @@ class LogValidation extends Component {
         flexDirection: 'column',
         width: '60%',
     };
-
-   
 
     getLoginAndPassword = () => {
     
@@ -51,16 +46,15 @@ class LogValidation extends Component {
 
     frozen = (ms) => {
         return new Promise(r => setTimeout(r, ms));
-      }
-      
+      };
 
     async validatePassword() {
         await this.getLoginAndPassword();
         await this.frozen(1000);
-        if(this.state.password === this.state.passwordFromDB) {
-            this.setState({logSucces: true});
-            this.props.callbackFromParent(this.state.logSucces);
-        }else {
+        if (this.state.password === this.state.passwordFromDB) {
+            this.setState({logSuccess: true});
+            this.props.callbackFromParent(this.state.logSuccess);
+        } else {
             alert("Bad password!");
         }
     } 
@@ -68,15 +62,13 @@ class LogValidation extends Component {
     loginChange = (event) => {
         this.setState({login: event.target.value})
         
-      }
+      };
 
     passwordChange = (event) => {
         this.setState({password: event.target.value})
-        
-      }
+      };
 
     render() {
-
         return (
             <div style={this.stylesForm}>
                 <label style={this.stylesLabel}>Login:</label>
@@ -96,6 +88,5 @@ class LogValidation extends Component {
         );
         }
     }
-
 
 export default LogValidation;
