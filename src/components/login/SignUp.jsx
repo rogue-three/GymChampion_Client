@@ -4,6 +4,7 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
+
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -17,20 +18,36 @@ class SignUp extends Component {
     state = {
         password: '',
         login: '',
-        showPassword: false,
-        email:''
+        email:'',
+        showPassword: false
       };
 
-      handleChange = prop => event => {
-        this.setState({ [prop]: event.target.value });
-      };
-    
       handleClickShowPassword = () => {
         this.setState(state => ({ showPassword: !state.showPassword }));
+      };
+
+      passwordChange = (event) => {
+        this.setState({password: event.target.value})
+      };
+
+        emailChange = (event) => {
+        this.setState({email: event.target.value})
+      };
+
+      loginChange = (event) => {
+        this.setState({login: event.target.value})
+      };
+
+      getLoginPasswordAndEmailAndSignUpNewUser = () => {
+        console.log("login:" + this.state.login);
+        console.log("password:" + this.state.password);
+        console.log("email:" + this.state.email);
       };
     
 
     render() {
+
+        const {password,login,email}  = this.state;
 
         return (
             <Grid container spacing={8} alignItems="center" justify="center" direction="column">
@@ -39,7 +56,8 @@ class SignUp extends Component {
                 </Typography>
                 <br></br>
                 <Grid item>
-                    <TextField id="input-with-icon-grid" label="Login" />
+                    <TextField label="Login" value={login}
+                    onChange={this.loginChange}/>
                 </Grid>
          
                 <FormControl>
@@ -47,8 +65,8 @@ class SignUp extends Component {
                     <Input
                         id="adornment-password"
                         type={this.state.showPassword ? 'text' : 'password'}
-                        value={this.state.password}
-                        onChange={this.handleChange('password')}
+                        value={password}
+                        onChange={this.passwordChange}
                         endAdornment={
                         <InputAdornment position="end">
                             <IconButton
@@ -62,12 +80,13 @@ class SignUp extends Component {
                     />
                 </FormControl>
                 <Grid item>
-                    <TextField id="input-with-icon-grid" label="E-mail" />
+                    <TextField  label="E-mail" value={email}
+                    onChange={this.emailChange}/>
                 </Grid>
-         
                 <br></br>
 
-                <Button variant="contained" color="primary">
+                <Button variant="contained" color="primary" 
+                onClick={this.getLoginPasswordAndEmailAndSignUpNewUser}>
                         Sign Up
                 </Button>
                  <br></br>
@@ -79,7 +98,7 @@ class SignUp extends Component {
                     Back to login
                 </Button>
         </Grid>
-        
+
         );
     }
 }
