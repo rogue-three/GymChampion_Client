@@ -19,7 +19,8 @@ class SignUp extends Component {
         password: '',
         login: '',
         email:'',
-        showPassword: false
+        showPassword: false,
+        urlToSendLoginData: "http://localhost:8080//v1/login_data"
       };
 
       handleClickShowPassword = () => {
@@ -42,7 +43,48 @@ class SignUp extends Component {
         console.log("login:" + this.state.login);
         console.log("password:" + this.state.password);
         console.log("email:" + this.state.email);
-      };
+
+        let userToSend = this.getJSONtoSendInBodyWithDataFromUser();
+         
+        console.log(userToSend);
+        const urlToSend = this.state.urlToSendLoginData;
+
+          fetch(urlToSend, {
+            method: 'POST', 
+            body: JSON.stringify(userToSend), 
+            headers:{
+              'Content-Type': 'application/json'
+            }
+          }).then(res => res.json())
+          .then(response => console.log('Success:', JSON.stringify(response)))
+          .catch(error => console.error('Error:', error));  
+        };
+        
+
+    getJSONtoSendInBodyWithDataFromUser = () => {
+        let userObj =   {
+            "loginId": 1,
+            "password": null,
+            "email": "null",
+            "user": {
+                "login": "null",
+                "nickname": null,
+                "birthDate": null,
+                "weight": null,
+                "gender": null
+                            },
+            "userRole": {
+                "id": 1,
+                "roleName": "USER"
+            },
+            "archivized": false
+        };
+        userObj.email = this.state.email;
+        userObj.password = this.state.password;
+        userObj.user.login = this.state.login;
+
+        return userObj;
+    };
     
 
     render() {
