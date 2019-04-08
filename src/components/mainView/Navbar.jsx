@@ -7,41 +7,41 @@ class Navbar extends Component {
 
     state = {
        actualLabel:1
-    }
+    };
 
     setActualLabel = (active) => {
         this.setState({actualLabel: active});
-    }
+    };
 
     runProfile = () => {
         this.setActualLabel(1);
-    }
+    };
 
     runCalendar = () => {
         this.setActualLabel(2);
-    }
+    };
 
     runTrain = () => {
         this.setActualLabel(3);
-    }
+    };
 
     runStats = () => {
         this.setActualLabel(4);
-    }
+    };
 
     runDiagnostic = () => {
         this.setActualLabel(5);
-    }
+    };
 
     labelStyleActual = {
         color:"black",
         fontSize:20
-    }
+    };
 
     labelStyle = {
         color: "white",
         fontSize:15
-    }
+    };
 
     renderBarByActive = (numberOfLabel) => {
          switch(numberOfLabel) {
@@ -70,18 +70,23 @@ class Navbar extends Component {
                     return <label style={this.labelStyleActual}>Diagnostic</label>
                 } else return <label style={this.labelStyle}>Diagnostic</label>
              }
+             default:{}
          }
-    }
+    };
 
     renderActiveScreen = () => {
-        switch(this.state.actualLabel) {
-            case(1): return <Profile/>
-            case(2): return <h1>Calendar</h1>;
-            case(3): return <MainView/>
-            case(4): return <h1>Stats</h1>;
-            case(5): return <h1>Diagnostic</h1>;
+        if (this.state.actualLabel === 1) {
+            return <Profile/>
+        } else if (this.state.actualLabel === 2) {
+            return <h1>Calendar</h1>;
+        } else if (this.state.actualLabel === 3) {
+            return <MainView/>
+        } else if (this.state.actualLabel === 4) {
+            return <h1>Stats</h1>;
+        } else if (this.state.actualLabel === 5) {
+            return <h1>Diagnostic</h1>;
         }
-    }
+    };
 
     styleList = {
         display:"flex",
@@ -89,9 +94,7 @@ class Navbar extends Component {
         marginTop:"0%",
         height:"100%",
         margin:"0%"
-        
-        
-    }
+    };
 
     navbarStyle = {
         width:"100%",
@@ -100,16 +103,14 @@ class Navbar extends Component {
         margin:"0%",
         border:"ridge",
         borderColor:"#80cbc4"
-        
-    }
+    };
 
     styleListItems = {
-        
         width:"20%",
         color:"green",
         height:"100%",
         margin:"0%"
-    }
+    };
 
     render() {
         return (
