@@ -11,7 +11,7 @@ class Profile extends Component {
       submitDisabled: true,
       warning: ""
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
