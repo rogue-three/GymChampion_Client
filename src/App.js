@@ -16,10 +16,8 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider theme={theme}>
-        <React.Fragment>
-          <CssBaseline />
-          {this.renderLoginOrAppActiveUser()}
-        </React.Fragment>
+        <CssBaseline />
+        {this.renderLoginOrAppActiveUser()}
       </MuiThemeProvider>
     );
   }
