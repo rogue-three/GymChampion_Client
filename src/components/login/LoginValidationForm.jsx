@@ -35,9 +35,17 @@ class LoginValidationForm extends Component {
       };
 
       getLoginAndPassword = () => {
-     
-        console.log("passwprd " + this.state.password);
-        console.log("login " + this.state.login);
+        let apiUrl = 'http://localhost:8080/v1/login_data/login/' + this.state.login;
+      
+         fetch(apiUrl)
+        .then(response => response.json())
+        .then(result => {
+            if (this.state.password === result.password) {
+                alert("succes!");
+            } else {
+                alert("Bad password!");
+            }
+        }); 
     }
     
 
