@@ -86,67 +86,77 @@ class Navbar extends Component {
     } else if (this.state.actualLabel === 5) {
       return <h1>Diagnostic</h1>;
     }
-  };
-
-  styleList = {
-    display: "flex",
-    color: "green",
-    marginTop: "0%",
-    height: "100%",
-    margin: "0%"
-  };
-
-  navbarStyle = {
-    width: "100%",
-    backgroundColor: "#009688",
-    height: 100,
-    margin: "0%",
-    border: "ridge",
-    borderColor: "#80cbc4"
-  };
-
-  styleListItems = {
-    width: "20%",
-    color: "green",
-    height: "100%",
-    margin: "0%"
-  };
-
-  render() {
-    return (
-      <span>
-        {this.renderActiveScreen()}
-        <div style={this.navbarStyle}>
-          <ul style={this.styleList}>
-            <li style={this.styleListItems}>
-              <button onClick={this.runProfile} style={this.navbarStyle}>
-                {this.renderBarByActive(1)}
-              </button>
-            </li>
-            <li style={this.styleListItems}>
-              <button onClick={this.runCalendar} style={this.navbarStyle}>
-                {this.renderBarByActive(2)}
-              </button>
-            </li>
-            <li style={this.styleListItems}>
-              <button onClick={this.runTrain} style={this.navbarStyle}>
-                {this.renderBarByActive(3)}
-              </button>
-            </li>
-            <li style={this.styleListItems}>
-              <button onClick={this.runStats} style={this.navbarStyle}>
-                {this.renderBarByActive(4)}
-              </button>
-            </li>
-            <li style={this.styleListItems}>
-              <button onClick={this.runDiagnostic} style={this.navbarStyle}>
-                {this.renderBarByActive(5)}
-              </button>
-            </li>
-          </ul>
-        </div>
-      </span>
-    );
   }
-}
+
+    styleList = {
+        display:"flex",
+        color:"green",
+        marginTop:"0%",
+        height:"100%",
+        margin:"0%"
+        
+        
+    }
+
+    navbarStyle = {
+        width:"100%",
+        backgroundColor:"#009688",
+        height:100,
+        margin:"0%",
+        border:"ridge",
+        borderColor:"#80cbc4"
+        
+    }
+
+    styleListItems = {
+        
+        width:"20%",
+        color:"green",
+        height:"100%",
+        margin:"0%"
+    }
+
+    // getList(){
+    //     let list = "";
+    //     array.forEach(element => {
+    //         list += (<Component active={element.active}/>)
+    //     });
+    // }
+
+    render() {
+        return (
+            <span>
+            {this.renderActiveScreen()}
+            <div style={this.navbarStyle}>
+                <ul style={this.styleList}>
+                    {/* {this.getList()} */}
+
+                    <li style={this.styleListItems}>
+                        <button onClick={this.runProfile} style={this.navbarStyle}>{this.renderBarByActive(1)}</button>
+                    </li>
+                    <li style={this.styleListItems}>
+                        <button onClick={this.runCalendar} style={this.navbarStyle}>{this.renderBarByActive(2)}</button>
+                    </li>
+                    <li style={this.styleListItems}>
+                        <button onClick={this.runTrain} style={this.navbarStyle}>{this.renderBarByActive(3)}</button>
+                    </li>
+                    <li style={this.styleListItems}>
+                        <button onClick={this.runStats} style={this.navbarStyle}>{this.renderBarByActive(4)}</button>
+                    </li>
+                    <li style={this.styleListItems}>
+                        <button onClick={this.runDiagnostic} style={this.navbarStyle}>{this.renderBarByActive(5)}</button>
+                    </li>
+                </ul>
+            </div>
+            </span>
+        )
+    }
+
+    
+  }
+
+
+
+
+
 export default Navbar;
