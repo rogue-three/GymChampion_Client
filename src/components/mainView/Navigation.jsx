@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
@@ -17,7 +18,7 @@ const styles = {
 
 class Navigation extends Component {
   state = {
-    value: 0,
+    value: 2,
   };
 
   handleChange = (event, value) => {
@@ -35,11 +36,11 @@ class Navigation extends Component {
         showLabels
         className={classes.root}
       >
-        <BottomNavigationAction label="PROFILE" icon={<ProfileIcon/>} />
-        <BottomNavigationAction label="CALENDAR" icon={<CalendarIcon/>} />
-        <BottomNavigationAction label="TRAIN" icon={<TrainIcon/>} />
-        <BottomNavigationAction label="STATISTIC" icon={<StatsIcon/>} />
-        <BottomNavigationAction label="DIAGNOSTIC" icon={<DiagnosticIcon/>} />
+        <BottomNavigationAction label="PROFILE" icon={<ProfileIcon/>} component={Link} to="/profile" />
+        <BottomNavigationAction label="CALENDAR" icon={<CalendarIcon/>} component={Link} to="/calendar"/>
+        <BottomNavigationAction label="TRAIN" icon={<TrainIcon/> } component={Link} to="/"/>
+        <BottomNavigationAction label="STATISTIC" icon={<StatsIcon/>} component={Link} to="/statistic"/>
+        <BottomNavigationAction label="DIAGNOSTIC" icon={<DiagnosticIcon/>} component={Link} to="/diagnostic"/>
       </BottomNavigation>
     );
   }
