@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import SingleExerciseScheme from "./SingleExerciseScheme";
 
-class ExerciseScheme extends Component {
+class ExerciseSchemeTable extends Component {
 
     state = {
         exerciseSchemes: [],
@@ -11,20 +12,20 @@ class ExerciseScheme extends Component {
       fetch(this.state.getAllSchemesURL)
       .then(response=>response.json())
       .then(result => {
-        console.log(result);
         this.setState({exerciseSchemes: result});
       });
     }
 
     render() {
     return (
-      <div>
+      <React.Fragment>
         <ul>
-            {this.state.exerciseSchemes.map(scheme => <li key={scheme.exerciseSchemeName}>{scheme.exerciseSchemeName}</li>)}
+            {this.state.exerciseSchemes.map(scheme => <li key={scheme.exerciseSchemeName}>
+            <SingleExerciseScheme schemeName={scheme.exerciseSchemeName}/></li>)}
         </ul>
-      </div>
+        </React.Fragment>
     );
     }
 }
 
-export default ExerciseScheme;
+export default ExerciseSchemeTable;
