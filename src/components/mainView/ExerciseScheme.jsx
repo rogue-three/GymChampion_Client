@@ -23,7 +23,8 @@ class ExerciseScheme extends Component {
     return (
       <div>
         <ul>
-            {this.state.exerciseSchemes.map(scheme => <li key={scheme.exerciseSchemeName}>{scheme.exerciseSchemeName}</li>)}
+            {this.state.exerciseSchemes.map(scheme =>
+                <li key={scheme.exerciseSchemeName}>{scheme.exerciseSchemeName}</li>)}
         </ul>
       </div>
        

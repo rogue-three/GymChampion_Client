@@ -7,7 +7,13 @@ import StatsWindow from "./StatsWindow";
 
 
 class Statistics extends Component {
+    state = {
+        userLogin: "Mihu"
+    };
 
+    handleGenStatsButton(){};
+    handleByExerciseStatsButton(){};
+    handleByBodyPartStatsButton(){};
 
     render() {
         return (
