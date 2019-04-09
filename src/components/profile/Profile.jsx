@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import avatar from "./../../img/avatar.svg";
+import Avatar from "./Avatar";
 
 class Profile extends Component {
   constructor(props) {
@@ -243,7 +243,7 @@ class Profile extends Component {
 
     return (
       <div>
-        <img src={avatar} width="10%" color="white" alt="avatar" />
+        <Avatar />
         <h4 className="white-text">{login}</h4>
         <form onSubmit={this.handleSubmit}>
           <label className="row">
