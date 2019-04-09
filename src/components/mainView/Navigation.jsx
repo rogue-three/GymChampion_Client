@@ -23,6 +23,7 @@ class Navigation extends Component {
     return (
       <Grid container spacing={0} alignItems="center" justify="center" direction="row">
       <BottomNavigation
+        style={{backgroundColor:'#80cbc4'}}
         value={value}
         onChange={this.handleChange}
         showLabels
