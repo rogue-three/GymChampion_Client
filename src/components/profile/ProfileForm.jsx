@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Nickname from "./Nickname";
+import Weight from "./Weight";
 
 class ProfileForm extends Component {
   constructor(props) {
@@ -191,19 +192,7 @@ class ProfileForm extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <Nickname nickname={user.nickname} checkIfEmpty={this.checkIfEmpty} />
-        <label className="row">
-          <span className="col s2" />
-          <span className="col s8 white-text teal lighten-1">BODY WEIGHT</span>
-          <br />
-          <span className="col s5" />
-          <input
-            className="col s2 input-field white center-align"
-            type="text"
-            name="weight"
-            placeholder={user.weight}
-            onKeyUp={this.checkNumber}
-          />
-        </label>
+        <Weight weight={user.weight} checkNumber={this.checkNumber} />
         <label className="row">
           <span className="col s2" />
           <span className="col s8 white-text teal lighten-1">BIRTH DATE</span>
