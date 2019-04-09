@@ -14,7 +14,7 @@ class App extends Component {
 
   state = {
     login: "",
-    isLogged: false
+    isLogged: true
   }
 
   setLogin = dataFromLogin => {
