@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { withStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import ProfileIcon from '@material-ui/icons/AccountCircle';
@@ -9,12 +8,6 @@ import CalendarIcon from '@material-ui/icons/CalendarToday';
 import TrainIcon from '@material-ui/icons/FitnessCenter';
 import StatsIcon from '@material-ui/icons/Equalizer';
 import DiagnosticIcon from '@material-ui/icons/RemoveRedEye';
-
-const styles = {
-  root: {
-    
-  },
-};
 
 class Navigation extends Component {
   state = {
@@ -26,15 +19,13 @@ class Navigation extends Component {
   };
 
   render() {
-    const { classes } = this.props;
     const { value } = this.state;
-
     return (
+      <Grid container spacing={0} alignItems="center" justify="center" direction="row">
       <BottomNavigation
         value={value}
         onChange={this.handleChange}
         showLabels
-        className={classes.root}
       >
         <BottomNavigationAction label="PROFILE" icon={<ProfileIcon/>} component={Link} to="/profile" />
         <BottomNavigationAction label="CALENDAR" icon={<CalendarIcon/>} component={Link} to="/calendar"/>
@@ -42,12 +33,9 @@ class Navigation extends Component {
         <BottomNavigationAction label="STATISTIC" icon={<StatsIcon/>} component={Link} to="/statistic"/>
         <BottomNavigationAction label="DIAGNOSTIC" icon={<DiagnosticIcon/>} component={Link} to="/diagnostic"/>
       </BottomNavigation>
+      </Grid>
     );
   }
 }
 
-Navigation.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(Navigation);
+export default Navigation;
