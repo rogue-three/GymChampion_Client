@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Route, Switch} from 'react-router-dom';
-
 import './App.css';
 import Login from "./components/login/Login";
 import MainView from "./components/mainView/MainView";
@@ -9,6 +8,9 @@ import Statistic from "./components/statistics/Statistics";
 import Calendar from "./components/calendar/Calendar";
 import Diagnostic from "./components/diagnostics/Diagnostics";
 import SignUp from "./components/login/SignUp";
+import Navigation from "./components/mainView/Navigation";
+import Grid from '@material-ui/core/Grid';
+
 
 class App extends Component {
 
@@ -31,18 +33,19 @@ class App extends Component {
     return <Login callBackLogin={this.setLogin}/>;
   }
 
-
   render() {
-
     if (this.state.isLogged) {
       return (
-        <Switch>
-        <Route exact={true} path="/" component={MainView}/>
-        <Route path="/profile" component={Profile}/>
-        <Route path="/calendar" component={Calendar}/>
-        <Route path="/statistic" component={Statistic}/>
-        <Route path="/diagnostic" component={Diagnostic}/>
-        </Switch>
+        <Grid>
+          <Switch>
+            <Route exact={true} path="/" component={MainView}/>
+            <Route path="/profile" component={Profile}/>
+            <Route path="/calendar" component={Calendar}/>
+            <Route path="/statistic" component={Statistic}/>
+            <Route path="/diagnostic" component={Diagnostic}/>
+          </Switch>
+          <Navigation/>
+        </Grid>
       );
     }
     else {
