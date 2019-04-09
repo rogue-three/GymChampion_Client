@@ -1,4 +1,5 @@
 import React, { Component} from 'react';
+import { Link } from 'react-router-dom'
 
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -130,7 +131,7 @@ class SignUpForm extends Component {
                 <Typography variant="button" color="primary" gutterBottom>
                     OR
                 </Typography>
-                <Button variant="contained" color="primary">
+                <Button variant="contained" color="primary" component={Link} to="/">
                     Back to login
                 </Button>
         </Grid>

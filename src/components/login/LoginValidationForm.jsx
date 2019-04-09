@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom'
 
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -21,6 +22,8 @@ class LoginValidationForm extends Component {
         login: '',
         showPassword: false,
       };
+
+      
 
       handleClickShowPassword = () => {
         this.setState(state => ({ showPassword: !state.showPassword }));
@@ -93,7 +96,7 @@ class LoginValidationForm extends Component {
                 <Typography variant="button" color="primary" gutterBottom>
                     OR
                 </Typography>
-                <Button variant="contained" color="primary">
+                <Button variant="contained" color="primary" component={Link} to="/signup">
                     Sign Up
                 </Button>
         </Grid>
