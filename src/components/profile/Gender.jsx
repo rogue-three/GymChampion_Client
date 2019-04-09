@@ -4,8 +4,8 @@ class Gender extends Component {
   render() {
     const { genders, userSex, checkGenderChange } = this.props;
     return (
-      <label className="row">
-        <span className="col s8 white-text teal lighten-1">GENDER</span>
+      <label>
+        <span>GENDER</span>
         <br />
         {genders.map(gender => (
           <label key={gender.sex}>
@@ -16,7 +16,7 @@ class Gender extends Component {
               defaultChecked={userSex === gender.sex}
               onClick={checkGenderChange}
             />
-            <span className="white-text">{gender.sex}&emsp;</span>
+            <span>{gender.sex}&emsp;</span>
           </label>
         ))}
         <br />
