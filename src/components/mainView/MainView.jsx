@@ -9,34 +9,10 @@ class MainView extends Component {
   render() {
     return (
       <Grid container  direction="column" >
-      
         <TrackWorkout/>
          <ActionButtons/>
+         <ExerciseScheme/>
       </Grid>
-      // <div>
-      //   <div style={this.styleTrackWorkout}>
-      //     <p>TRACK WORKOUT </p>
-      //     <a className="waves-effect waves-light btn-small">Edit</a>
-      //   </div>
-
-      //   <a
-      //     style={this.styleButtonTrain}
-      //     className="waves-effect waves-light btn-large"
-      //   >
-      //     Just start training now!
-      //   </a>
-
-      //   <div>
-      //     <a
-      //       style={this.styleButtonTrain}
-      //       className="waves-effect waves-light btn-large"
-      //     >
-      //       Custom training plans
-      //     </a>
-      //   </div>
-
-      //   <ExerciseScheme />
-      // </div>
     );
   }
 }
