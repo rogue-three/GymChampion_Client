@@ -201,19 +201,10 @@ class ProfileForm extends Component {
           userSex={user.gender.sex}
           checkGenderChange={this.checkGenderChange}
         />
-        <label className="row">
-          <span className="col s2" />
-          <span className="col s8 white-text teal lighten-1">&emsp;</span>
-        </label>
-        <span className="red-text">{warning}</span>
+        <span>{warning}</span>
         <br />
         <br />
-        <button
-          className="btn waves-effect waves-light"
-          type="submit"
-          name="submit"
-          disabled={submitDisabled}
-        >
+        <button type="submit" name="submit" disabled={submitDisabled}>
           SAVE
         </button>
       </form>
