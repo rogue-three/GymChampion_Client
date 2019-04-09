@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 class Nickname extends Component {
   render() {
+    const { nickname, checkIfEmpty } = this.props;
     return (
       <label>
         <span />
@@ -11,8 +12,8 @@ class Nickname extends Component {
         <input
           type="text"
           name="nickname"
-          placeholder={this.props.nickname}
-          onKeyUp={event => this.props.checkIfEmpty(event)}
+          placeholder={nickname}
+          onKeyUp={checkIfEmpty}
         />
       </label>
     );

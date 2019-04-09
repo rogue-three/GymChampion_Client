@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 class Weight extends Component {
   render() {
+    const { weight, checkNumber } = this.props;
     return (
       <label>
         <span />
@@ -11,8 +12,8 @@ class Weight extends Component {
         <input
           type="text"
           name="weight"
-          placeholder={this.props.weight}
-          onKeyUp={this.props.checkNumber}
+          placeholder={weight}
+          onKeyUp={checkNumber}
         />
       </label>
     );

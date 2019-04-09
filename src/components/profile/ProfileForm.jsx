@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Nickname from "./Nickname";
 import Weight from "./Weight";
+import BirthDate from "./BirthDate";
 
 class ProfileForm extends Component {
   constructor(props) {
@@ -193,35 +194,7 @@ class ProfileForm extends Component {
       <form onSubmit={this.handleSubmit}>
         <Nickname nickname={user.nickname} checkIfEmpty={this.checkIfEmpty} />
         <Weight weight={user.weight} checkNumber={this.checkNumber} />
-        <label className="row">
-          <span className="col s2" />
-          <span className="col s8 white-text teal lighten-1">BIRTH DATE</span>
-          <br />
-          <span className="col s2" />
-          <input
-            className="col s2 input-field white center-align"
-            type="text"
-            name="day"
-            placeholder={dateCopy.getDate().toString()}
-            onKeyUp={this.checkNumber}
-          />
-          <span className="col s1" />
-          <input
-            className="col s2 input-field white center-align"
-            type="text"
-            name="month"
-            placeholder={(dateCopy.getMonth() + 1).toString()}
-            onKeyUp={this.checkNumber}
-          />
-          <span className="col s1" />
-          <input
-            className="col s2 input-field white center-align"
-            type="text"
-            name="year"
-            placeholder={dateCopy.getFullYear().toString()}
-            onKeyUp={this.checkNumber}
-          />
-        </label>
+        <BirthDate dateCopy={dateCopy} checkNumber={this.checkNumber} />
         <label className="row">
           <span className="col s2" />
           <span className="col s8 white-text teal lighten-1">GENDER</span>
