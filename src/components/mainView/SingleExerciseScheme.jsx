@@ -9,9 +9,10 @@ class SingleExerciseScheme extends Component {
     render() {
         return (
             <React.Fragment>
-                <Grid container direction="row" alignItems="center" justify="space-around" >
+                <Grid container style={{backgroundColor:'#80cbc4'}} direction="row" alignItems="center" justify="space-around" >
                     <Typography>{this.props.schemeName}</Typography>
                     <Fab color="primary" aria-label="Edit">
+                    <Icon>more_horiz</Icon>
                     </Fab>
                 </Grid>
                 <br/>
