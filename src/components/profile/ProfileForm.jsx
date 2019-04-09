@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Nickname from "./Nickname";
 import Weight from "./Weight";
 import BirthDate from "./BirthDate";
+import Gender from "./Gender";
 
 class ProfileForm extends Component {
   constructor(props) {
@@ -195,24 +196,11 @@ class ProfileForm extends Component {
         <Nickname nickname={user.nickname} checkIfEmpty={this.checkIfEmpty} />
         <Weight weight={user.weight} checkNumber={this.checkNumber} />
         <BirthDate dateCopy={dateCopy} checkNumber={this.checkNumber} />
-        <label className="row">
-          <span className="col s2" />
-          <span className="col s8 white-text teal lighten-1">GENDER</span>
-          <br />
-          {genders.map(gender => (
-            <label key={gender.sex}>
-              <input
-                value={gender.sex}
-                name="gender"
-                type="radio"
-                defaultChecked={user.gender.sex === gender.sex}
-                onClick={this.checkGenderChange}
-              />
-              <span className="white-text">{gender.sex}&emsp;</span>
-            </label>
-          ))}
-          <br />
-        </label>
+        <Gender
+          genders={genders}
+          userSex={user.gender.sex}
+          checkGenderChange={this.checkGenderChange}
+        />
         <label className="row">
           <span className="col s2" />
           <span className="col s8 white-text teal lighten-1">&emsp;</span>
