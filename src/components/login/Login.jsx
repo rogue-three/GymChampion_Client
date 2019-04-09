@@ -1,15 +1,20 @@
 import React, { Component } from "react";
 
 import LogValidation from "./LogValidation";
-import SigIn from "./SignIn";
+import SignUp from "./SignUp";
 import gym1 from "../../img/gym1.png";
 import Navbar from "../mainView/Navbar";
+import Logo from "./Logo";
+
+import LoginValidationForm from "./LoginValidationForm";
 
 class Login extends Component {
+
   state = {
     logIn: true,
     signIn: false,
-    isLogged: false
+    isLogged: false,
+    login:""
   };
 
   loginStyles = {
@@ -24,30 +29,10 @@ class Login extends Component {
   renderLogInOrSignIn = () => {
     if (this.state.logIn)
       return <LogValidation callbackFromParent={this.setIsLogged} />;
-    else if (this.state.signIn) return <SigIn />;
+    else if (this.state.signIn) return <SignUp />;
   };
 
-  renderLoginOrSignInButton = () => {
-    if (this.state.logIn) {
-      return (
-        <a
-          className="waves-effect waves-light btn"
-          onClick={this.setSignInOnTrue}
-        >
-          Create account
-        </a>
-      );
-    } else if (this.state.signIn) {
-      return (
-        <a
-          className="waves-effect waves-light btn"
-          onClick={this.setLoginOnTrue}
-        >
-          Back to login
-        </a>
-      );
-    }
-  };
+
 
   setLoginOnTrue = () => {
     this.setState({ logIn: true });
@@ -63,17 +48,20 @@ class Login extends Component {
     this.setState({ isLogged: logInfoFromValidator });
   };
 
+  setLoginFromForm = (dataFromForm) => {
+      this.props.callBackLogin(dataFromForm);
+      
+  }
+
   render() {
     if (this.state.isLogged) {
       return <Navbar />;
     } else {
       return (
         <span>
-          <div style={this.loginStyles}>
-            <img src={gym1} alt="logo" height="212" width="347" />
-            {this.renderLogInOrSignIn()}
-            {this.renderLoginOrSignInButton()}
-          </div>
+            <Logo/>
+            <LoginValidationForm callBackForm={this.setLoginFromForm}/>      
+            {/* <SignUp/> */}
           <br />
         </span>
       );

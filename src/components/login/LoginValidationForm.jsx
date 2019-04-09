@@ -13,6 +13,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
+
 class LoginValidationForm extends Component {
 
     state = {
@@ -41,11 +42,12 @@ class LoginValidationForm extends Component {
         .then(response => response.json())
         .then(result => {
             if (this.state.password === result.password) {
-                alert("succes!");
+                this.props.callBackForm(this.state.login);
+
             } else {
                 alert("Bad password!");
             }
-        }); 
+        });
     }
     
 
