@@ -8,6 +8,7 @@ import Profile from "./components/profile/Profile";
 import Statistic from "./components/statistics/Statistics";
 import Calendar from "./components/calendar/Calendar";
 import Diagnostic from "./components/diagnostics/Diagnostics";
+import SignUp from "./components/login/SignUp";
 
 class App extends Component {
 
@@ -26,6 +27,10 @@ class App extends Component {
     return <Login callBackLogin={this.setLogin}/>
   }
 
+  setCallBackOnLoginComponent = () => {
+    return <Login callBackLogin={this.setLogin}/>;
+  }
+
 
   render() {
 
@@ -42,9 +47,10 @@ class App extends Component {
     }
     else {
     return (
-      <div>
-        {this.renderLoginOrAppActiveUser()}
-     </div>
+      <Switch>
+        <Route  exact={true} path="/"  component={this.setCallBackOnLoginComponent}/>
+        <Route path="/signup" component={SignUp}/>
+     </Switch>
     );
     }
   }
