@@ -11,13 +11,13 @@ class ActionButtons extends Component {
         <Grid container justify="space-between"  alignItems="stretch" direction="column" >
            <br></br>
             <br></br>
-             <Button variant="contained" color="secondary" >
+             <Button variant="contained" color="secondary" component={Link} to="/quicktrain" >
                 JUST START TRAINING NOW!
             </Button>
             <br></br>
             <br></br>
             <br></br>
-            <Button variant="contained" color="primary" >
+            <Button variant="contained" color="primary" component={Link} to="/customtrain">
                 CUSTOM TRAINING PLANS
             </Button>
         </Grid>
