@@ -8,7 +8,6 @@ class TrackWorkout extends Component {
 
     render() {
         return (
-            
             <Grid container style={{backgroundColor: '#004d40'}}   justify="space-evenly" 
             alignItems="center">
                  <Typography style={{color:'white'}} component="h2" variant="headline" gutterBottom>

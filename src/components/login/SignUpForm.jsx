@@ -1,11 +1,9 @@
 import React, { Component} from 'react';
 import { Link } from 'react-router-dom'
-
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
-
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -25,37 +23,35 @@ class SignUpForm extends Component {
         urlToSendLoginData: "http://localhost:8080//v1/login_data"
       };
 
-      handleClickShowPassword = () => {
-        this.setState(state => ({ showPassword: !state.showPassword }));
+    handleClickShowPassword = () => {
+      this.setState(state => ({ showPassword: !state.showPassword }));
+    };
+
+    passwordChange = (event) => {
+      this.setState({password: event.target.value})
+    };
+
+      emailChange = (event) => {
+      this.setState({email: event.target.value})
+    };
+
+    loginChange = (event) => {
+      this.setState({login: event.target.value})
+    };
+
+    getLoginPasswordAndEmailAndSignUpNewUser = () => {
+      let userToSend = this.getJSONtoSendInBodyWithDataFromUser();
+      const urlToSend = this.state.urlToSendLoginData;
+        fetch(urlToSend, {
+          method: 'POST', 
+          body: JSON.stringify(userToSend), 
+          headers:{
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          }
+        }).then(res => res.json());
       };
-
-      passwordChange = (event) => {
-        this.setState({password: event.target.value})
-      };
-
-        emailChange = (event) => {
-        this.setState({email: event.target.value})
-      };
-
-      loginChange = (event) => {
-        this.setState({login: event.target.value})
-      };
-
-      getLoginPasswordAndEmailAndSignUpNewUser = () => {
-        let userToSend = this.getJSONtoSendInBodyWithDataFromUser();
-        const urlToSend = this.state.urlToSendLoginData;
-
-          fetch(urlToSend, {
-            method: 'POST', 
-            body: JSON.stringify(userToSend), 
-            headers:{
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-            }
-          }).then(res => res.json());
-        };
         
-
     getJSONtoSendInBodyWithDataFromUser = () => {
         let userObj =   {
             "loginId": 1,
@@ -77,15 +73,11 @@ class SignUpForm extends Component {
         userObj.email = this.state.email;
         userObj.password = this.state.password;
         userObj.user.login = this.state.login;
-
         return userObj;
     };
     
-
     render() {
-
         const {password,login,email}  = this.state;
-
         return (
             <Grid container spacing={8} alignItems="center" justify="center" direction="column">
                  <Typography variant="button" color="primary" gutterBottom>
@@ -96,7 +88,6 @@ class SignUpForm extends Component {
                     <TextField label="Login" value={login}
                     onChange={this.loginChange}/>
                 </Grid>
-         
                 <FormControl>
                     <InputLabel htmlFor="adornment-password">Password</InputLabel>
                     <Input
@@ -121,13 +112,11 @@ class SignUpForm extends Component {
                     onChange={this.emailChange}/>
                 </Grid>
                 <br></br>
-
                 <Button variant="contained" color="primary" 
                 onClick={this.getLoginPasswordAndEmailAndSignUpNewUser}>
                         Sign Up
                 </Button>
                  <br></br>
-
                 <Typography variant="button" color="primary" gutterBottom>
                     OR
                 </Typography>
@@ -135,7 +124,6 @@ class SignUpForm extends Component {
                     Back to login
                 </Button>
         </Grid>
-
         );
     }
 }

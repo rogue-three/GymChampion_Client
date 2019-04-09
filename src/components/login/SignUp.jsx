@@ -2,6 +2,7 @@ import React, { Component} from 'react';
 import Logo from "./Logo";
 import SignUpForm from "./SignUpForm";
 
+
 class SignUp extends Component {
 
   render() {
@@ -12,7 +13,6 @@ class SignUp extends Component {
     </React.Fragment>
     );
   }
-
 }
 
 export default SignUp;

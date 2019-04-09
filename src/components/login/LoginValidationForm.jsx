@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom'
-
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -23,25 +22,22 @@ class LoginValidationForm extends Component {
         showPassword: false,
       };
 
-      
+    handleClickShowPassword = () => {
+    this.setState(state => ({ showPassword: !state.showPassword }));
+    };
 
-      handleClickShowPassword = () => {
-        this.setState(state => ({ showPassword: !state.showPassword }));
-      };
-
-      loginChange = (event) => {
-        this.setState({login: event.target.value})
-        
-      };
+    loginChange = (event) => {
+    this.setState({login: event.target.value})
+    
+    };
 
     passwordChange = (event) => {
         this.setState({password: event.target.value})
       };
 
-      getLoginAndPassword = () => {
-        let apiUrl = 'http://localhost:8080/v1/login_data/login/' + this.state.login;
-      
-         fetch(apiUrl)
+    getLoginAndPassword = () => {
+    let apiUrl = 'http://localhost:8080/v1/login_data/login/' + this.state.login;
+        fetch(apiUrl)
         .then(response => response.json())
         .then(result => {
             if (this.state.password === result.password) {
@@ -53,9 +49,7 @@ class LoginValidationForm extends Component {
         });
     }
     
-
     render() {
-
         return (
             <Grid container spacing={8} alignItems="center" justify="center" direction="column">
                 <Grid container alignItems="center" justify="center">
@@ -87,12 +81,10 @@ class LoginValidationForm extends Component {
                     />
                 </FormControl>
                 <br></br>
-
                 <Button variant="contained" color="primary" onClick={this.getLoginAndPassword}>
-                        Log in
+                    Log in
                 </Button>
                  <br></br>
-
                 <Typography variant="button" color="primary" gutterBottom>
                     OR
                 </Typography>
@@ -100,9 +92,8 @@ class LoginValidationForm extends Component {
                     Sign Up
                 </Button>
         </Grid>
-        
         );
-    }
+    };
 }
 
 export default LoginValidationForm;
