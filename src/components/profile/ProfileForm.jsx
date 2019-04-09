@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Nickname from "./Nickname";
 
 class ProfileForm extends Component {
   constructor(props) {
@@ -7,7 +8,6 @@ class ProfileForm extends Component {
       submitDisabled: true,
       warning: ""
     };
-    // this.submitNewData = this.submitNewData.bind(this);
   }
 
   handleSubmit = event => {
@@ -169,17 +169,17 @@ class ProfileForm extends Component {
     event.preventDefault();
   };
 
+  checkGenderChange = event => {
+    this.props.user.gender.sex !== event.target.gender
+      ? this.setState({ submitDisabled: false })
+      : this.setState({ submitDisabled: true });
+  };
+
   checkIfEmpty = event => {
     event.target.value.length > 0
       ? this.setState({ submitDisabled: false })
       : this.setState({ submitDisabled: true });
     event.preventDefault();
-  };
-
-  checkGenderChange = event => {
-    this.props.user.gender.sex !== event.target.gender
-      ? this.setState({ submitDisabled: false })
-      : this.setState({ submitDisabled: true });
   };
 
   render() {
@@ -190,19 +190,7 @@ class ProfileForm extends Component {
 
     return (
       <form onSubmit={this.handleSubmit}>
-        <label className="row">
-          <span className="col s2" />
-          <span className="col s8 white-text teal lighten-1">NICKNAME</span>
-          <br />
-          <span className="col s3" />
-          <input
-            className="col s6 input-field white center-align"
-            type="text"
-            name="nickname"
-            placeholder={user.nickname}
-            onKeyUp={this.checkIfEmpty}
-          />
-        </label>
+        <Nickname nickname={user.nickname} checkIfEmpty={this.checkIfEmpty} />
         <label className="row">
           <span className="col s2" />
           <span className="col s8 white-text teal lighten-1">BODY WEIGHT</span>
