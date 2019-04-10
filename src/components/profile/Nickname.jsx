@@ -7,7 +7,6 @@ class Nickname extends Component {
     const { nickname, checkIfEmpty } = this.props;
     return (
       <FormLabel>
-        <span />
         <span>NICKNAME</span>
         <br />
         <Input

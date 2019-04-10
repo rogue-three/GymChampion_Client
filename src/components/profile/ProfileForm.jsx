@@ -18,42 +18,19 @@ class ProfileForm extends Component {
   handleSubmit = event => {
     const userNickname = event.target.nickname.value;
     const userWeight = event.target.weight.value;
-    const userBirthDateDay = event.target.day.value;
-    const userBirthDateMonth = event.target.month.value - 1;
-    const userBirthDateYear = event.target.year.value;
+    const userBirthDate = new Date(event.target.date.value);
     let isWeightProper;
-    let isBirthDayDayProper;
-    let isBirthDayMonthProper;
     let isBirthDayYearProper;
 
     isWeightProper = this.checkParam(userWeight, 30, 200, "Wrong user weight!");
-    isBirthDayDayProper = this.checkParam(
-      userBirthDateDay,
-      1,
-      31,
-      "Wrong user birthday day!"
-    );
-    isBirthDayMonthProper = this.checkParam(
-      userBirthDateMonth,
-      0,
-      11,
-      "Wrong user birth day month!"
-    );
     isBirthDayYearProper = this.checkParam(
-      userBirthDateYear,
+      userBirthDate.getFullYear(),
       1900,
       new Date().getFullYear(),
       "Wrong user birth day year!"
     );
 
-    if (
-      !(
-        isWeightProper &&
-        isBirthDayDayProper &&
-        isBirthDayMonthProper &&
-        isBirthDayYearProper
-      )
-    ) {
+    if (!(isWeightProper && isBirthDayYearProper)) {
       event.preventDefault();
       return;
     }
@@ -61,9 +38,7 @@ class ProfileForm extends Component {
     const userUpdatedParams = {
       userNickname,
       userWeight,
-      userBirthDateDay,
-      userBirthDateMonth,
-      userBirthDateYear,
+      userBirthDate,
       userGender
     };
     this.submitNewData(userUpdatedParams);
@@ -81,19 +56,11 @@ class ProfileForm extends Component {
     const {
       userNickname,
       userWeight,
-      userBirthDateDay,
-      userBirthDateMonth,
-      userBirthDateYear,
+      userBirthDate,
       userGender
     } = userUpdatedParams;
     const user = this.props.user;
-    const userBirthDate = new Date(this.props.user.birthDate);
-    const updatedBirthDate = this.updateBirthDate(
-      userBirthDate,
-      userBirthDateYear,
-      userBirthDateMonth,
-      userBirthDateDay
-    );
+    const originalUserBirthDate = new Date(this.props.user.birthDate);
     const data = JSON.parse(JSON.stringify(user));
 
     if (
@@ -105,8 +72,8 @@ class ProfileForm extends Component {
     if (user.weight !== userWeight && userWeight > 0) {
       data.weight = userWeight;
     }
-    if (this.compareBirthDates(userBirthDate, updatedBirthDate)) {
-      data.birthDate = updatedBirthDate;
+    if (this.compareBirthDates(originalUserBirthDate, userBirthDate)) {
+      data.birthDate = userBirthDate;
     }
     if (this.props.user.gender.sex !== userGender) {
       let currentGender = null;
@@ -120,36 +87,6 @@ class ProfileForm extends Component {
       }
     }
     this.props.makeUpdate(data);
-  };
-
-  updateBirthDate = (
-    userBirthDate,
-    updatedBirthDateYear,
-    updatedBirthDateMonth,
-    updatedBirthDateDay
-  ) => {
-    let userBirthDateDay;
-    let userBirthDateMonth;
-    let userBirthDateYear;
-
-    if (updatedBirthDateDay > 0) {
-      userBirthDateDay = updatedBirthDateDay;
-    } else {
-      userBirthDateDay = userBirthDate.getDate();
-    }
-
-    if (updatedBirthDateMonth > 0) {
-      userBirthDateMonth = updatedBirthDateMonth;
-    } else {
-      userBirthDateMonth = userBirthDate.getMonth();
-    }
-
-    if (updatedBirthDateYear > 0) {
-      userBirthDateYear = updatedBirthDateYear;
-    } else {
-      userBirthDateYear = userBirthDate.getFullYear();
-    }
-    return new Date(userBirthDateYear, userBirthDateMonth, userBirthDateDay);
   };
 
   compareBirthDates = (userBirthDate, updatedBirthDate) => {
@@ -187,14 +124,19 @@ class ProfileForm extends Component {
     event.preventDefault();
   };
 
+  enableSave = event => {
+    this.setState({ submitDisabled: false });
+  };
+
   render() {
     const { genders, user } = this.props;
     const { submitDisabled, warning } = this.state;
     const date = new Date(user.birthDate);
     const dateCopy = new Date(date.getTime());
+    const weight = "" + user.weight;
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} key={user.login}>
         <Grid
           container
           direction="column"
@@ -209,11 +151,11 @@ class ProfileForm extends Component {
           </Grid>
           <br />
           <Grid item xs={6}>
-            <Weight weight={user.weight} checkNumber={this.checkNumber} />
+            <Weight weight={weight} checkNumber={this.checkNumber} />
           </Grid>
           <br />
           <Grid item xs={6}>
-            <BirthDate dateCopy={dateCopy} checkNumber={this.checkNumber} />
+            <BirthDate dateCopy={dateCopy} enableSave={this.enableSave} />
           </Grid>
           <br />
           <Grid item xs={6}>
