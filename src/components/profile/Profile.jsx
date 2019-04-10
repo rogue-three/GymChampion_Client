@@ -92,6 +92,7 @@ class Profile extends Component {
         <Button variant="contained" type="submit" name="logout">
           LOGOUT
         </Button>
+        <br />
       </Grid>
     );
   }

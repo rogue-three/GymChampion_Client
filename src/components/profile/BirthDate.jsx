@@ -7,24 +7,20 @@ class BirthDate extends Component {
     const { dateCopy, checkNumber } = this.props;
     return (
       <FormLabel>
-        <span />
         <span>BIRTH DATE</span>
         <br />
-        <span />
         <Input
           type="text"
           name="day"
           placeholder={dateCopy.getDate().toString()}
           onKeyUp={checkNumber}
         />
-        <span />
         <Input
           type="text"
           name="month"
           placeholder={(dateCopy.getMonth() + 1).toString()}
           onKeyUp={checkNumber}
         />
-        <span />
         <Input
           type="text"
           name="year"
