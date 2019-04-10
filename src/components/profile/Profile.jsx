@@ -72,7 +72,7 @@ class Profile extends Component {
       <Grid
         container
         direction="column"
-        justify="space-evenly"
+        justify="flex-start"
         alignItems="center"
       >
         <br />

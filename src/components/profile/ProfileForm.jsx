@@ -143,32 +143,32 @@ class ProfileForm extends Component {
           justify="flex-start"
           alignItems="center"
         >
-          <Grid item xs={6}>
+          <Grid item xs={9}>
             <Nickname
               nickname={user.nickname}
               checkIfEmpty={this.checkIfEmpty}
             />
           </Grid>
           <br />
-          <Grid item xs={6}>
+          <Grid item xs={9}>
             <Weight weight={weight} checkNumber={this.checkNumber} />
           </Grid>
           <br />
-          <Grid item xs={6}>
+          <Grid item xs={12}>
             <BirthDate dateCopy={dateCopy} enableSave={this.enableSave} />
           </Grid>
           <br />
-          <Grid item xs={6}>
+          <Grid item xs={12}>
             <Gender
               genders={genders}
               userSex={user.gender.sex}
               checkGenderChange={this.checkGenderChange}
             />
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12}>
             <span>{warning}</span>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={12}>
             <Button
               variant="contained"
               type="submit"
