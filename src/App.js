@@ -12,7 +12,7 @@ import Navigation from "./components/mainView/Navigation";
 import Grid from '@material-ui/core/Grid';
 import ExerciseSchemeOptions from "./components/mainView/ExerciseSchemeOptions";
 import Training from "./components/mainView/Training";
-
+import QuickTraining from "./components/mainView/QuickTraining";
 
 class App extends Component {
 
@@ -47,6 +47,7 @@ class App extends Component {
             <Route path="/diagnostic" render={(props) => <Diagnostic {...props} activeUser={this.state.login} />}/>
             <Route path="/e-s-moreoptions" render={(props) => <ExerciseSchemeOptions {...props} activeUser={this.state.login} />}/>
             <Route path="/training" render={(props) => <Training {...props} activeUser={this.state.login} />}/>
+            <Route path="/quicktrain" render={(props) => <QuickTraining {...props} activeUser={this.state.login} />}/>
           </Switch>
           <Navigation/>
         </Grid>
