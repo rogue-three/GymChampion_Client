@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Avatar from "./Avatar";
 import ProfileForm from "./ProfileForm";
+import Button from "@material-ui/core/Button";
 
 class Profile extends Component {
   constructor(props) {
@@ -75,9 +76,9 @@ class Profile extends Component {
           makeUpdate={this.makeUpdate}
         />
         <br />
-        <button type="submit" name="logout">
+        <Button variant="contained" type="submit" name="logout">
           LOGOUT
-        </button>
+        </Button>
       </div>
     );
   }

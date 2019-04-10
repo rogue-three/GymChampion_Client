@@ -3,6 +3,7 @@ import Nickname from "./Nickname";
 import Weight from "./Weight";
 import BirthDate from "./BirthDate";
 import Gender from "./Gender";
+import Button from "@material-ui/core/Button";
 
 class ProfileForm extends Component {
   constructor(props) {
@@ -204,9 +205,14 @@ class ProfileForm extends Component {
         <span>{warning}</span>
         <br />
         <br />
-        <button type="submit" name="submit" disabled={submitDisabled}>
+        <Button
+          variant="contained"
+          type="submit"
+          name="submit"
+          disabled={submitDisabled}
+        >
           SAVE
-        </button>
+        </Button>
       </form>
     );
   }
