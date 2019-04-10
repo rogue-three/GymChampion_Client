@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import FormLabel from "@material-ui/core/FormLabel";
 
 class Gender extends Component {
   render() {
     const { genders, userSex, checkGenderChange } = this.props;
     return (
-      <label>
+      <FormLabel>
         <span>GENDER</span>
         <br />
         {genders.map(gender => (
@@ -20,7 +21,7 @@ class Gender extends Component {
           </label>
         ))}
         <br />
-      </label>
+      </FormLabel>
     );
   }
 }

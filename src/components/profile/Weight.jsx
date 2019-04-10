@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import FormLabel from "@material-ui/core/FormLabel";
 
 class Weight extends Component {
   render() {
     const { weight, checkNumber } = this.props;
     return (
-      <label>
+      <FormLabel>
         <span />
         <span>BODY WEIGHT</span>
         <br />
@@ -15,7 +16,7 @@ class Weight extends Component {
           placeholder={weight}
           onKeyUp={checkNumber}
         />
-      </label>
+      </FormLabel>
     );
   }
 }

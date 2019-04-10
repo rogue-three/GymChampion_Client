@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Avatar from "./Avatar";
 import ProfileForm from "./ProfileForm";
 import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
 
 class Profile extends Component {
   constructor(props) {
@@ -69,7 +70,7 @@ class Profile extends Component {
     return (
       <div>
         <Avatar />
-        <h4>{login}</h4>
+        <Typography color="primary">{login}</Typography>
         <ProfileForm
           user={user}
           genders={genders}

@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import FormLabel from "@material-ui/core/FormLabel";
 
 class BirthDate extends Component {
   render() {
     const { dateCopy, checkNumber } = this.props;
     return (
-      <label>
+      <FormLabel>
         <span />
         <span>BIRTH DATE</span>
         <br />
@@ -29,7 +30,7 @@ class BirthDate extends Component {
           placeholder={dateCopy.getFullYear().toString()}
           onKeyUp={checkNumber}
         />
-      </label>
+      </FormLabel>
     );
   }
 }

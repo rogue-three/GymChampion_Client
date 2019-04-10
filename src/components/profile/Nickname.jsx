@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import FormLabel from "@material-ui/core/FormLabel";
 
 class Nickname extends Component {
   render() {
     const { nickname, checkIfEmpty } = this.props;
     return (
-      <label>
+      <FormLabel>
         <span />
         <span>NICKNAME</span>
         <br />
@@ -15,7 +16,7 @@ class Nickname extends Component {
           placeholder={nickname}
           onKeyUp={checkIfEmpty}
         />
-      </label>
+      </FormLabel>
     );
   }
 }
