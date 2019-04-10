@@ -1,4 +1,11 @@
 import React, { Component } from "react";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import Subject from "@material-ui/icons/Subject";
+import Divider from "@material-ui/core/Divider";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 
 class TrainingLog extends Component {
   constructor(props) {
@@ -44,11 +51,32 @@ class TrainingLog extends Component {
   render() {
     const { trainings } = this.state;
     return (
-      <ul>
-        {trainings.map(training => (
-          <li key={training.trainingId}>{training.trainingId}</li>
-        ))}
-      </ul>
+      <Grid
+        container
+        direction="column"
+        justify="flex-start"
+        alignItems="center"
+      >
+        <br />
+        <br />
+        <Typography color="primary" variant="h4">
+          TRAININGS
+        </Typography>
+        <List>
+          {trainings.map(training => (
+            <Grid item xs={12}>
+              <ListItem key={training.trainingId}>
+                <ListItemIcon>
+                  <Subject />
+                </ListItemIcon>
+                {training.trainingId} -{" "}
+                {new Date(training.trainingDateStart).toDateString()}
+              </ListItem>
+              <Divider />
+            </Grid>
+          ))}
+        </List>
+      </Grid>
     );
   }
 }
