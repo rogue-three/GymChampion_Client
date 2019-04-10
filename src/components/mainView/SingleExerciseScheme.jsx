@@ -8,14 +8,13 @@ import { Link } from 'react-router-dom';
 
 class SingleExerciseScheme extends Component {
 
-
     render() {
         const dataForTraining = {
             pathname: "/training",
             schemeName: this.props.schemeName
         }
         const dataForMoreOptions = {
-            pathname: "/moreoptions",
+            pathname: "/e-s-moreoptions",
             schemeName: this.props.schemeName
         }
         return (

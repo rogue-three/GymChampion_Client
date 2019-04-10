@@ -10,6 +10,7 @@ import Diagnostic from "./components/diagnostics/Diagnostics";
 import SignUp from "./components/login/SignUp";
 import Navigation from "./components/mainView/Navigation";
 import Grid from '@material-ui/core/Grid';
+import ExerciseSchemeOptions from "./components/mainView/ExerciseSchemeOptions";
 
 
 class App extends Component {
@@ -43,6 +44,7 @@ class App extends Component {
             <Route path="/calendar" component={Calendar}/>
             <Route path="/statistic" component={Statistic}/>
             <Route path="/diagnostic" component={Diagnostic}/>
+            <Route path="/e-s-moreoptions" component={ExerciseSchemeOptions}/>
           </Switch>
           <Navigation/>
         </Grid>
