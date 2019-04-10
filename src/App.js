@@ -34,19 +34,19 @@ class App extends Component {
   setCallBackOnLoginComponent = () => {
     return <Login callBackLogin={this.setLogin}/>;
   }
-
+  
   render() {
     if (this.state.isLogged) {
       return (
         <Grid>
           <Switch>
-            <Route exact={true} path="/" component={MainView}/>
-            <Route path="/profile" component={Profile}/>
-            <Route path="/calendar" component={Calendar}/>
-            <Route path="/statistic" component={Statistic}/>
-            <Route path="/diagnostic" component={Diagnostic}/>
-            <Route path="/e-s-moreoptions" component={ExerciseSchemeOptions}/>
-            <Route path="/training" component={Training}/>
+            <Route exact={true} path="/" render={(props) => <MainView {...props} activeUser={this.state.login} />}/>
+            <Route path="/profile" render={(props) => <Profile {...props} activeUser={this.state.login} />}/>
+            <Route path="/calendar" render={(props) => <Calendar {...props} activeUser={this.state.login} />}/>
+            <Route path="/statistic" render={(props) => <Statistic {...props} activeUser={this.state.login} />}/>
+            <Route path="/diagnostic" render={(props) => <Diagnostic {...props} activeUser={this.state.login} />}/>
+            <Route path="/e-s-moreoptions" render={(props) => <ExerciseSchemeOptions {...props} activeUser={this.state.login} />}/>
+            <Route path="/training" render={(props) => <Training {...props} activeUser={this.state.login} />}/>
           </Switch>
           <Navigation/>
         </Grid>
