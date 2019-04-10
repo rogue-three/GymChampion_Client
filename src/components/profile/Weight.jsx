@@ -7,10 +7,8 @@ class Weight extends Component {
     const { weight, checkNumber } = this.props;
     return (
       <FormLabel>
-        <span />
         <span>BODY WEIGHT</span>
         <br />
-        <span />
         <Input
           type="text"
           name="weight"
