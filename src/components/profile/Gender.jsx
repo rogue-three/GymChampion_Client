@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import FormLabel from "@material-ui/core/FormLabel";
+import Radio from "@material-ui/core/Radio";
 
 class Gender extends Component {
   render() {
@@ -10,10 +11,9 @@ class Gender extends Component {
         <br />
         {genders.map(gender => (
           <label key={gender.sex}>
-            <input
+            <Radio
               value={gender.sex}
               name="gender"
-              type="radio"
               defaultChecked={userSex === gender.sex}
               onClick={checkGenderChange}
             />

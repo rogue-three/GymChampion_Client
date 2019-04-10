@@ -70,7 +70,9 @@ class Profile extends Component {
     return (
       <div>
         <Avatar />
-        <Typography color="primary">{login}</Typography>
+        <Typography color="primary" variant="h4">
+          {login}
+        </Typography>
         <ProfileForm
           user={user}
           genders={genders}

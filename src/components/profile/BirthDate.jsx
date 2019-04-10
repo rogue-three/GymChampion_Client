@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import FormLabel from "@material-ui/core/FormLabel";
+import Input from "@material-ui/core/Input";
 
 class BirthDate extends Component {
   render() {
@@ -10,21 +11,21 @@ class BirthDate extends Component {
         <span>BIRTH DATE</span>
         <br />
         <span />
-        <input
+        <Input
           type="text"
           name="day"
           placeholder={dateCopy.getDate().toString()}
           onKeyUp={checkNumber}
         />
         <span />
-        <input
+        <Input
           type="text"
           name="month"
           placeholder={(dateCopy.getMonth() + 1).toString()}
           onKeyUp={checkNumber}
         />
         <span />
-        <input
+        <Input
           type="text"
           name="year"
           placeholder={dateCopy.getFullYear().toString()}

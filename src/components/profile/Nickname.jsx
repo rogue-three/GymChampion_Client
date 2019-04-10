@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import FormLabel from "@material-ui/core/FormLabel";
+import Input from "@material-ui/core/Input";
 
 class Nickname extends Component {
   render() {
@@ -10,7 +11,7 @@ class Nickname extends Component {
         <span>NICKNAME</span>
         <br />
         <span />
-        <input
+        <Input
           type="text"
           name="nickname"
           placeholder={nickname}
