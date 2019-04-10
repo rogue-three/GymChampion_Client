@@ -10,7 +10,7 @@ class Gender extends Component {
         <span>GENDER</span>
         <br />
         {genders.map(gender => (
-          <label key={gender.sex}>
+          <div key={gender.sex}>
             <Radio
               value={gender.sex}
               name="gender"
@@ -18,7 +18,7 @@ class Gender extends Component {
               onClick={checkGenderChange}
             />
             <span>{gender.sex}&emsp;</span>
-          </label>
+          </div>
         ))}
         <br />
       </FormLabel>

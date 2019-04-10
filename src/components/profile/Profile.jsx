@@ -3,6 +3,7 @@ import Avatar from "./Avatar";
 import ProfileForm from "./ProfileForm";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
 
 class Profile extends Component {
   constructor(props) {
@@ -68,11 +69,20 @@ class Profile extends Component {
     const { genders, user, login } = this.state;
 
     return (
-      <div>
+      <Grid
+        container
+        direction="column"
+        justify="space-evenly"
+        alignItems="center"
+      >
+        <br />
+        <br />
         <Avatar />
+        <br />
         <Typography color="primary" variant="h4">
           {login}
         </Typography>
+        <br />
         <ProfileForm
           user={user}
           genders={genders}
@@ -82,7 +92,7 @@ class Profile extends Component {
         <Button variant="contained" type="submit" name="logout">
           LOGOUT
         </Button>
-      </div>
+      </Grid>
     );
   }
 }

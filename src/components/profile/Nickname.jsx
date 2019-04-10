@@ -10,7 +10,6 @@ class Nickname extends Component {
         <span />
         <span>NICKNAME</span>
         <br />
-        <span />
         <Input
           type="text"
           name="nickname"

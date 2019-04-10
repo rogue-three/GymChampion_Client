@@ -4,6 +4,7 @@ import Weight from "./Weight";
 import BirthDate from "./BirthDate";
 import Gender from "./Gender";
 import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
 
 class ProfileForm extends Component {
   constructor(props) {
@@ -194,25 +195,48 @@ class ProfileForm extends Component {
 
     return (
       <form onSubmit={this.handleSubmit}>
-        <Nickname nickname={user.nickname} checkIfEmpty={this.checkIfEmpty} />
-        <Weight weight={user.weight} checkNumber={this.checkNumber} />
-        <BirthDate dateCopy={dateCopy} checkNumber={this.checkNumber} />
-        <Gender
-          genders={genders}
-          userSex={user.gender.sex}
-          checkGenderChange={this.checkGenderChange}
-        />
-        <span>{warning}</span>
-        <br />
-        <br />
-        <Button
-          variant="contained"
-          type="submit"
-          name="submit"
-          disabled={submitDisabled}
+        <Grid
+          container
+          direction="column"
+          justify="flex-start"
+          alignItems="center"
         >
-          SAVE
-        </Button>
+          <Grid item xs={6}>
+            <Nickname
+              nickname={user.nickname}
+              checkIfEmpty={this.checkIfEmpty}
+            />
+          </Grid>
+          <br />
+          <Grid item xs={6}>
+            <Weight weight={user.weight} checkNumber={this.checkNumber} />
+          </Grid>
+          <br />
+          <Grid item xs={6}>
+            <BirthDate dateCopy={dateCopy} checkNumber={this.checkNumber} />
+          </Grid>
+          <br />
+          <Grid item xs={6}>
+            <Gender
+              genders={genders}
+              userSex={user.gender.sex}
+              checkGenderChange={this.checkGenderChange}
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <span>{warning}</span>
+          </Grid>
+          <Grid item xs={3}>
+            <Button
+              variant="contained"
+              type="submit"
+              name="submit"
+              disabled={submitDisabled}
+            >
+              SAVE
+            </Button>
+          </Grid>
+        </Grid>
       </form>
     );
   }
