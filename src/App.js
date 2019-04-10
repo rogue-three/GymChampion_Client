@@ -11,6 +11,7 @@ import SignUp from "./components/login/SignUp";
 import Navigation from "./components/mainView/Navigation";
 import Grid from '@material-ui/core/Grid';
 import ExerciseSchemeOptions from "./components/mainView/ExerciseSchemeOptions";
+import Training from "./components/mainView/Training";
 
 
 class App extends Component {
@@ -45,6 +46,7 @@ class App extends Component {
             <Route path="/statistic" component={Statistic}/>
             <Route path="/diagnostic" component={Diagnostic}/>
             <Route path="/e-s-moreoptions" component={ExerciseSchemeOptions}/>
+            <Route path="/training" component={Training}/>
           </Switch>
           <Navigation/>
         </Grid>

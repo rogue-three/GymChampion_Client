@@ -23,20 +23,20 @@ class LoginValidationForm extends Component {
       };
 
     handleClickShowPassword = () => {
-    this.setState(state => ({ showPassword: !state.showPassword }));
+        this.setState(state => ({ showPassword: !state.showPassword }));
     };
 
     loginChange = (event) => {
-    this.setState({login: event.target.value})
+        this.setState({login: event.target.value})
     
     };
 
     passwordChange = (event) => {
         this.setState({password: event.target.value})
-      };
+    };
 
     getLoginAndPassword = () => {
-    let apiUrl = 'http://localhost:8080/v1/login_data/login/' + this.state.login;
+        let apiUrl = 'http://localhost:8080/v1/login_data/login/' + this.state.login;
         fetch(apiUrl)
         .then(response => response.json())
         .then(result => {

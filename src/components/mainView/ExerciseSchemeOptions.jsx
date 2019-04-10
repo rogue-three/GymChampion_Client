@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 
-
 class ExerciseSchemeOptions extends Component {
     
     render() {
