@@ -13,6 +13,7 @@ import Grid from '@material-ui/core/Grid';
 import ExerciseSchemeOptions from "./components/mainView/ExerciseSchemeOptions";
 import Training from "./components/mainView/Training";
 import QuickTraining from "./components/mainView/QuickTraining";
+import CustomTraining from "./components/mainView/CustomTraining";
 
 class App extends Component {
 
@@ -48,6 +49,7 @@ class App extends Component {
             <Route path="/e-s-moreoptions" render={(props) => <ExerciseSchemeOptions {...props} activeUser={this.state.login} />}/>
             <Route path="/training" render={(props) => <Training {...props} activeUser={this.state.login} />}/>
             <Route path="/quicktrain" render={(props) => <QuickTraining {...props} activeUser={this.state.login} />}/>
+            <Route path="/customtrain" render={(props) => <CustomTraining {...props} activeUser={this.state.login} />}/>
           </Switch>
           <Navigation/>
         </Grid>
