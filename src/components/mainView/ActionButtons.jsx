@@ -19,6 +19,9 @@ class ActionButtons extends Component {
             <Button variant="contained" color="primary" component={Link} to="/customtrain">
                 CUSTOM TRAINING PLANS
             </Button>
+            <br></br>
+            <br></br>
+            <br></br>
         </Grid>
         );
     }
