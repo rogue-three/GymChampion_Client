@@ -4,6 +4,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Paper from "@material-ui/core/Paper";
 import Collapse from "@material-ui/core/Collapse";
+import Button from "@material-ui/core/Button";
 
 class LogEntryDetails extends Component {
   getNiceExerciseName(exerciseName) {
@@ -13,13 +14,13 @@ class LogEntryDetails extends Component {
     return niceExerciseName;
   }
   render() {
-    const { setSchemes, isExpanded } = this.props;
+    const { setSchemes, isExpanded, deleteTraining } = this.props;
     return (
       <Collapse in={isExpanded} timeout="auto" unmountOnExit>
-        <Paper>
+        <Paper square>
           <List>
             {setSchemes.map(setScheme => (
-              <ListItem key={setScheme.setSchemeId} divider="true">
+              <ListItem key={setScheme.setSchemeId} divider>
                 <div>
                   {this.getNiceExerciseName(setScheme.exercise.exerciseName)}
                   <Typography color="secondary">
@@ -30,6 +31,9 @@ class LogEntryDetails extends Component {
               </ListItem>
             ))}
           </List>
+          <Button onClick={deleteTraining}>
+            <Typography color="error">&nbsp;DELETE</Typography>
+          </Button>
         </Paper>
       </Collapse>
     );

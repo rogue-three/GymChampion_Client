@@ -40,6 +40,23 @@ class TrainingLog extends Component {
         },
         error => {
           this.setState({
+            error
+          });
+        }
+      );
+  }
+
+  deleteTraining(trainingId) {
+    fetch("http://localhost:8080/v1/trainings/archive/" + trainingId, {
+      method: "PATCH"
+    })
+      .then(res => res.json())
+      .then(
+        result => {
+          console.log(result);
+        },
+        error => {
+          this.setState({
             isLoaded: true,
             error
           });
@@ -58,7 +75,10 @@ class TrainingLog extends Component {
             TRAININGS
           </Typography>
         </Grid>
-        <Log trainings={trainings} />
+        <Log
+          trainings={trainings}
+          deleteTraining={this.deleteTraining.bind(this)}
+        />
       </React.Fragment>
     );
   }

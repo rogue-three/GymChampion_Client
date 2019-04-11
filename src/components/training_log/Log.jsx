@@ -5,7 +5,7 @@ import LogEntry from "./LogEntry";
 
 class Log extends Component {
   render() {
-    const { trainings } = this.props;
+    const { trainings, deleteTraining } = this.props;
     return (
       <Grid
         container
@@ -15,7 +15,11 @@ class Log extends Component {
       >
         <List>
           {trainings.map(training => (
-            <LogEntry key={training.trainingId} training={training} />
+            <LogEntry
+              key={training.trainingId}
+              training={training}
+              deleteTraining={deleteTraining}
+            />
           ))}
         </List>
       </Grid>

@@ -90,6 +90,10 @@ class LogEntry extends Component {
     this.setState(state => ({ isExpanded: !state.isExpanded }));
   }
 
+  deleteTraining() {
+    this.props.deleteTraining(this.state.training.trainingId);
+  }
+
   render() {
     const { training, setSchemes } = this.state;
     return (
@@ -111,6 +115,7 @@ class LogEntry extends Component {
         <LogEntryDetails
           setSchemes={setSchemes}
           isExpanded={this.state.isExpanded}
+          deleteTraining={this.deleteTraining.bind(this)}
         />
         <Divider />
       </React.Fragment>
