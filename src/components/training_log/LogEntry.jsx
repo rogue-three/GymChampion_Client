@@ -5,6 +5,7 @@ import Subject from "@material-ui/icons/Subject";
 import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import LogEntryDetails from "./LogEntryDetails";
 
 class LogEntry extends Component {
   getNicePrintedDate(date) {
@@ -46,6 +47,7 @@ class LogEntry extends Component {
             </ListItemIcon>
           </ListItemSecondaryAction>
         </ListItem>
+        <LogEntryDetails />
         <Divider />
       </React.Fragment>
     );
