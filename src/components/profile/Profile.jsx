@@ -11,7 +11,7 @@ class Profile extends Component {
     this.state = {
       genders: [],
       user: { gender: {} },
-      login: "Mihu"
+      login: this.props.activeUser
     };
     this.makeUpdate = this.makeUpdate.bind(this);
   }

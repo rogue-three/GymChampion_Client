@@ -9,7 +9,7 @@ class TrainingLog extends Component {
     super(props);
     this.state = {
       trainings: [],
-      login: "Mihu"
+      login: this.props.activeUser
     };
   }
 
