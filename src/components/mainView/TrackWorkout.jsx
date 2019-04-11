@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 
 class TrackWorkout extends Component {
@@ -12,7 +13,9 @@ class TrackWorkout extends Component {
         justify="space-evenly"
         alignItems="center"
       >
-        <h2>TRACK WORKOUT:</h2>
+        <Typography color="primary" variant="h4">
+          TRACK WORKOUT:
+        </Typography>
         <Button
           variant="contained"
           color="primary"

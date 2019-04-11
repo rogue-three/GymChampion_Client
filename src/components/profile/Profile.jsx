@@ -86,7 +86,12 @@ class Profile extends Component {
           makeUpdate={this.makeUpdate}
         />
         <br />
-        <Button variant="contained" type="submit" name="logout">
+        <Button
+          onClick={this.logout}
+          variant="contained"
+          type="submit"
+          name="logout"
+        >
           LOGOUT
         </Button>
         <br />
