@@ -8,9 +8,7 @@ import Button from "@material-ui/core/Button";
 
 class LogEntryDetails extends Component {
   getNiceExerciseName(exerciseName) {
-    let niceExerciseName =
-      exerciseName.charAt(0).toUpperCase() +
-      exerciseName.slice(1).replace(/_/g, " ");
+    let niceExerciseName = exerciseName.replace(/_/g, " ").toUpperCase();
     return niceExerciseName;
   }
   render() {
@@ -22,7 +20,9 @@ class LogEntryDetails extends Component {
             {setSchemes.map(setScheme => (
               <ListItem key={setScheme.setSchemeId} divider>
                 <div>
-                  {this.getNiceExerciseName(setScheme.exercise.exerciseName)}
+                  <Typography>
+                    {this.getNiceExerciseName(setScheme.exercise.exerciseName)}
+                  </Typography>
                   <Typography color="secondary">
                     Reps:&nbsp;{setScheme.reps}&nbsp;Weight:&nbsp;
                     {setScheme.weight}

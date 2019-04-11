@@ -100,12 +100,16 @@ class LogEntry extends Component {
       <React.Fragment>
         <ListItem>
           <Typography color="secondary">Date:</Typography>&nbsp;&nbsp;
-          {this.getNicePrintedDate(new Date(training.trainingDateStart))}
-          ,&nbsp;&nbsp;
+          <Typography>
+            {this.getNicePrintedDate(new Date(training.trainingDateStart))}
+            ,&nbsp;&nbsp;
+          </Typography>
           <Typography color="secondary">Duration:</Typography>&nbsp;&nbsp;
-          {this.milisecondsToTime(
-            training.trainingDateFinish - training.trainingDateStart
-          )}
+          <Typography>
+            {this.milisecondsToTime(
+              training.trainingDateFinish - training.trainingDateStart
+            )}
+          </Typography>
           <ListItemSecondaryAction>
             <ListItemIcon>
               <Subject onClick={this.expandDetails} />
