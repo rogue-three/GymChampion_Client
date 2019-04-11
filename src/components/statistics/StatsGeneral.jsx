@@ -11,23 +11,30 @@ class StatsGeneral extends Component {
             "http://localhost:8080/v1/statistics/training_days/Mihu",
         getTotalLoaURL:
         "http://localhost:8080/v1/statistics/get_total_load_by_user/Mihu",
-        result: null
+        getTotalDurationOfAllTrainingsURL:
+        "http://localhost:8080/v1/statistics/total_duration_of_all_trainings/Mihu"
     };
 
 
     componentDidMount() {
         fetch(this.state.getNumberOfTraininsURL)
             .then(response=>response.json())
-            .then(result => {
+            .then(numbOfTrainings => {
 
-                console.log(result);
-                this.setState({result})
+                console.log(numbOfTrainings);
+                this.setState({numbOfTrainings})
         }).then(        fetch(this.state.getTotalLoaURL)
             .then(response=>response.json())
-            .then(result2 => {
+            .then(totalLoadOfAllTrainings => {
 
-                console.log(result2);
-                this.setState({result2})
+                console.log(totalLoadOfAllTrainings);
+                this.setState({totalLoadOfAllTrainings})
+            })).then(        fetch(this.state.getTotalDurationOfAllTrainingsURL)
+            .then(response=>response.json())
+            .then(totalDurationOfAllTrainings => {
+
+                console.log(totalDurationOfAllTrainings);
+                this.setState({totalDurationOfAllTrainings})
             }))
     }
 
@@ -38,10 +45,13 @@ class StatsGeneral extends Component {
                 <CssBaseline />
                 <React.Fragment>
                     <div>
-                        Number of trainings: {this.state.result}
+                        Number of trainings: {this.state.numbOfTrainings} sessions
                     </div>
                     <div>
-                        Load total: {this.state.result2}
+                        Load total: {this.state.totalLoadOfAllTrainings} kg
+                    </div>
+                    <div>
+                        Load duration of trainings: {this.state.totalDurationOfAllTrainings} min
                     </div>
                 </React.Fragment>
 
