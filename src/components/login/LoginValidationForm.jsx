@@ -55,7 +55,6 @@ class LoginValidationForm extends Component {
         justify="center"
         direction="column"
       >
-        {/* <Grid container alignItems="center" justify="center"> */}
         <Grid item xs={7}>
           <TextField
             id="input-with-icon-grid"
@@ -65,16 +64,12 @@ class LoginValidationForm extends Component {
             InputProps={{
               endAdornment: (
                 <InputAdornment>
-                  <AccountCircle />
+                  <AccountCircle color="secondary" />
                 </InputAdornment>
               )
             }}
           />
         </Grid>
-        {/* <Grid item xs={2}>
-          <AccountCircle />
-        </Grid> */}
-        {/* </Grid> */}
         <Grid item xs={7}>
           <FormControl>
             <InputLabel htmlFor="adornment-password">Password</InputLabel>
@@ -86,6 +81,7 @@ class LoginValidationForm extends Component {
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
+                    color="secondary"
                     aria-label="Toggle password visibility"
                     onClick={this.handleClickShowPassword}
                   >
