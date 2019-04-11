@@ -16,7 +16,7 @@ class TrainingLog extends Component {
     };
   }
   componentDidMount() {
-    fetch("http://localhost:8080/v1/trainings/login/" + this.state.login)
+    fetch("http://localhost:8080/v1/trainings/active/" + this.state.login)
       .then(res => res.json())
       .then(
         result => {
@@ -64,8 +64,8 @@ class TrainingLog extends Component {
         </Typography>
         <List>
           {trainings.map(training => (
-            <Grid item xs={12}>
-              <ListItem key={training.trainingId}>
+            <Grid item xs={12} key={training.trainingId}>
+              <ListItem>
                 <ListItemIcon>
                   <Subject />
                 </ListItemIcon>
