@@ -16,6 +16,7 @@ class TrainingLog extends Component {
       login: "Mihu"
     };
   }
+
   componentDidMount() {
     fetch("http://localhost:8080/v1/trainings/active/" + this.state.login)
       .then(res => res.json())
@@ -49,6 +50,29 @@ class TrainingLog extends Component {
         }
       );
   }
+
+  getNicePrintedDate(date) {
+    let day =
+      date.getDate().toString().length === 1
+        ? "0" + date.getDate()
+        : date.getDate();
+    let month = date.getMonth() + 1;
+    month = month.toString().length === 1 ? "0" + month : month;
+    return day + "." + month + "." + date.getFullYear();
+  }
+
+  milisecondsToTime(duration) {
+    let seconds = Math.floor((duration / 1000) % 60);
+    let minutes = Math.floor((duration / (1000 * 60)) % 60);
+    let hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+
+    hours = hours < 10 ? "0" + hours : hours;
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    return hours + ":" + minutes + ":" + seconds;
+  }
+
   render() {
     const { trainings } = this.state;
     return (
@@ -69,8 +93,15 @@ class TrainingLog extends Component {
             {trainings.map(training => (
               <Grid key={training.trainingId}>
                 <ListItem>
-                  {training.trainingId} -{" "}
-                  {new Date(training.trainingDateStart).toDateString()}
+                  <Typography color="secondary">Date:</Typography>&nbsp;&nbsp;
+                  {this.getNicePrintedDate(
+                    new Date(training.trainingDateStart)
+                  )}
+                  ,&nbsp;
+                  <Typography color="secondary">Time:</Typography>&nbsp;&nbsp;
+                  {this.milisecondsToTime(
+                    training.trainingDateFinish - training.trainingDateStart
+                  )}
                   <ListItemSecondaryAction>
                     <ListItemIcon>
                       <Subject />
