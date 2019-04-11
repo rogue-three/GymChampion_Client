@@ -154,7 +154,7 @@ class ProfileForm extends Component {
             <Weight weight={weight} checkNumber={this.checkNumber} />
           </Grid>
           <br />
-          <Grid item xs={12}>
+          <Grid item xs={9}>
             <BirthDate dateCopy={dateCopy} enableSave={this.enableSave} />
           </Grid>
           <br />
