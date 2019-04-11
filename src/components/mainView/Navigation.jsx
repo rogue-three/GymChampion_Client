@@ -29,7 +29,12 @@ class Navigation extends Component {
         direction="row"
       >
         <BottomNavigation
-          style={{ backgroundColor: "#80cbc4" }}
+          style={{
+            backgroundColor: "#80cbc4",
+            bottom: 0,
+            position: "fixed",
+            width: "100%"
+          }}
           value={value}
           onChange={this.handleChange}
           showLabels
