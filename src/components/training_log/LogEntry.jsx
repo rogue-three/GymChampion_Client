@@ -11,11 +11,59 @@ class LogEntry extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      training: this.props.training,
+      setSchemes: [],
       isExpanded: false
     };
 
     this.expandDetails = this.expandDetails.bind(this);
   }
+
+  componentDidMount() {
+    fetch(
+      "http://localhost:8080/v1/trainings/set_schemes/training/" +
+        this.state.training.trainingId
+    )
+      .then(res => res.json())
+      .then(
+        result => {
+          this.setState({
+            setSchemes: result.map(setScheme => ({
+              setSchemeId: setScheme.setSchemeId,
+              reps: setScheme.reps,
+              weight: setScheme.weight,
+              training: this.state.training,
+              exercise: {
+                exerciseId: setScheme.exercise.exerciseId,
+                exerciseName: setScheme.exercise.exerciseName,
+                maxReps: setScheme.exercise.maxReps,
+                maxWeight: setScheme.exercise.maxWeight,
+                bodyPart: {
+                  bodyPartId: setScheme.exercise.bodyPart.bodyPartId,
+                  bodyPartName: setScheme.exercise.bodyPart.bodyPartName
+                },
+                equipment: {
+                  equipmentId: setScheme.exercise.equipment.equipmentId,
+                  equipmentName: setScheme.exercise.equipment.equipmentName
+                },
+                exerciseScheme: {
+                  exerciseSchemeId:
+                    setScheme.exercise.exerciseScheme.exerciseSchemeId,
+                  exerciseSchemeName:
+                    setScheme.exercise.exerciseScheme.exerciseSchemeName
+                }
+              }
+            }))
+          });
+        },
+        error => {
+          this.setState({
+            error
+          });
+        }
+      );
+  }
+
   getNicePrintedDate(date) {
     let day =
       date.getDate().toString().length === 1
@@ -43,7 +91,7 @@ class LogEntry extends Component {
   }
 
   render() {
-    const { training } = this.props;
+    const { training, setSchemes } = this.state;
     return (
       <React.Fragment>
         <ListItem>
@@ -60,7 +108,10 @@ class LogEntry extends Component {
             </ListItemIcon>
           </ListItemSecondaryAction>
         </ListItem>
-        <LogEntryDetails isExpanded={this.state.isExpanded} />
+        <LogEntryDetails
+          setSchemes={setSchemes}
+          isExpanded={this.state.isExpanded}
+        />
         <Divider />
       </React.Fragment>
     );
