@@ -41,7 +41,7 @@ class Navigation extends Component {
             to="/profile"
           />
           <BottomNavigationAction
-            label="TRAINING_LOG"
+            label="TRAIN&nbsp;LOG"
             icon={<CalendarIcon />}
             component={Link}
             to="/training_log"
@@ -53,13 +53,13 @@ class Navigation extends Component {
             to="/"
           />
           <BottomNavigationAction
-            label="STATISTIC"
+            label="STATISTICS"
             icon={<StatsIcon />}
             component={Link}
             to="/statistic"
           />
           <BottomNavigationAction
-            label="DIAGNOSTIC"
+            label="DIAGNOSTICS"
             icon={<DiagnosticIcon />}
             component={Link}
             to="/diagnostic"

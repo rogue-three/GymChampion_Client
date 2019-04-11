@@ -43,7 +43,12 @@ class App extends Component {
       return (
         <MuiThemeProvider theme={theme}>
           <CssBaseline />
-          <Grid>
+          <Grid
+            container
+            direction="column"
+            justify="space-around"
+            alignItems="center"
+          >
             <Switch>
               <Route
                 exact={true}
