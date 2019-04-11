@@ -1,12 +1,9 @@
 import React, { Component } from "react";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import Subject from "@material-ui/icons/Subject";
-import Divider from "@material-ui/core/Divider";
+
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import Log from "./Log";
+import Calendar from "./Calendar";
 
 class TrainingLog extends Component {
   constructor(props) {
@@ -51,68 +48,18 @@ class TrainingLog extends Component {
       );
   }
 
-  getNicePrintedDate(date) {
-    let day =
-      date.getDate().toString().length === 1
-        ? "0" + date.getDate()
-        : date.getDate();
-    let month = date.getMonth() + 1;
-    month = month.toString().length === 1 ? "0" + month : month;
-    return day + "." + month + "." + date.getFullYear();
-  }
-
-  milisecondsToTime(duration) {
-    let seconds = Math.floor((duration / 1000) % 60);
-    let minutes = Math.floor((duration / (1000 * 60)) % 60);
-    let hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
-
-    hours = hours < 10 ? "0" + hours : hours;
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-    seconds = seconds < 10 ? "0" + seconds : seconds;
-
-    return hours + ":" + minutes + ":" + seconds;
-  }
-
   render() {
     const { trainings } = this.state;
     return (
       <React.Fragment>
+        <Calendar />
         <br />
         <Grid container direction="column" alignItems="center">
           <Typography color="primary" variant="h4" justify-content="center">
             TRAININGS
           </Typography>
         </Grid>
-        <Grid
-          container
-          direction="column"
-          justify="flex-start"
-          alignItems="stretch"
-        >
-          <List>
-            {trainings.map(training => (
-              <Grid key={training.trainingId}>
-                <ListItem>
-                  <Typography color="secondary">Date:</Typography>&nbsp;&nbsp;
-                  {this.getNicePrintedDate(
-                    new Date(training.trainingDateStart)
-                  )}
-                  ,&nbsp;
-                  <Typography color="secondary">Time:</Typography>&nbsp;&nbsp;
-                  {this.milisecondsToTime(
-                    training.trainingDateFinish - training.trainingDateStart
-                  )}
-                  <ListItemSecondaryAction>
-                    <ListItemIcon>
-                      <Subject />
-                    </ListItemIcon>
-                  </ListItemSecondaryAction>
-                </ListItem>
-                <Divider />
-              </Grid>
-            ))}
-          </List>
-        </Grid>
+        <Log trainings={trainings} />
       </React.Fragment>
     );
   }
