@@ -4,6 +4,7 @@ import Weight from "./Weight";
 import BirthDate from "./BirthDate";
 import Gender from "./Gender";
 import Button from "@material-ui/core/Button";
+import FormControl from "@material-ui/core/FormControl";
 import Grid from "@material-ui/core/Grid";
 
 class ProfileForm extends Component {
@@ -136,7 +137,7 @@ class ProfileForm extends Component {
     const weight = "" + user.weight;
 
     return (
-      <form onSubmit={this.handleSubmit} key={user.login} method="POST">
+      <FormControl onSubmit={this.handleSubmit} key={user.login}>
         <Grid
           container
           direction="column"
@@ -179,7 +180,7 @@ class ProfileForm extends Component {
             </Button>
           </Grid>
         </Grid>
-      </form>
+      </FormControl>
     );
   }
 }
