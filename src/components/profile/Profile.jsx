@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Avatar from "./Avatar";
 import ProfileForm from "./ProfileForm";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
@@ -76,8 +75,6 @@ class Profile extends Component {
         alignItems="center"
       >
         <br />
-        <br />
-        <Avatar />
         <br />
         <Typography color="primary" variant="h4">
           {login}

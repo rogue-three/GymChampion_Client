@@ -72,7 +72,7 @@ class TrainingLog extends Component {
         <br />
         <Grid container direction="column" alignItems="center">
           <Typography color="primary" variant="h4" justify-content="center">
-            TRAININGS
+            TRAINING LOG
           </Typography>
         </Grid>
         <Log
