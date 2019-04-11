@@ -11,7 +11,7 @@ class Profile extends Component {
       submitDisabled: true,
       warning: ""
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -103,7 +103,7 @@ class Profile extends Component {
   };
 
   checkParam = (param, min, max, errorMessage) => {
-    if (param > 0 && (param < min || param > max)) {
+    if (param.length > 0 && (param < min || param > max)) {
       this.setState({ warning: errorMessage });
       return false;
     }
@@ -127,27 +127,48 @@ class Profile extends Component {
       userBirthDateMonth,
       userBirthDateDay
     );
+    const data = JSON.parse(JSON.stringify(user));
 
-    if (user.nickname !== userNickname) {
-      console.log(userNickname);
-      // casting!
-      // submitData(userWeight, "link");
+    if (
+      userNickname.length > 0 &&
+      user.nickname.localeCompare(userNickname) !== 0
+    ) {
+      data.nickname = userNickname;
     }
+    if (user.weight !== userWeight && userWeight > 0) {
+      data.weight = userWeight;
+    }
+    if (this.compareBirthDates(userBirthDate, updatedBirthDate)) {
+      data.birthDate = updatedBirthDate;
+    }
+    if (user.gender.sex !== userGender) {
+      let currentGender = null;
+      this.state.genders.forEach(gender => {
+        if (gender.sex === userGender) {
+          currentGender = gender;
+        }
+      });
+      if (currentGender !== null) {
+        data.gender = currentGender;
+      }
+    }
+    this.makeUpdate(data)
+      .then(response => console.log(response))
+      .catch(error => console.error(error));
+  };
 
-    if (user.weight !== userWeight) {
-      console.log(userWeight);
-      // casting!
-      // submitData(userWeight, "link");
-    }
-    if (!this.compareBirthDates(userBirthDate, updatedBirthDate)) {
-      console.log("update birth date");
-      // submitData(updatedBirthDate, "link");
-    }
-    if (!(user.gender.sex === userGender)) {
-      console.log(userGender);
-      // casting?
-      // submitData(userGender, "link");
-    }
+  makeUpdate = data => {
+    return fetch("http://localhost:8080/v1/users/" + this.state.login, {
+      method: "PATCH",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(res => {
+        return res;
+      })
+      .catch(err => err);
   };
 
   updateBirthDate = (
@@ -181,6 +202,9 @@ class Profile extends Component {
   };
 
   compareBirthDates = (userBirthDate, updatedBirthDate) => {
+    if (updatedBirthDate === null) {
+      return;
+    }
     const previousBirthDate =
       userBirthDate.getFullYear().toString() +
       userBirthDate.getMonth().toString() +
@@ -189,7 +213,7 @@ class Profile extends Component {
       updatedBirthDate.getFullYear().toString() +
       updatedBirthDate.getMonth().toString() +
       updatedBirthDate.getDate().toString();
-    return previousBirthDate === currentBirthDate;
+    return previousBirthDate.localeCompare(currentBirthDate) !== 0;
   };
 
   checkNumber = event => {
@@ -207,11 +231,9 @@ class Profile extends Component {
   };
 
   checkGenderChange = event => {
-    // event.target.checked=true;
     this.state.user.gender.sex !== event.target.gender
       ? this.setState({ submitDisabled: false })
       : this.setState({ submitDisabled: true });
-    // event.preventDefault();
   };
 
   render() {
@@ -291,8 +313,7 @@ class Profile extends Component {
                   value={gender.sex}
                   name="gender"
                   type="radio"
-                  defaultChecked={user.gender === gender}
-                  // checked={user.gender === gender}
+                  defaultChecked={user.gender.sex === gender.sex}
                   onClick={this.checkGenderChange}
                 />
                 <span className="white-text">{gender.sex}&emsp;</span>
