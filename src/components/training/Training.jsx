@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import TrainingNavigation from "./TrainingNavigation";
+import SetSchemeHandler from "./SetSchemeHandler";
+import ExerciseHandler from "./ExerciseHandler";
 
 class Training extends Component {
   constructor(props) {
@@ -13,6 +16,9 @@ class Training extends Component {
     return (
       <React.Fragment>
         <h1>{scheme}</h1>
+        <TrainingNavigation />
+        <SetSchemeHandler />
+        <ExerciseHandler />
       </React.Fragment>
     );
   }
