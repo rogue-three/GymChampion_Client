@@ -9,8 +9,11 @@ class StatsGeneral extends Component {
     state = {
         getNumberOfTraininsURL:
             "http://localhost:8080/v1/statistics/training_days/Mihu",
+        getTotalLoaURL:
+        "http://localhost:8080/v1/statistics/get_total_load_by_user/Mihu",
         result: null
     };
+
 
     componentDidMount() {
         fetch(this.state.getNumberOfTraininsURL)
@@ -19,7 +22,13 @@ class StatsGeneral extends Component {
 
                 console.log(result);
                 this.setState({result})
-        })
+        }).then(        fetch(this.state.getTotalLoaURL)
+            .then(response=>response.json())
+            .then(result2 => {
+
+                console.log(result2);
+                this.setState({result2})
+            }))
     }
 
 
@@ -30,6 +39,9 @@ class StatsGeneral extends Component {
                 <React.Fragment>
                     <div>
                         Number of trainings: {this.state.result}
+                    </div>
+                    <div>
+                        Load total: {this.state.result2}
                     </div>
                 </React.Fragment>
 
