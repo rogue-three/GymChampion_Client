@@ -8,6 +8,14 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import LogEntryDetails from "./LogEntryDetails";
 
 class LogEntry extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isExpanded: false
+    };
+
+    this.expandDetails = this.expandDetails.bind(this);
+  }
   getNicePrintedDate(date) {
     let day =
       date.getDate().toString().length === 1
@@ -29,6 +37,11 @@ class LogEntry extends Component {
 
     return hours + ":" + minutes + ":" + seconds;
   }
+
+  expandDetails() {
+    this.setState(state => ({ isExpanded: !state.isExpanded }));
+  }
+
   render() {
     const { training } = this.props;
     return (
@@ -43,11 +56,11 @@ class LogEntry extends Component {
           )}
           <ListItemSecondaryAction>
             <ListItemIcon>
-              <Subject />
+              <Subject onClick={this.expandDetails} />
             </ListItemIcon>
           </ListItemSecondaryAction>
         </ListItem>
-        <LogEntryDetails />
+        <LogEntryDetails isExpanded={this.state.isExpanded} />
         <Divider />
       </React.Fragment>
     );
