@@ -62,6 +62,19 @@ class TrainingLog extends Component {
           });
         }
       );
+    this.deleteFromState(trainingId);
+  }
+
+  deleteFromState(trainingId) {
+    let currentTrainings = this.state.trainings;
+    let trainingIndex;
+    currentTrainings.forEach(training => {
+      if (training.trainingId === trainingId - 1) {
+        trainingIndex = currentTrainings.indexOf(training);
+      }
+    });
+    currentTrainings.splice(currentTrainings.indexOf(trainingIndex), 1);
+    this.setState({ trainings: currentTrainings });
   }
 
   render() {
