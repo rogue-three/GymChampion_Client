@@ -136,7 +136,7 @@ class ProfileForm extends Component {
     const weight = "" + user.weight;
 
     return (
-      <form onSubmit={this.handleSubmit} key={user.login}>
+      <form onSubmit={this.handleSubmit} key={user.login} method="POST">
         <Grid
           container
           direction="column"
