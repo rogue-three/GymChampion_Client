@@ -6,6 +6,7 @@ import Subject from "@material-ui/icons/Subject";
 import Divider from "@material-ui/core/Divider";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 
 class TrainingLog extends Component {
   constructor(props) {
@@ -51,32 +52,37 @@ class TrainingLog extends Component {
   render() {
     const { trainings } = this.state;
     return (
-      <Grid
-        container
-        direction="column"
-        justify="flex-start"
-        alignItems="center"
-      >
+      <React.Fragment>
         <br />
-        <br />
-        <Typography color="primary" variant="h4">
-          TRAININGS
-        </Typography>
-        <List>
-          {trainings.map(training => (
-            <Grid item xs={12} key={training.trainingId}>
-              <ListItem>
-                <ListItemIcon>
-                  <Subject />
-                </ListItemIcon>
-                {training.trainingId} -{" "}
-                {new Date(training.trainingDateStart).toDateString()}
-              </ListItem>
-              <Divider />
-            </Grid>
-          ))}
-        </List>
-      </Grid>
+        <Grid container direction="column" alignItems="center">
+          <Typography color="primary" variant="h4" justify-content="center">
+            TRAININGS
+          </Typography>
+        </Grid>
+        <Grid
+          container
+          direction="column"
+          justify="flex-start"
+          alignItems="stretch"
+        >
+          <List>
+            {trainings.map(training => (
+              <Grid key={training.trainingId}>
+                <ListItem>
+                  {training.trainingId} -{" "}
+                  {new Date(training.trainingDateStart).toDateString()}
+                  <ListItemSecondaryAction>
+                    <ListItemIcon>
+                      <Subject />
+                    </ListItemIcon>
+                  </ListItemSecondaryAction>
+                </ListItem>
+                <Divider />
+              </Grid>
+            ))}
+          </List>
+        </Grid>
+      </React.Fragment>
     );
   }
 }
