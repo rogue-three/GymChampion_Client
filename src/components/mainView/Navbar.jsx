@@ -16,7 +16,7 @@ class Navbar extends Component {
     this.setActualLabel(1);
   };
 
-  runCalendar = () => {
+  runTrainingLog = () => {
     this.setActualLabel(2);
   };
 
@@ -51,8 +51,8 @@ class Navbar extends Component {
       }
       case 2: {
         if (numberOfLabel === this.state.actualLabel) {
-          return <label style={this.labelStyleActual}>Calendar</label>;
-        } else return <label style={this.labelStyle}>Calendar</label>;
+          return <label style={this.labelStyleActual}>Training log</label>;
+        } else return <label style={this.labelStyle}>Training log</label>;
       }
       case 3: {
         if (numberOfLabel === this.state.actualLabel) {
@@ -133,7 +133,7 @@ class Navbar extends Component {
               </button>
             </li>
             <li style={this.styleListItems}>
-              <button onClick={this.runCalendar} style={this.navbarStyle}>
+              <button onClick={this.runTrainingLog} style={this.navbarStyle}>
                 {this.renderBarByActive(2)}
               </button>
             </li>

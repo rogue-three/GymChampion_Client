@@ -8,7 +8,7 @@ import Login from "./components/login/Login";
 import MainView from "./components/mainView/MainView";
 import Profile from "./components/profile/Profile";
 import Statistic from "./components/statistics/Statistics";
-import Calendar from "./components/calendar/Calendar";
+import TrainingLog from "./components/training_log/TrainingLog";
 import Diagnostic from "./components/diagnostics/Diagnostics";
 import SignUp from "./components/login/SignUp";
 import Navigation from "./components/mainView/Navigation";
@@ -43,7 +43,12 @@ class App extends Component {
       return (
         <MuiThemeProvider theme={theme}>
           <CssBaseline />
-          <Grid>
+          <Grid
+            container
+            direction="column"
+            justify="space-around"
+            alignItems="center"
+          >
             <Switch>
               <Route
                 exact={true}
@@ -59,9 +64,9 @@ class App extends Component {
                 )}
               />
               <Route
-                path="/calendar"
+                path="/training_log"
                 render={props => (
-                  <Calendar {...props} activeUser={this.state.login} />
+                  <TrainingLog {...props} activeUser={this.state.login} />
                 )}
               />
               <Route

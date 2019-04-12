@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 
 class Calendar extends Component {
+  // TODO
 
-    render() {
-        return <h1>Calendar</h1>
-    }
+  state = {};
+  render() {
+    return <div />;
+  }
 }
 
 export default Calendar;
