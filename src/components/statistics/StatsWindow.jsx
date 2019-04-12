@@ -7,21 +7,23 @@ import StatByExercise from "./StatByExercise";
 
 class StatsWindow extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            activeUser: this.props.activeUser
+        }
+    }
 // TODO Split Stats General - StatsByExercise - StatsByBodyPart to separate views.
 
     render() {
+        const { activeUser } = this.state;
         return (
-            <MuiThemeProvider theme={theme}>
-                <CssBaseline />
-                <React.Fragment>
-                    <StatsGeneral />
-                </React.Fragment>
-                <React.Fragment>
-                    <div> .</div>
-                    <StatByExercise />
-                </React.Fragment>
+            <React.Fragment>
 
-            </MuiThemeProvider>
+                    <StatsGeneral
+                    activeUser = {activeUser}/>
+
+            </React.Fragment>
         );
     }
 }

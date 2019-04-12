@@ -9,15 +9,13 @@ class StatByExercise extends Component {
 
     render() {
         return (
-            <MuiThemeProvider theme={theme}>
-                <CssBaseline />
+
                 <React.Fragment>
                     <div>
                         By Exercise
                     </div>
                 </React.Fragment>
 
-            </MuiThemeProvider>
         );
     }
 }

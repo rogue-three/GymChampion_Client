@@ -1,23 +1,17 @@
 import React, { Component } from "react";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import { MuiThemeProvider } from "@material-ui/core/styles";
-import theme from "../../themes/MuiComponentTheme";
-
+import List from '@material-ui/core/List';
+import Button from '@material-ui/core/Button';
 
 class StatsButtons extends Component {
 
 // TODO I could put stats windows under this element ??!!???
     render() {
         return (
-            <MuiThemeProvider theme={theme}>
-                <CssBaseline />
-                    <ul>
-                        <button>General</button>
-                        <button>By Exercise</button>
-                        <button>By Body Part</button>
-                    </ul>
-
-            </MuiThemeProvider>
+                    <List>
+                        <Button variant="contained">General</Button>
+                        <Button variant="contained">By Exercise</Button>
+                        <Button variant="contained">By Body Part</Button>
+                    </List>
         );
     }
 }

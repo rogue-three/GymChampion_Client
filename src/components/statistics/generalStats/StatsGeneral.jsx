@@ -1,27 +1,24 @@
 import React, { Component } from "react";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import { MuiThemeProvider } from "@material-ui/core/styles";
-import theme from "../../../themes/MuiComponentTheme";
-import TotalLoadForAllTrainings from "./TotalLoadForAllTrainings";
-
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 
 class StatsGeneral extends Component {
 
     // TODO How to bind variable in this ???
     constructor(props) {
         super(props);
-        this.userName = "Mihu";
+        this.state = {
+            numbOfTrainings: 0,
+            totalDurationOfAllTrainings: 0,
+            getNumberOfTraininsURL:
+                "http://localhost:8080/v1/statistics/training_days/" + this.props.activeUser,
+            getTotalDurationOfAllTrainingsURL:
+                "http://localhost:8080/v1/statistics/total_duration_of_all_trainings/" + this.props.activeUser}
+
     }
 
-    state = {
-        getNumberOfTraininsURL:
-            "http://localhost:8080/v1/statistics/training_days/Mihu",
-        getTotalDurationOfAllTrainingsURL:
-        "http://localhost:8080/v1/statistics/total_duration_of_all_trainings/Mihu"
-    };
-
-
     componentDidMount() {
+        console.log(this.state.getNumberOfTraininsURL)
         fetch(this.state.getNumberOfTraininsURL)
             .then(response=>response.json())
             .then(numbOfTrainings => {
@@ -37,24 +34,26 @@ class StatsGeneral extends Component {
             }))
     }
 
-
     render() {
         return (
-            <MuiThemeProvider theme={theme}>
-                <CssBaseline />
-                <React.Fragment>
-                    <div>
-                        Number of trainings: {this.state.numbOfTrainings} sessions
-                    </div>
-                    <div>
-                        {/*<TotalLoadForAllTrainings />*/}
-                    </div>
-                    <div>
-                        Load duration of trainings: {this.state.totalDurationOfAllTrainings} min
-                    </div>
-                </React.Fragment>
+                <Grid
+        container
+        direction="column"
+        justify="center"
+        alignItems="center"
+            >
+                    <Grid item>
+                        <Typography> Number of trainings: {this.state.numbOfTrainings} sessions </Typography>
+                    </Grid>
 
-            </MuiThemeProvider>
+                    <Grid item>
+                        <Typography>Load duration of trainings: {this.state.totalDurationOfAllTrainings} min </Typography>
+                    </Grid>
+                    <Grid item>
+                        {/*<TotalLoadForAllTrainings />*/}
+                    </Grid>
+                </Grid>
+
         );
     }
 }

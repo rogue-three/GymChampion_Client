@@ -21,15 +21,14 @@ class TotalLoadForAllTrainings extends Component {
 
     render() {
         return (
-            <MuiThemeProvider theme={theme}>
-                <CssBaseline />
+
                 <React.Fragment>
                     <div>
                         Total load for all trainings was: {this.state.totalLoadForAllTrainings} kg
                     </div>
                 </React.Fragment>
 
-            </MuiThemeProvider>
+
         );
     }
 }
