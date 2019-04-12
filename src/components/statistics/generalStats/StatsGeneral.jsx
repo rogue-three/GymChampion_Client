@@ -47,7 +47,7 @@ class StatsGeneral extends Component {
                         Number of trainings: {this.state.numbOfTrainings} sessions
                     </div>
                     <div>
-                        <TotalLoadForAllTrainings />
+                        {/*<TotalLoadForAllTrainings />*/}
                     </div>
                     <div>
                         Load duration of trainings: {this.state.totalDurationOfAllTrainings} min
