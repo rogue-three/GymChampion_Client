@@ -6,7 +6,7 @@ import theme from "../../themes/MuiComponentTheme";
 
 class StatsButtons extends Component {
 
-
+// TODO I could put stats windows under this element ??!!???
     render() {
         return (
             <MuiThemeProvider theme={theme}>

@@ -4,11 +4,13 @@ import { MuiThemeProvider } from "@material-ui/core/styles";
 import theme from "../../themes/MuiComponentTheme";
 import StatsButtons from "./StatsButtons";
 import StatsWindow from "./StatsWindow";
+import StatsGeneral from "./generalStats/StatsGeneral";
 
 
 class Statistics extends Component {
     state = {
-        userLogin: "Mihu"
+        userLogin: "Mihu",
+        statsGeneral: StatsGeneral
     };
 
     handleGenStatsButton(){};
@@ -21,7 +23,8 @@ class Statistics extends Component {
                 <CssBaseline />
                 <div>
                     <StatsButtons />
-                    <StatsWindow />
+                    <StatsWindow
+                        statsGeneral={this.state.statsGeneral}/>
                 </div>
             </MuiThemeProvider>
         );

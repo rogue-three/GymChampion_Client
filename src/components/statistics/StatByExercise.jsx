@@ -6,21 +6,6 @@ import theme from "../../themes/MuiComponentTheme";
 
 class StatByExercise extends Component {
 
-    // state = {
-    //     getNumberOfTraininsURL:
-    //         "http://localhost:8080/v1/statistics/training_days/Mihu"
-    // };
-    //
-    // componentDidMount() {
-    //     fetch(this.state.getNumberOfTraininsURL)
-    //         .then(response=>response.json())
-    //         .then(result => {
-    //
-    //             console.log(result);
-    //             this.setState({result})
-    //         })
-    // }
-
 
     render() {
         return (

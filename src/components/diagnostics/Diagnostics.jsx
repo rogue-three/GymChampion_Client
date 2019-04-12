@@ -36,7 +36,7 @@ class Diagnostics extends Component {
                 <h2>Barbell Bench Press diagnostics:</h2>
                 <div>
                     Your heaviest weight up to now was: {this.state.maxChesteffort}
-                    
+
                 </div>
                 <div>
                     Your expected 1 Repetition Maximum is: {this.state.maxChest} kg

@@ -1,16 +1,21 @@
 import React, { Component } from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { MuiThemeProvider } from "@material-ui/core/styles";
-import theme from "../../themes/MuiComponentTheme";
+import theme from "../../../themes/MuiComponentTheme";
+import TotalLoadForAllTrainings from "./TotalLoadForAllTrainings";
 
 
 class StatsGeneral extends Component {
 
+    // TODO How to bind variable in this ???
+    constructor(props) {
+        super(props);
+        this.userName = "Mihu";
+    }
+
     state = {
         getNumberOfTraininsURL:
             "http://localhost:8080/v1/statistics/training_days/Mihu",
-        getTotalLoaURL:
-        "http://localhost:8080/v1/statistics/get_total_load_by_user/Mihu",
         getTotalDurationOfAllTrainingsURL:
         "http://localhost:8080/v1/statistics/total_duration_of_all_trainings/Mihu"
     };
@@ -23,13 +28,7 @@ class StatsGeneral extends Component {
 
                 console.log(numbOfTrainings);
                 this.setState({numbOfTrainings})
-        }).then(        fetch(this.state.getTotalLoaURL)
-            .then(response=>response.json())
-            .then(totalLoadOfAllTrainings => {
-
-                console.log(totalLoadOfAllTrainings);
-                this.setState({totalLoadOfAllTrainings})
-            })).then(        fetch(this.state.getTotalDurationOfAllTrainingsURL)
+        }).then(        fetch(this.state.getTotalDurationOfAllTrainingsURL)
             .then(response=>response.json())
             .then(totalDurationOfAllTrainings => {
 
@@ -48,7 +47,7 @@ class StatsGeneral extends Component {
                         Number of trainings: {this.state.numbOfTrainings} sessions
                     </div>
                     <div>
-                        Load total: {this.state.totalLoadOfAllTrainings} kg
+                        <TotalLoadForAllTrainings />
                     </div>
                     <div>
                         Load duration of trainings: {this.state.totalDurationOfAllTrainings} min

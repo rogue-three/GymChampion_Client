@@ -8,6 +8,7 @@ import theme from "./themes/MuiComponentTheme";
 // import Login from "./components/login/Login";
 // import MainView from "./components/mainView/MainView";
 import Statistics from "./components/statistics/Statistics";
+import Diagnostics from "./components/diagnostics/Diagnostics";
 
 class App extends Component {
   renderLoginOrAppActiveUser() {
