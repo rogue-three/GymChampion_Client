@@ -8,20 +8,28 @@ class Statistics extends Component {
         super(props);
         this.state = {
             activeUser: this.props.activeUser,
-            statsGeneral: StatsGeneral
+            statsGeneral: StatsGeneral,
+            activeStatsWindow: 1
         }
     }
 
-    handleGenStatsButton(){};
+    handleGeneralStatsWindowButton =() =>{
+    };
     handleByExerciseStatsButton(){};
     handleByBodyPartStatsButton(){};
 
     render() {
         return (
                 <React.Fragment>
-                    <StatsButtons />
+                    <StatsButtons
+                        // getGeneral={this.handleGeneralStatsWindowButton()}
+                        // getByExercise={this.handleByExerciseStatsButton()}
+                        // getByBodyPart={this.handleByBodyPartStatsButton()}
+                    />
                     <StatsWindow
-                    activeUser = {this.state.activeUser}/>
+                    activeUser = {this.state.activeUser}
+                    activeStatsWindow = {this.state.activeStatsWindow}
+                    />
                 </React.Fragment>
         );
     }

@@ -4,7 +4,6 @@ import Typography from '@material-ui/core/Typography';
 
 class StatsGeneral extends Component {
 
-    // TODO How to bind variable in this ???
     constructor(props) {
         super(props);
         this.state = {
