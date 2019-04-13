@@ -7,7 +7,7 @@ import theme from "./themes/MuiComponentTheme";
 import Login from "./components/login/Login";
 import MainView from "./components/mainView/MainView";
 import Profile from "./components/profile/Profile";
-import Statistic from "./components/statistics/Statistics";
+import Statistics from "./components/statistics/Statistics";
 import TrainingLog from "./components/training_log/TrainingLog";
 import Diagnostic from "./components/diagnostics/Diagnostics";
 import SignUp from "./components/login/SignUp";
@@ -72,7 +72,7 @@ class App extends Component {
               <Route
                 path="/statistic"
                 render={props => (
-                  <Statistic {...props} activeUser={this.state.login} />
+                  <Statistics {...props} activeUser={this.state.login} />
                 )}
               />
               <Route
