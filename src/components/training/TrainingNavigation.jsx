@@ -7,18 +7,32 @@ class TrainingNavigation extends Component {
   state = {};
   render() {
     return (
-      <Grid container direction="row" justify="center" alignItems="center">
+      <Grid
+        container
+        direction="row"
+        justify="flex-start"
+        alignItems="center"
+        spacing={24}
+      >
+        <Grid item xs={1} />
         <Grid item xs={2}>
-          <Button>STOP</Button>
+          <Button variant="contained" color="primary">
+            START
+          </Button>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={1} />
+        <Grid item xs={2}>
           <Timer />
         </Grid>
         <Grid item xs={2}>
-          <Button>SAVE</Button>
+          <Button variant="contained" color="primary">
+            SAVE
+          </Button>
         </Grid>
         <Grid item xs={2}>
-          <Button>CHANCEL</Button>
+          <Button variant="contained" color="secondary">
+            CHANCEL
+          </Button>
         </Grid>
       </Grid>
     );

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
+// import List from "@material-ui/core/List";
+// import ListItem from "@material-ui/core/ListItem";
 import TrainingNavigation from "./TrainingNavigation";
 import SetSchemeHandler from "./SetSchemeHandler";
 import ExerciseHandler from "./ExerciseHandler";
@@ -57,14 +57,14 @@ class Training extends Component {
     return (
       <React.Fragment>
         <h1>{schemeName}</h1>
-        <List>
+        {/* <List>
           {exercises.map(exercise => (
             <ListItem key={exercise.exerciseId}>{exercise.exerciseId}</ListItem>
           ))}
-        </List>
+        </List> */}
         <TrainingNavigation />
         <SetSchemeHandler />
-        <ExerciseHandler />
+        <ExerciseHandler exercises={exercises} />
       </React.Fragment>
     );
   }
