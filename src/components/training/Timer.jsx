@@ -38,6 +38,21 @@ class Timer extends Component {
   stopTimer() {
     clearInterval(this.timer);
   }
+
+  printDoublePlacesTimePart(timePart) {
+    if (timePart < 10) return "0" + timePart;
+    return timePart;
+  }
+
+  printNiceTime() {
+    let hours = Math.floor(this.state.time / 3600);
+    let minutes = Math.floor(this.state.time / 60);
+    let seconds = this.state.time % 60;
+    return `${this.printDoublePlacesTimePart(hours)}:
+        ${this.printDoublePlacesTimePart(minutes)}:
+        ${this.printDoublePlacesTimePart(seconds)}`;
+  }
+
   render() {
     const { buttonValue } = this.state;
     return (
@@ -48,7 +63,7 @@ class Timer extends Component {
         alignItems="center"
         spacing={24}
       >
-        <Grid item xs={5}>
+        <Grid item xs={4}>
           <Button
             variant="contained"
             color="primary"
@@ -57,9 +72,9 @@ class Timer extends Component {
             {buttonValue}
           </Button>
         </Grid>
-        <Grid item xs={2} />
-        <Grid item xs={5}>
-          {this.state.time}
+        <Grid item xs={1} />
+        <Grid item xs={6}>
+          <h4 style={{ color: "white" }}>{this.printNiceTime()}</h4>
         </Grid>
       </Grid>
     );
