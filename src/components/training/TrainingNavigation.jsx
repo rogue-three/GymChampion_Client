@@ -4,7 +4,20 @@ import Timer from "./Timer";
 import Grid from "@material-ui/core/Grid";
 
 class TrainingNavigation extends Component {
-  state = {};
+  state = {
+    timerButtonValue: "START"
+  };
+
+  changeTimerButtonValue = () => {
+    if (this.state.timerButtonValue === "START") {
+      console.log("was start");
+      this.setState({ timerButtonValue: "STOP" });
+    } else {
+      console.log("was stop");
+      this.setState({ timerButtonValue: "START" });
+    }
+  };
+
   render() {
     return (
       <Grid
@@ -16,8 +29,12 @@ class TrainingNavigation extends Component {
       >
         <Grid item xs={1} />
         <Grid item xs={2}>
-          <Button variant="contained" color="primary">
-            START
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={this.changeTimerButtonValue}
+          >
+            {this.state.timerButtonValue}
           </Button>
         </Grid>
         <Grid item xs={1} />
