@@ -5,7 +5,7 @@ import Typography from "@material-ui/core/Typography";
 
 class ExerciseHandler extends Component {
   render() {
-    const { exercises } = this.props;
+    const { exercises, addExerciseSetField } = this.props;
     return (
       <Grid
         container
@@ -17,7 +17,10 @@ class ExerciseHandler extends Component {
         <Typography color="secondary">CLICK EXERCISE TO ADD A SET</Typography>
         {exercises.map(exercise => (
           <Grid item key={exercise.exerciseId}>
-            <Button variant="contained">
+            <Button
+              variant="contained"
+              onClick={() => addExerciseSetField(exercise)}
+            >
               {exercise.exerciseName.replace(/_/g, " ")}
             </Button>
           </Grid>

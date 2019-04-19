@@ -1,9 +1,27 @@
 import React, { Component } from "react";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
 
 class SetSchemeHandler extends Component {
-  state = {};
+  componentWillReceiveProps(nextProps) {
+    if (this.props.status !== nextProps.status) {
+      this.setState({
+        status: nextProps.status
+      });
+    }
+  }
+
   render() {
-    return <div>Set Scheme Handler</div>;
+    let { setsField } = this.props;
+    return (
+      <List>
+        {setsField.map(exercise => (
+          <ListItem item key={new Date().toISOString()}>
+            {exercise.exerciseId}
+          </ListItem>
+        ))}
+      </List>
+    );
   }
 }
 

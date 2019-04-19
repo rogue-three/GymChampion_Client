@@ -8,8 +8,10 @@ class Training extends Component {
     super(props);
     this.state = {
       schemeName: this.props.location.schemeName,
-      exercises: []
+      exercises: [],
+      setsField: []
     };
+    this.addExerciseSetField = this.addExerciseSetField.bind(this);
   }
 
   componentDidMount() {
@@ -50,14 +52,27 @@ class Training extends Component {
       );
   }
 
+  addExerciseSetField = exercise => {
+    console.log(exercise);
+    let setsFieldCopy = JSON.parse(JSON.stringify(this.state.setsField));
+    setsFieldCopy.push(exercise);
+    console.log(setsFieldCopy);
+    this.setState({
+      setsField: setsFieldCopy
+    });
+  };
+
   render() {
-    const { schemeName, exercises } = this.state;
+    const { schemeName, exercises, setsField } = this.state;
     return (
       <React.Fragment>
         <h1>{schemeName}</h1>
         <TrainingNavigation />
-        <SetSchemeHandler />
-        <ExerciseHandler exercises={exercises} />
+        <SetSchemeHandler setsField={setsField} />
+        <ExerciseHandler
+          exercises={exercises}
+          addExerciseSetField={this.addExerciseSetField}
+        />
       </React.Fragment>
     );
   }
