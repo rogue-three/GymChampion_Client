@@ -14,7 +14,7 @@ class ExerciseHandler extends Component {
         alignItems="center"
         spacing={24}
       >
-        <Typography color="secondary">CLICK EXERCISE TO ADD A SET</Typography>
+        <Typography>CLICK EXERCISE TO ADD A SET</Typography>
         {exercises.map(exercise => (
           <Grid item key={exercise.exerciseId}>
             <Button

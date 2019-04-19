@@ -53,12 +53,9 @@ class Training extends Component {
   }
 
   addExerciseSetField = exercise => {
-    console.log(exercise);
-    let setsFieldCopy = JSON.parse(JSON.stringify(this.state.setsField));
-    setsFieldCopy.push(exercise);
-    console.log(setsFieldCopy);
+    let sf = [...this.state.setsField, exercise];
     this.setState({
-      setsField: setsFieldCopy
+      setsField: sf
     });
   };
 

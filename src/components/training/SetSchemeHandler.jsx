@@ -1,26 +1,31 @@
 import React, { Component } from "react";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
+import Typography from "@material-ui/core/Typography";
 
 class SetSchemeHandler extends Component {
-  componentWillReceiveProps(nextProps) {
-    if (this.props.status !== nextProps.status) {
-      this.setState({
-        status: nextProps.status
-      });
-    }
-  }
-
+  state = {
+    setSchemesCounter: 0
+  };
   render() {
-    let { setsField } = this.props;
+    const { setsField } = this.props;
+    let { setSchemesCounter } = this.state;
     return (
-      <List>
-        {setsField.map(exercise => (
-          <ListItem item key={new Date().toISOString()}>
-            {exercise.exerciseId}
-          </ListItem>
-        ))}
-      </List>
+      <React.Fragment>
+        <List>
+          {setsField.length !== 0 ? (
+            setsField.map(exercise => (
+              <ListItem item key={(setSchemesCounter++).toString()}>
+                {exercise.exerciseId}
+              </ListItem>
+            ))
+          ) : (
+            <Typography color="secondary">ADD SET SCHEME HERE</Typography>
+          )}
+        </List>
+        <br />
+        <br />
+      </React.Fragment>
     );
   }
 }
