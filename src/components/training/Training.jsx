@@ -60,10 +60,9 @@ class Training extends Component {
   };
 
   render() {
-    const { schemeName, exercises, setsField } = this.state;
+    const { exercises, setsField } = this.state;
     return (
       <React.Fragment>
-        <h1>{schemeName}</h1>
         <TrainingNavigation />
         <SetSchemeHandler setsField={setsField} />
         <ExerciseHandler
