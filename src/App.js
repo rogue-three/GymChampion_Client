@@ -109,19 +109,21 @@ class App extends Component {
         </MuiThemeProvider>
       );
     } else {
-      return (
-        <MuiThemeProvider theme={theme}>
-          <CssBaseline />
-          <Switch>
-            <Route
-              exact={true}
-              path="/"
-              component={this.setCallBackOnLoginComponent}
-            />
-            <Route path="/signup" component={SignUp} />
-          </Switch>
-        </MuiThemeProvider>
-      );
+      {
+        return (
+          <MuiThemeProvider theme={theme}>
+            <CssBaseline />
+            <Switch>
+              <Route
+                exact={true}
+                path="/"
+                component={this.setCallBackOnLoginComponent}
+              />
+              <Route path="/signup" component={SignUp} />
+            </Switch>
+          </MuiThemeProvider>
+        );
+      }
     }
   }
 }

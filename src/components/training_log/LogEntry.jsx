@@ -64,7 +64,7 @@ class LogEntry extends Component {
       );
   }
 
-  getNicePrintedDate(date) {
+  getNicePrintedDate = date => {
     let day =
       date.getDate().toString().length === 1
         ? "0" + date.getDate()
@@ -72,7 +72,7 @@ class LogEntry extends Component {
     let month = date.getMonth() + 1;
     month = month.toString().length === 1 ? "0" + month : month;
     return day + "." + month + "." + date.getFullYear();
-  }
+  };
 
   milisecondsToTime(duration) {
     let seconds = Math.floor((duration / 1000) % 60);

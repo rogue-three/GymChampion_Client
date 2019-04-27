@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
+// import List from "@material-ui/core/List";
+// import ListItem from "@material-ui/core/ListItem";
+import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import SetSchemeItem from "./SetSchemeItem";
 
@@ -12,17 +13,22 @@ class SetSchemeHandler extends Component {
     const { setsField } = this.props;
     let { setSchemesCounter } = this.state;
     return (
-      <List>
+      <Grid
+        container
+        direction="column"
+        justify="flex-start"
+        alignItems="stretch"
+      >
         {setsField.length !== 0 ? (
           setsField.map(exercise => (
-            <ListItem item key={(setSchemesCounter++).toString()}>
+            <Grid key={(setSchemesCounter++).toString()}>
               <SetSchemeItem exercise={exercise.exerciseName} />
-            </ListItem>
+            </Grid>
           ))
         ) : (
           <Typography color="secondary">ADD SET SCHEME HERE</Typography>
         )}
-      </List>
+      </Grid>
     );
   }
 }

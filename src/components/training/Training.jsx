@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Grid from "@material-ui/core/Grid";
 import TrainingNavigation from "./TrainingNavigation";
 import SetSchemeHandler from "./SetSchemeHandler";
 import ExerciseHandler from "./ExerciseHandler";
@@ -62,14 +63,25 @@ class Training extends Component {
   render() {
     const { exercises, setsField } = this.state;
     return (
-      <React.Fragment>
-        <TrainingNavigation />
-        <SetSchemeHandler setsField={setsField} />
-        <ExerciseHandler
-          exercises={exercises}
-          addExerciseSetField={this.addExerciseSetField}
-        />
-      </React.Fragment>
+      <Grid
+        container
+        direction="column"
+        justify="flex-start"
+        alignItems="stretch"
+      >
+        <Grid item xs={12}>
+          <TrainingNavigation />
+        </Grid>
+        <Grid item xs={12}>
+          <SetSchemeHandler setsField={setsField} />
+        </Grid>
+        <Grid item xs={12}>
+          <ExerciseHandler
+            exercises={exercises}
+            addExerciseSetField={this.addExerciseSetField}
+          />
+        </Grid>
+      </Grid>
     );
   }
 }

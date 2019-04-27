@@ -8,7 +8,7 @@ class SetSchemeItem extends Component {
     const { exercise } = this.props;
     return (
       <Grid item xs={12}>
-        <Paper>
+        <Paper square>
           {exercise.replace(/_/g, " ")}
           <br />
           <span>REPS:</span>
