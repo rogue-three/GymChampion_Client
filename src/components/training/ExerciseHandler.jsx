@@ -10,11 +10,16 @@ class ExerciseHandler extends Component {
       <Grid
         container
         direction="column"
-        justify="space-around"
+        justify="space-evenly"
         alignItems="center"
         spacing={24}
       >
-        <Typography>CLICK EXERCISE TO ADD A SET</Typography>
+        <Grid item />
+        <Grid item>
+          <Typography style={{ color: "white" }}>
+            CLICK EXERCISE TO ADD A SET
+          </Typography>
+        </Grid>
         {exercises.map(exercise => (
           <Grid item key={exercise.exerciseId}>
             <Button

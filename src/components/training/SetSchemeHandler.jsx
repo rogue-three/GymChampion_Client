@@ -31,7 +31,14 @@ class SetSchemeHandler extends Component {
             </Grid>
           ))
         ) : (
-          <Typography color="secondary">ADD SET SCHEME HERE</Typography>
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+          >
+            <Typography color="secondary">ADD SET SCHEME HERE</Typography>
+          </Grid>
         )}
       </Grid>
     );

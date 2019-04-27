@@ -8,16 +8,16 @@ class SetSchemeHandlerHeader extends Component {
       <Grid container direction="row" justify="flex-start" alignItems="center">
         <Grid item xs={1} />
         <Grid item xs={2}>
-          <Typography>SET</Typography>
+          <Typography style={{ color: "white" }}>SET</Typography>
         </Grid>
         <Grid item xs={3}>
-          <Typography>EXERCISE</Typography>
+          <Typography style={{ color: "white" }}>EXERCISE</Typography>
         </Grid>
         <Grid item xs={3}>
-          <Typography>WEIGHT</Typography>
+          <Typography style={{ color: "white" }}>WEIGHT</Typography>
         </Grid>
         <Grid item xs={3}>
-          <Typography>REPS</Typography>
+          <Typography style={{ color: "white" }}>REPS</Typography>
         </Grid>
       </Grid>
     );
