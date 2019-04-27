@@ -7,7 +7,8 @@ class Timer extends Component {
     buttonValue: "START",
     timerIsOn: false,
     time: 0,
-    start: 0
+    start: 0,
+    end: 0
   };
 
   changeTimerButtonValue = () => {
@@ -21,9 +22,9 @@ class Timer extends Component {
   };
 
   startTimer() {
-    this.state.start === 0
-      ? this.setState({ start: Date.now() })
-      : console.log("started before");
+    if (this.state.start === 0) {
+      this.setState({ start: Date.now() });
+    }
 
     this.timer = setInterval(
       () =>
@@ -32,10 +33,10 @@ class Timer extends Component {
         }),
       1000
     );
-    console.log("counter started");
   }
 
   stopTimer() {
+    this.setState({ end: Date.now() });
     clearInterval(this.timer);
   }
 
