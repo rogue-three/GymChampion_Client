@@ -66,7 +66,7 @@ class Training extends Component {
       <Grid
         container
         direction="column"
-        justify="flex-start"
+        justify="space-evenly"
         alignItems="stretch"
       >
         <Grid item xs={12}>

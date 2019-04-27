@@ -3,6 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import SetSchemeItem from "./SetSchemeItem";
 import Divider from "@material-ui/core/Divider";
+import SetSchemeHandlerHeader from "./SetSchemeHandlerHeader";
 
 class SetSchemeHandler extends Component {
   state = {
@@ -18,9 +19,10 @@ class SetSchemeHandler extends Component {
         justify="flex-start"
         alignItems="stretch"
       >
+        <SetSchemeHandlerHeader />
         {setsField.length !== 0 ? (
           setsField.map(exercise => (
-            <Grid key={(++setSchemesCounter).toString()}>
+            <Grid item key={(++setSchemesCounter).toString()}>
               <Divider />
               <SetSchemeItem
                 setSchemeItemNumber={setSchemesCounter}
