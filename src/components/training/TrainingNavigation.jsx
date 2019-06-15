@@ -19,7 +19,7 @@ class TrainingNavigation extends Component {
           <Timer />
         </Grid>
         <Grid item xs={2}>
-          <Button variant="contained" color="primary" disabled="true">
+          <Button variant="contained" color="primary" disabled={true}>
             SAVE
           </Button>
         </Grid>

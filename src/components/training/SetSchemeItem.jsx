@@ -5,6 +5,14 @@ import Input from "@material-ui/core/Input";
 import Typography from "@material-ui/core/Typography";
 
 class SetSchemeItem extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      weight: 0,
+      reps: 0
+    };
+  }
   render() {
     const { exercise, setSchemeItemNumber } = this.props;
     return (
