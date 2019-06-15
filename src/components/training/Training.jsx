@@ -10,7 +10,8 @@ class Training extends Component {
     this.state = {
       schemeName: this.props.location.schemeName,
       exercises: [],
-      setsField: []
+      setsField: [],
+      setSchemeItemsFilled: false
     };
     this.addExerciseSetField = this.addExerciseSetField.bind(this);
   }
@@ -70,7 +71,9 @@ class Training extends Component {
         alignItems="stretch"
       >
         <Grid item xs={12}>
-          <TrainingNavigation />
+          <TrainingNavigation
+            setSchemeItemsFilled={this.setSchemeItemsFilled}
+          />
         </Grid>
         <Grid item xs={12}>
           <SetSchemeHandler setsField={setsField} />
