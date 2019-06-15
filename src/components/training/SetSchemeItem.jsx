@@ -12,7 +12,15 @@ class SetSchemeItem extends Component {
       weight: 0,
       reps: 0
     };
+    this.updateInput = this.updateInput.bind(this);
   }
+
+  updateInput(event) {
+    event.target.name === "weight"
+      ? this.setState({ weight: event.target.value })
+      : this.setState({ reps: event.target.value });
+  }
+
   render() {
     const { exercise, setSchemeItemNumber } = this.props;
     return (
@@ -38,6 +46,7 @@ class SetSchemeItem extends Component {
               type="number"
               name="weight"
               style={{ width: 50 }}
+              onChange={this.updateInput}
             />
           </Grid>
           <Grid item xs={1} />
@@ -47,6 +56,7 @@ class SetSchemeItem extends Component {
               type="number"
               name="reps"
               style={{ width: 50 }}
+              onChange={this.updateInput}
             />
           </Grid>
           <span />
