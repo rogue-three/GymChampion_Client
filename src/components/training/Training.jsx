@@ -14,7 +14,6 @@ class Training extends Component {
       setSchemeItemsFilled: false
     };
     this.addExerciseSetField = this.addExerciseSetField.bind(this);
-    this.changeSchemeItemsFilled = this.changeSchemeItemsFilled(this);
   }
 
   componentDidMount() {
@@ -55,16 +54,17 @@ class Training extends Component {
       );
   }
 
-  addExerciseSetField = exercise => {
-    let sf = [...this.state.setsField, exercise];
+  addExerciseSetField(exercise) {
+    let setField = [...this.state.setsField, exercise];
     this.setState({
-      setsField: sf
+      setsField: setField,
+      setSchemeItemsFilled: false
     });
-  };
-
-  changeSchemeItemsFilled(areFilled) {
-    this.setState({ setSchemeItemsFilled: areFilled });
   }
+
+  changeSchemeItemsFilled = areFilled => {
+    this.setState({ setSchemeItemsFilled: areFilled });
+  };
 
   render() {
     const { exercises, setsField } = this.state;
@@ -77,7 +77,7 @@ class Training extends Component {
       >
         <Grid item xs={12}>
           <TrainingNavigation
-            setSchemeItemsFilled={this.setSchemeItemsFilled}
+            setSchemeItemsFilled={this.state.setSchemeItemsFilled}
           />
         </Grid>
         <Grid item xs={12}>

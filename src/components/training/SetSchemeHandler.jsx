@@ -6,9 +6,18 @@ import Divider from "@material-ui/core/Divider";
 import SetSchemeHandlerHeader from "./SetSchemeHandlerHeader";
 
 class SetSchemeHandler extends Component {
-  state = {
-    setSchemesCounter: 0
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      setSchemesCounter: 0
+    };
+  }
+
+  handleSchemeItemsFilled = areFilled => {
+    this.props.changeSchemeItemsFilled(areFilled);
   };
+
   render() {
     const { setsField } = this.props;
     let { setSchemesCounter } = this.state;
@@ -27,6 +36,7 @@ class SetSchemeHandler extends Component {
               <SetSchemeItem
                 setSchemeItemNumber={setSchemesCounter}
                 exercise={exercise.exerciseName}
+                changeSchemeItemsFilled={this.handleSchemeItemsFilled}
               />
             </Grid>
           ))
