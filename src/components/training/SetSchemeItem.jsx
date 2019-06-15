@@ -17,7 +17,7 @@ class SetSchemeItem extends Component {
         >
           <Grid item xs={1} />
           <Grid item xs={1}>
-            <Typography>&nbsp;&nbsp;{setSchemeItemNumber}</Typography>
+            <Typography>{setSchemeItemNumber}</Typography>
           </Grid>
           <Grid item xs={4}>
             <Typography noWrap variant="caption">
