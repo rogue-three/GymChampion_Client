@@ -61,6 +61,10 @@ class Training extends Component {
     });
   };
 
+  setSchemeItemsFilled(areFilled) {
+    this.setState({ setSchemeItemsFilled: areFilled });
+  }
+
   render() {
     const { exercises, setsField } = this.state;
     return (
