@@ -11,6 +11,7 @@ class Training extends Component {
       schemeName: this.props.location.schemeName,
       exercises: [],
       setsField: [],
+      setSchemesCounter: 0,
       setSchemeItemsFilled: false
     };
     this.addExerciseSetField = this.addExerciseSetField.bind(this);
@@ -55,12 +56,32 @@ class Training extends Component {
   }
 
   addExerciseSetField(exercise) {
-    let setField = [...this.state.setsField, exercise];
+    let setSchemeCounter = this.state.setSchemesCounter;
+    let setsField = [
+      ...this.state.setsField,
+      { setNumber: setSchemeCounter, exercise: exercise }
+    ];
+    setSchemeCounter++;
+
     this.setState({
-      setsField: setField,
+      setsField: setsField,
+      setSchemesCounter: setSchemeCounter,
       setSchemeItemsFilled: false
     });
   }
+
+  deleteSetField = setsFieldItemNumber => {
+    let setsField = this.state.setsField;
+
+    const setIndex = setsField.findIndex(
+      set => set.setNumber === setsFieldItemNumber
+    );
+    setsField.splice(setIndex, 1);
+
+    this.setState({
+      setsField: setsField
+    });
+  };
 
   changeSchemeItemsFilled = areFilled => {
     this.setState({ setSchemeItemsFilled: areFilled });
@@ -84,6 +105,8 @@ class Training extends Component {
           <SetSchemeHandler
             setsField={setsField}
             changeSchemeItemsFilled={this.changeSchemeItemsFilled}
+            deleteSetField={this.deleteSetField}
+            setSchemeCounter={this.state.setSchemesCounter}
           />
         </Grid>
         <Grid item xs={12}>

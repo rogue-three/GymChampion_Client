@@ -6,21 +6,16 @@ import Divider from "@material-ui/core/Divider";
 import SetSchemeHandlerHeader from "./SetSchemeHandlerHeader";
 
 class SetSchemeHandler extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      setSchemesCounter: 0
-    };
-  }
-
   handleSchemeItemsFilled = areFilled => {
     this.props.changeSchemeItemsFilled(areFilled);
   };
 
+  deleteSetScheme = setSchemeItemNumber => {
+    this.props.deleteSetField(setSchemeItemNumber - 1);
+  };
+
   render() {
     const { setsField } = this.props;
-    let { setSchemesCounter } = this.state;
     return (
       <Grid
         container
@@ -34,12 +29,13 @@ class SetSchemeHandler extends Component {
 
         {setsField.length !== 0 ? (
           setsField.map(exercise => (
-            <Grid item key={(++setSchemesCounter).toString()}>
+            <Grid item key={exercise.setNumber}>
               <Divider />
               <SetSchemeItem
-                setSchemeItemNumber={setSchemesCounter}
-                exercise={exercise.exerciseName}
+                setSchemeItemNumber={exercise.setNumber}
+                exercise={exercise.exercise.exerciseName}
                 changeSchemeItemsFilled={this.handleSchemeItemsFilled}
+                deleteSetScheme={this.deleteSetScheme}
               />
             </Grid>
           ))

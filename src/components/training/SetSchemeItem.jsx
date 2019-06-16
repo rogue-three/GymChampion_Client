@@ -11,6 +11,7 @@ class SetSchemeItem extends Component {
     super(props);
 
     this.state = {
+      setSchemeItemNumber: this.props.setSchemeItemNumber,
       weight: 0,
       reps: 0
     };
@@ -36,10 +37,18 @@ class SetSchemeItem extends Component {
   };
 
   render() {
-    const { exercise, setSchemeItemNumber } = this.props;
+    const { exercise } = this.props;
+    let { setSchemeItemNumber } = this.props;
+    setSchemeItemNumber++;
+
     return (
       <Paper square style={{ padding: "0 0 0 8%" }}>
-        <Grid container direction="row" justify="space-around">
+        <Grid
+          container
+          direction="row"
+          justify="space-around"
+          alignItems="center"
+        >
           <Grid item xs={1}>
             <Typography>{setSchemeItemNumber}</Typography>
           </Grid>
@@ -67,7 +76,9 @@ class SetSchemeItem extends Component {
             />
           </Grid>
           <Grid item xs={1}>
-            <Button>
+            <Button
+              onClick={() => this.props.deleteSetScheme(setSchemeItemNumber)}
+            >
               <DeleteForeverOutlinedIcon color={"secondary"} />
             </Button>
           </Grid>
