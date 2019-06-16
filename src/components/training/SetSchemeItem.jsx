@@ -3,6 +3,8 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Input from "@material-ui/core/Input";
 import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import DeleteForeverOutlinedIcon from "@material-ui/icons/DeleteForeverOutlined";
 
 class SetSchemeItem extends Component {
   constructor(props) {
@@ -36,8 +38,8 @@ class SetSchemeItem extends Component {
   render() {
     const { exercise, setSchemeItemNumber } = this.props;
     return (
-      <Paper square style={{ padding: "0 0 0 10%" }}>
-        <Grid container direction="row" justify="space-between">
+      <Paper square style={{ padding: "0 0 0 8%" }}>
+        <Grid container direction="row" justify="space-around">
           <Grid item xs={1}>
             <Typography>{setSchemeItemNumber}</Typography>
           </Grid>
@@ -65,7 +67,9 @@ class SetSchemeItem extends Component {
             />
           </Grid>
           <Grid item xs={1}>
-            <Typography>X</Typography>
+            <Button>
+              <DeleteForeverOutlinedIcon />
+            </Button>
           </Grid>
           <span />
         </Grid>
