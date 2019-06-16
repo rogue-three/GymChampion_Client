@@ -6,8 +6,60 @@ import Divider from "@material-ui/core/Divider";
 import SetSchemeHandlerHeader from "./SetSchemeHandlerHeader";
 
 class SetSchemeHandler extends Component {
-  handleSchemeItemsFilled = areFilled => {
-    this.props.changeSchemeItemsFilled(areFilled);
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      setSchemesProperFilled: []
+    };
+  }
+
+  getSetScheme(schemeparams) {
+    return new Promise((resolve, reject) => {
+      const [indexOfScheme, setSchemeItemNumber, areFilled] = schemeparams;
+      const setSchemesProperFilled = this.state.setSchemesProperFilled;
+      if (indexOfScheme > -1) {
+        setSchemesProperFilled[indexOfScheme] = {
+          setNumber: setSchemeItemNumber,
+          isProper: areFilled
+        };
+      } else {
+        setSchemesProperFilled.push({
+          setNumber: setSchemeItemNumber,
+          isProper: areFilled
+        });
+      }
+      resolve(setSchemesProperFilled);
+    });
+  }
+
+  checkIfAllSchemesProperFilled() {
+    const setSchemesProperFilled = this.state.setSchemesProperFilled;
+
+    for (let i = 0; i < setSchemesProperFilled.length; i++) {
+      if (!setSchemesProperFilled[i].isProper) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  handleSchemeItemsFilled = (areFilled, setSchemeItemNumber) => {
+    const setSchemesProperFilled = this.state.setSchemesProperFilled;
+    const indexOfScheme = setSchemesProperFilled.findIndex(
+      setScheme => setScheme.setNumber === setSchemeItemNumber
+    );
+
+    const schemeparams = [indexOfScheme, setSchemeItemNumber, areFilled];
+    this.getSetScheme(schemeparams).then(setSchemesProperFilled =>
+      this.setState({ setSchemesProperFilled: setSchemesProperFilled })
+    );
+    const areAllSchemesProperFilled = this.checkIfAllSchemesProperFilled();
+    const filledSchemesLength = this.state.setSchemesProperFilled.length;
+    this.props.changeSchemeItemsFilled(
+      areAllSchemesProperFilled,
+      filledSchemesLength
+    );
   };
 
   deleteSetScheme = setSchemeItemNumber => {

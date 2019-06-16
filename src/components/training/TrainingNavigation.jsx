@@ -22,7 +22,7 @@ class TrainingNavigation extends Component {
           <Button
             variant="contained"
             color="primary"
-            disabled={!this.props.setSchemeItemsFilled}
+            disabled={!this.props.setSchemesProperFilled}
           >
             SAVE
           </Button>

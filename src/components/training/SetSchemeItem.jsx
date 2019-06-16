@@ -14,6 +14,8 @@ class SetSchemeItem extends Component {
       setSchemeItemNumber: this.props.setSchemeItemNumber,
       maxWeight: this.props.maxWeight,
       maxReps: this.props.maxReps,
+      weightIsProper: true,
+      repsAreProper: true,
       weight: 0,
       reps: 0
     };
@@ -28,21 +30,40 @@ class SetSchemeItem extends Component {
     });
   };
 
-  checkIfLimitsAreExceeded(currentValue, maxValue) {
+  setValueError(valueName, areExceeded) {
+    if (valueName === true && areExceeded) {
+      this.setState({ weightIsProper: true });
+    } else if (valueName === true && !areExceeded) {
+      this.setState({ weightIsProper: false });
+    } else if (valueName === false && areExceeded) {
+      this.setState({ repsAreProper: true });
+    } else if (valueName === false && !areExceeded) {
+      this.setState({ repsAreProper: false });
+    }
+  }
+
+  checkIfLimitsAreExceeded(currentValue, maxValue, valueName) {
     let areExceeded;
-    currentValue > 0 && currentValue < maxValue
+    currentValue > 0 && currentValue < maxValue && currentValue !== ""
       ? (areExceeded = false)
       : (areExceeded = true);
+
+    this.setValueError(valueName, areExceeded);
     return areExceeded;
   }
 
   setButtonState = value => {
-    const { weight, reps, maxWeight, maxReps } = this.state;
-    value !== "" &&
-    !this.checkIfLimitsAreExceeded(weight, maxWeight) &&
-    !this.checkIfLimitsAreExceeded(reps, maxReps)
-      ? this.props.changeSchemeItemsFilled(true)
-      : this.props.changeSchemeItemsFilled(false);
+    const {
+      weight,
+      reps,
+      maxWeight,
+      maxReps,
+      setSchemeItemNumber
+    } = this.state;
+    !this.checkIfLimitsAreExceeded(weight, maxWeight, true) &&
+    !this.checkIfLimitsAreExceeded(reps, maxReps, false)
+      ? this.props.changeSchemeItemsFilled(true, setSchemeItemNumber)
+      : this.props.changeSchemeItemsFilled(false, setSchemeItemNumber);
   };
 
   checkInput = event => {
@@ -51,7 +72,8 @@ class SetSchemeItem extends Component {
 
   render() {
     const { exercise } = this.props;
-    let { setSchemeItemNumber } = this.props;
+    let { setSchemeItemNumber, deleteSetScheme } = this.props;
+    let { weightIsProper, repsAreProper } = this.state;
     setSchemeItemNumber++;
 
     return (
@@ -72,6 +94,7 @@ class SetSchemeItem extends Component {
           </Grid>
           <Grid item xs={1}>
             <Input
+              error={weightIsProper}
               margin="dense"
               type="number"
               name="weight"
@@ -81,6 +104,7 @@ class SetSchemeItem extends Component {
           </Grid>
           <Grid item xs={1}>
             <Input
+              error={repsAreProper}
               margin="dense"
               type="number"
               name="reps"
@@ -89,9 +113,7 @@ class SetSchemeItem extends Component {
             />
           </Grid>
           <Grid item xs={1}>
-            <Button
-              onClick={() => this.props.deleteSetScheme(setSchemeItemNumber)}
-            >
+            <Button onClick={() => deleteSetScheme(setSchemeItemNumber)}>
               <DeleteForeverOutlinedIcon color={"secondary"} />
             </Button>
           </Grid>

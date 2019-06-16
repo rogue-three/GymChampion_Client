@@ -11,8 +11,8 @@ class Training extends Component {
       schemeName: this.props.location.schemeName,
       exercises: [],
       setsField: [],
-      setSchemesCounter: 0,
-      setSchemeItemsFilled: false
+      setSchemesProperFilled: false,
+      setSchemesCounter: 0
     };
     this.addExerciseSetField = this.addExerciseSetField.bind(this);
   }
@@ -61,30 +61,31 @@ class Training extends Component {
       ...this.state.setsField,
       { setNumber: setSchemeCounter, exercise: exercise }
     ];
-    setSchemeCounter++;
+    setSchemeCounter += 1;
 
     this.setState({
       setsField: setsField,
       setSchemesCounter: setSchemeCounter,
-      setSchemeItemsFilled: false
+      setSchemesProperFilled: false
     });
   }
 
   deleteSetField = setsFieldItemNumber => {
     let setsField = this.state.setsField;
-
     const setIndex = setsField.findIndex(
       set => set.setNumber === setsFieldItemNumber
     );
     setsField.splice(setIndex, 1);
-
     this.setState({
       setsField: setsField
     });
   };
 
-  changeSchemeItemsFilled = areFilled => {
-    this.setState({ setSchemeItemsFilled: areFilled });
+  changeSchemeItemsFilled = (areFilled, filledSchemesLength) => {
+    const totalSetSchemes = this.state.setSchemesCounter;
+    if (areFilled && filledSchemesLength === totalSetSchemes) {
+      this.setState({ setSchemesProperFilled: true });
+    }
   };
 
   render() {
@@ -98,7 +99,7 @@ class Training extends Component {
       >
         <Grid item xs={12}>
           <TrainingNavigation
-            setSchemeItemsFilled={this.state.setSchemeItemsFilled}
+            setSchemesProperFilled={this.state.setSchemesProperFilled}
           />
         </Grid>
         <Grid item xs={12}>
@@ -106,7 +107,6 @@ class Training extends Component {
             setsField={setsField}
             changeSchemeItemsFilled={this.changeSchemeItemsFilled}
             deleteSetField={this.deleteSetField}
-            setSchemeCounter={this.state.setSchemesCounter}
           />
         </Grid>
         <Grid item xs={12}>
