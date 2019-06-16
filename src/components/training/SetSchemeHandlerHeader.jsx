@@ -5,21 +5,30 @@ import Typography from "@material-ui/core/Typography";
 class SetSchemeHandlerHeader extends Component {
   render() {
     return (
-      <Grid container direction="row" justify="flex-start" alignItems="center">
-        <Grid item xs={1} />
-        <Grid item xs={2}>
-          <Typography style={{ color: "white" }}>SET</Typography>
+      <React.Fragment>
+        <Grid
+          container
+          direction="row"
+          justify="space-evenly"
+          alignItems="center"
+        >
+          <Grid item xs={1}>
+            <Typography style={{ color: "white" }}> SET</Typography>
+          </Grid>
+          <Grid item xs={1}>
+            <Typography style={{ color: "white" }}>EXERCISE</Typography>
+          </Grid>
+          <Grid item xs={1}>
+            <Typography style={{ color: "white" }}>WEIGHT</Typography>
+          </Grid>
+          <Grid item xs={1}>
+            <Typography style={{ color: "white" }}>REPS</Typography>
+          </Grid>
+          <Grid item xs={1}>
+            <Typography style={{ color: "white" }}>DELETE</Typography>
+          </Grid>
         </Grid>
-        <Grid item xs={3}>
-          <Typography style={{ color: "white" }}>EXERCISE</Typography>
-        </Grid>
-        <Grid item xs={3}>
-          <Typography style={{ color: "white" }}>WEIGHT</Typography>
-        </Grid>
-        <Grid item xs={3}>
-          <Typography style={{ color: "white" }}>REPS</Typography>
-        </Grid>
-      </Grid>
+      </React.Fragment>
     );
   }
 }

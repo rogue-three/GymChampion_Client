@@ -28,7 +28,10 @@ class SetSchemeHandler extends Component {
         justify="flex-start"
         alignItems="stretch"
       >
-        <SetSchemeHandlerHeader />
+        <Grid item>
+          <SetSchemeHandlerHeader />
+        </Grid>
+
         {setsField.length !== 0 ? (
           setsField.map(exercise => (
             <Grid item key={(++setSchemesCounter).toString()}>

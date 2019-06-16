@@ -36,23 +36,17 @@ class SetSchemeItem extends Component {
   render() {
     const { exercise, setSchemeItemNumber } = this.props;
     return (
-      <Paper square>
-        <Grid
-          container
-          direction="row"
-          justify="flex-start"
-          alignItems="center"
-        >
-          <Grid item xs={1} />
+      <Paper square style={{ padding: "0 0 0 10%" }}>
+        <Grid container direction="row" justify="space-between">
           <Grid item xs={1}>
             <Typography>{setSchemeItemNumber}</Typography>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={2}>
             <Typography noWrap variant="caption">
               {exercise.replace(/_/g, " ")}
             </Typography>
           </Grid>
-          <Grid item xs={2}>
+          <Grid item xs={1}>
             <Input
               margin="dense"
               type="number"
@@ -61,8 +55,7 @@ class SetSchemeItem extends Component {
               onChange={this.checkInput}
             />
           </Grid>
-          <Grid item xs={1} />
-          <Grid item xs={2}>
+          <Grid item xs={1}>
             <Input
               margin="dense"
               type="number"
@@ -70,6 +63,9 @@ class SetSchemeItem extends Component {
               style={{ width: 50 }}
               onChange={this.checkInput}
             />
+          </Grid>
+          <Grid item xs={1}>
+            <Typography>X</Typography>
           </Grid>
           <span />
         </Grid>
