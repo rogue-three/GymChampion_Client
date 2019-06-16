@@ -34,6 +34,8 @@ class SetSchemeHandler extends Component {
               <SetSchemeItem
                 setSchemeItemNumber={exercise.setNumber}
                 exercise={exercise.exercise.exerciseName}
+                maxWeight={exercise.exercise.maxWeight}
+                maxReps={exercise.exercise.maxReps}
                 changeSchemeItemsFilled={this.handleSchemeItemsFilled}
                 deleteSetScheme={this.deleteSetScheme}
               />

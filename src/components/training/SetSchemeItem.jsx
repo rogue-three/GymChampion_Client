@@ -12,6 +12,8 @@ class SetSchemeItem extends Component {
 
     this.state = {
       setSchemeItemNumber: this.props.setSchemeItemNumber,
+      maxWeight: this.props.maxWeight,
+      maxReps: this.props.maxReps,
       weight: 0,
       reps: 0
     };
@@ -26,8 +28,19 @@ class SetSchemeItem extends Component {
     });
   };
 
+  checkIfLimitsAreExceeded(currentValue, maxValue) {
+    let areExceeded;
+    currentValue > 0 && currentValue < maxValue
+      ? (areExceeded = false)
+      : (areExceeded = true);
+    return areExceeded;
+  }
+
   setButtonState = value => {
-    value !== "" && this.state.weight > 0 && this.state.reps > 0
+    const { weight, reps, maxWeight, maxReps } = this.state;
+    value !== "" &&
+    !this.checkIfLimitsAreExceeded(weight, maxWeight) &&
+    !this.checkIfLimitsAreExceeded(reps, maxReps)
       ? this.props.changeSchemeItemsFilled(true)
       : this.props.changeSchemeItemsFilled(false);
   };
