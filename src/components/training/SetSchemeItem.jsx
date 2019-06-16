@@ -68,7 +68,7 @@ class SetSchemeItem extends Component {
           </Grid>
           <Grid item xs={1}>
             <Button>
-              <DeleteForeverOutlinedIcon />
+              <DeleteForeverOutlinedIcon color={"secondary"} />
             </Button>
           </Grid>
           <span />
